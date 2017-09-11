@@ -142,7 +142,6 @@ class ImageIgosja
             if (copy($file, $file_url)) {
                 chmod($file_url, 0777);
             }
-
             return $dir . '/' . $file_name;
         } else {
             return self::put_file($file, $ext);

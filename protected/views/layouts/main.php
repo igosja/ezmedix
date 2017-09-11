@@ -27,12 +27,13 @@
     <link rel="stylesheet" href="/css/normalize.min.css">
     <link rel="stylesheet" href="/css/libs.css">
     <link rel="stylesheet" href="/css/main.css">
-    <!--<link rel="stylesheet" href="/css/mobile.css">	-->
+    <!--<link rel="stylesheet" href="/css/mobile.css">-->
     <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
     <script src="/js/vendor/libs.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/site.js"></script>
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -42,20 +43,25 @@
     <header class="header">
         <div class="wrap clearfix">
             <div class="header__logo">
-                <a href="/test/ezmedix/">
-                    <img src="/img/logo.png" alt="">
-                </a>
+                <?= CHtml::link('<img src="/img/logo.png" alt="Ezmedix">', array('index/index')); ?>
             </div>
             <div class="header__info clearfix">
-                <a href="" class="facebook-btn"></a>
-                <a href="" class="twitter-btn"></a>
-                <a href="index-login.html" class="header__log-in">Войти</a>
+                <a href="javascript:" class="facebook-btn"></a>
+                <a href="javascript:" class="twitter-btn"></a>
+                <a href="javascript:" class="header__log-in">Войти</a>
                 <div class="lang-select">
-                    <select name="" id="">
-                        <option value=""  selected="">Рус</option>
-                        <option value="" >Укр</option>
-                        <option value="" >Eng</option>
-                    </select>
+                    <form method="post" class="lang-select">
+                        <select name="language" id="language-select">
+                            <?php foreach ($this->a_language as $item) { ?>
+                                <option
+                                        value="<?= $item['code']; ?>"
+                                        <?php if ($item['code'] == Yii::app()->language) { ?>selected<?php } ?>
+                                >
+                                    <?= $item['name']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </form>
                 </div>
             </div>
             <div class="header__search clearfix">
@@ -129,7 +135,10 @@
                     <a href="index-partners.html">Партнеры</a>
                 </li>
                 <li>
-                    <a href="index-news.html">Новости</a>
+                    <?= CHtml::link(
+                        Yii::t('views.layouts.main', 'header-link-new'),
+                        array('news/index')
+                    ); ?>
                 </li>
                 <li>
                     <a href="index-articles.html">Статьи</a>
@@ -157,8 +166,8 @@
                     <a href="/index-contacts.html">Контакты</a>
                 </div>
                 <div class="footer-top__f__info">
-                    <a href="" class="facebook-btn"></a>
-                    <a href="" class="twitter-btn"></a>
+                    <a href="javascript:" class="facebook-btn"></a>
+                    <a href="javascript:" class="twitter-btn"></a>
                     <a href="javascript:" data-selector="form-call" class="footer-btn overlayElementTrigger">Спрашивайте!</a>
                 </div>
             </div>
@@ -203,11 +212,10 @@
     <div class="footer-bottom">
         <div class="wrap clearfix">
             <div class="footer-copyright">
-                <img src="img/footer-logo.png" alt=""> EZMEDIX © 2008—2017  Все права защищены
+                <img src="/img/footer-logo.png" alt=""> EZMEDIX © 2008—<?= date('Y'); ?>  Все права защищены
             </div>
-
             <div class="footer-frog">
-                <a href="">Создание сайта —<img src="img/frog.png" alt=""></a>
+                <a href="">Создание сайта —<img src="/img/frog.png" alt=""></a>
             </div>
         </div>
     </div>

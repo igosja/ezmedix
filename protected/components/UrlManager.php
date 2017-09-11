@@ -7,9 +7,6 @@ class UrlManager extends CUrlManager
         if (!isset($params['language'])) {
             $params['language'] = Yii::app()->language;
         }
-        if ('ru' == $params['language']) {
-            unset($params['language']);
-        }
         return parent::createUrl($route, $params, $ampersand);
     }
 }

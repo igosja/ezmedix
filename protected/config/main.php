@@ -15,6 +15,8 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
+                '<language:(ru|uk)>' => 'index/index',
+                '' => 'index/index',
                 '<language:(ru|uk)>/<controller>/<action>/<id>' => '<controller>/<action>',
                 '<language:(ru|uk)>/<controller>/<action>' => '<controller>/<action>',
                 '<language:(ru|uk)>/<controller>' => '<controller>/index',

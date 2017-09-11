@@ -31,21 +31,21 @@
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
-                    <span class="badge"><?= ($this->notification ? $this->notification : ''); ?></span>
+                    <span class="badge"><?= (12); ?></span>
                     <i class="fa fa-envelope fa-fw"></i>
                     <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-messages">
                     <li>
                         <?= CHtml::link(
-                            '<span class="badge">' . ($this->callme ? $this->callme : '') . '</span> Обратные звонки',
+                            '<span class="badge">' . 4 . '</span> Обратные звонки',
                             array('callme/index')
                         ); ?>
                     </li>
                     <li class="divider"></li>
                     <li>
                         <?= CHtml::link(
-                            '<span class="badge">' . ($this->order ? $this->order : '') . '</span> Заказы',
+                            '<span class="badge">' . 7 . '</span> Заказы',
                             array('order/index')
                         ); ?>
                     </li>
@@ -59,34 +59,6 @@
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="javascript:">Товары<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <?= CHtml::link('Товары', array('product/index')); ?>
-                            </li>
-                            <li>
-                                <?= CHtml::link('Простые товары', array('productsimple/index')); ?>
-                            </li>
-                            <li>
-                                <?= CHtml::link('Категории', array('category/index')); ?>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:">Видео<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <?= CHtml::link('Видео', array('video/index')); ?>
-                            </li>
-                            <li>
-                                <?= CHtml::link('Категории', array('videocategory/index')); ?>
-                            </li>
-                            <li>
-                                <?= CHtml::link('SEO', array('pagevideo/index')); ?>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
                         <a href="javascript:">Новости<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -94,31 +66,6 @@
                             </li>
                             <li>
                                 <?= CHtml::link('SEO', array('pagenews/index')); ?>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:">Отзывы<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <?= CHtml::link('Отзывы', array('review/index')); ?>
-                            </li>
-                            <li>
-                                <?= CHtml::link('SEO', array('pagereview/index')); ?>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:">Реализованные проекты<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <?= CHtml::link('Реализованные проекты', array('project/index')); ?>
-                            </li>
-                            <li>
-                                <?= CHtml::link('Категории', array('projectcategory/index')); ?>
-                            </li>
-                            <li>
-                                <?= CHtml::link('Тексты и SEO', array('pageproject/index')); ?>
                             </li>
                         </ul>
                     </li>
@@ -134,87 +81,6 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:">Текстовые страницы<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="javascript:">Бесплатная косультация<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <?= CHtml::link('Вопросы', array('consult/index')); ?>
-                                    </li>
-                                    <li>
-                                        <?= CHtml::link('Тексты и SEO', array('pageconsult/index')); ?>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:">Гарантии<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <?= CHtml::link('Тексты и SEO', array('pageguarantee/index')); ?>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:">Диллерам<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <?= CHtml::link('Тексты и SEO', array('pagedealer/index')); ?>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:">Котлы в кредит<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <?= CHtml::link('Тексты и SEO', array('pagecredit/index')); ?>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:">О компании<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <?= CHtml::link('Тексты и SEO', array('pageabout/index')); ?>
-                                    </li>
-                                    <li>
-                                        <?= CHtml::link('Достижения', array('achievement/index')); ?>
-                                    </li>
-                                    <li>
-                                        <?= CHtml::link('Фото с нами', array('aboutphoto/index')); ?>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:">Оплата и доставка<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <?= CHtml::link('Тексты и SEO', array('pagepayment/index')); ?>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:">Почему мы<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <?= CHtml::link('Тексты и SEO', array('pagewhy/index')); ?>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:">Преимущества<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <?= CHtml::link('Преимущества', array('advantage/index')); ?>
-                                    </li>
-                                    <li>
-                                        <?= CHtml::link('Тексты и SEO', array('pageadvantage/index')); ?>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
                         <?= CHtml::link('Контакты', array('contact/index')); ?>
                     </li>
                     <li>
@@ -222,9 +88,6 @@
                     </li>
                     <li>
                         <?= CHtml::link('Переводы', array('translate/index')); ?>
-                    </li>
-                    <li>
-                        <?= CHtml::link('Sitemap', array('sitemap/index')); ?>
                     </li>
                 </ul>
             </div>

@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="row">
-    <?php if ($this->callme) { ?>
+    <?php if (true) { ?>
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -13,7 +13,7 @@
                             <i class="fa fa-phone fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?= $this->callme; ?></div>
+                            <div class="huge"><?= 51; ?></div>
                             <div>Обратные звонки</div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
             </div>
         </div>
     <?php } ?>
-    <?php if ($this->order) { ?>
+    <?php if (true) { ?>
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-green">
                 <div class="panel-heading">
@@ -38,7 +38,7 @@
                             <i class="fa fa-shopping-cart fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?= $this->order; ?></div>
+                            <div class="huge"><?= 94; ?></div>
                             <div>Заказы</div>
                         </div>
                     </div>
