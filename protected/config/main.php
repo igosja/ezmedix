@@ -29,10 +29,10 @@ return array(
             ),
         ),
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=',
+            'connectionString' => 'mysql:host=localhost;dbname=igosja_ezmedix',
             'emulatePrepare' => true,
-            'username' => '',
-            'password' => '',
+            'username' => 'igosja_ezmedix',
+            'password' => '[ZaYF*Za',
             'charset' => 'utf8',
         ),
         'messages' => array(
