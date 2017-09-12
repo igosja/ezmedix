@@ -164,8 +164,14 @@
                     <a href="/index-about-us.html">О нас</a>
                     <a href="/index-production.html">Продукция</a>
                     <a href="/index-partners.html">Партнеры</a>
-                    <a href="/index-news.html">Новости</a>
-                    <a href="/index-articles.html">Статьи</a>
+                    <?= CHtml::link(
+                        Yii::t('views.layouts.main', 'footer-link-news'),
+                        array('news/index')
+                    ); ?>
+                    <?= CHtml::link(
+                        Yii::t('views.layouts.main', 'footer-link-article'),
+                        array('article/index')
+                    ); ?>
                     <a href="/index-contacts.html">Контакты</a>
                 </div>
                 <div class="footer-top__f__info">
