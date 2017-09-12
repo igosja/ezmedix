@@ -136,12 +136,15 @@
                 </li>
                 <li>
                     <?= CHtml::link(
-                        Yii::t('views.layouts.main', 'header-link-new'),
+                        Yii::t('views.layouts.main', 'header-link-news'),
                         array('news/index')
                     ); ?>
                 </li>
                 <li>
-                    <a href="index-articles.html">Статьи</a>
+                    <?= CHtml::link(
+                        Yii::t('views.layouts.main', 'header-link-article'),
+                        array('article/index')
+                    ); ?>
                 </li>
                 <li>
                     <a href="index-contacts.html">Контакты</a>

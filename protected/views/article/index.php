@@ -29,7 +29,7 @@
             </div>
             <?php if ($more) { ?>
                 <div class="centered">
-                    <a href="javascript:" class="btn load-more" data-type="news" data-offset="<?= $offset; ?>">
+                    <a href="javascript:" class="btn load-more" data-type="article" data-offset="<?= $offset; ?>">
                         <?= Yii::t('views.news.index', 'link-more'); ?>
                     </a>
                 </div>

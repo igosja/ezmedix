@@ -1,16 +1,16 @@
 <?php
 
-class NewsController extends Controller
+class ArticleController extends Controller
 {
     public function actionIndex()
     {
         $page = Yii::app()->request->getQuery('page', 1);
         $offset = ($page - 1) * News::ON_PAGE;
         $a_news = News::model()->findAllByAttributes(
-            array('status' => 1, 'type_id' => News::TYPE_NEWS),
+            array('status' => 1, 'type_id' => News::TYPE_ARTICLE),
             array('offset' => $offset, 'limit' => News::ON_PAGE, 'order' => 'id DESC')
         );
-        $count = News::model()->countByAttributes(array('status' => 1, 'type_id' => News::TYPE_NEWS));
+        $count = News::model()->countByAttributes(array('status' => 1, 'type_id' => News::TYPE_ARTICLE));
         $more = false;
         if ($count > count($a_news) + $offset) {
             $more = true;
@@ -32,7 +32,7 @@ class NewsController extends Controller
         if ($page_next > $page_total) {
             $page_next = 0;
         }
-        $o_page = PageNews::model()->findByPk(1);
+        $o_page = PageArticle::model()->findByPk(1);
         $this->setSEO($o_page);
         $this->breadcrumbs = array(
             $o_page['h1_' . Yii::app()->language],
@@ -53,7 +53,7 @@ class NewsController extends Controller
     public function actionMore()
     {
         $a_news = News::model()->findAllByAttributes(
-            array('status' => 1, 'type_id' => News::TYPE_NEWS),
+            array('status' => 1, 'type_id' => News::TYPE_ARTICLE),
             array(
                 'order' => 'id DESC',
                 'offset' => Yii::app()->request->getQuery('offset', 0) + News::ON_PAGE,
@@ -68,7 +68,7 @@ class NewsController extends Controller
     public function actionCheck()
     {
         $count = News::model()->countByAttributes(
-            array('status' => 1, 'type_id' => News::TYPE_NEWS)
+            array('status' => 1, 'type_id' => News::TYPE_ARTICLE)
         );
         $offset = (int)Yii::app()->request->getQuery('offset', 0) + News::ON_PAGE;
         $remove = false;
@@ -81,17 +81,17 @@ class NewsController extends Controller
     public function actionView($id)
     {
         $o_news = News::model()->findByAttributes(
-            array('url' => $id, 'type_id' => News::TYPE_NEWS)
+            array('url' => $id, 'type_id' => News::TYPE_ARTICLE)
         );
         if (!$o_news) {
             $this->redirect(array('index'));
         }
         $o_prev = News::model()->findByAttributes(
-            array('status' => 1, 'type_id' => News::TYPE_NEWS),
+            array('status' => 1, 'type_id' => News::TYPE_ARTICLE),
             array('condition' => 'id>' . $o_news->primaryKey, 'order' => 'id ASC')
         );
         $o_next = News::model()->findByAttributes(
-            array('status' => 1, 'type_id' => News::TYPE_NEWS),
+            array('status' => 1, 'type_id' => News::TYPE_ARTICLE),
             array('condition' => 'id<' . $o_news->primaryKey, 'order' => 'id DESC')
         );
         $this->setSEO($o_news);

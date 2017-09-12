@@ -3,6 +3,8 @@
 class News extends CActiveRecord
 {
     const ON_PAGE = 6;
+    const TYPE_NEWS = 1;
+    const TYPE_ARTICLE = 2;
 
     public function tableName()
     {
@@ -13,6 +15,7 @@ class News extends CActiveRecord
     {
         return array(
             array('h1_ru, h1_uk, seo_title_ru, seo_title_uk, url', 'length', 'max' => 255),
+            array('id, type_id', 'numerical'),
             array('h1_ru, h1_uk, text_ru, text_uk', 'required'),
             array('seo_description_ru, seo_description_uk, seo_keywords_ru, seo_keywords_uk', 'safe'),
         );
@@ -65,7 +68,9 @@ class News extends CActiveRecord
     {
         $criteria = new CDbCriteria;
 
-        $criteria->compare('h1_ru', $this->h1_ru, true);
+        $criteria->compare('h1_ru', $this['h1_ru'], true);
+        $criteria->compare('id', $this['id']);
+        $criteria->compare('type_id', $this['type_id']);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

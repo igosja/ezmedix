@@ -1,10 +1,10 @@
 <?php
 
-class NewsController extends AController
+class ArticleController extends AController
 {
-    public $h1 = 'Новости';
-    public $h1_edit = 'Редактирование новости';
-    public $title_index = 'Новости';
+    public $h1 = 'Статьи';
+    public $h1_edit = 'Редактирование статьи';
+    public $title_index = 'Статьи';
     public $title_create = 'Создание';
     public $title_update = 'Редактирование';
     public $model_name = 'News';
@@ -16,7 +16,7 @@ class NewsController extends AController
         if (isset($_GET[$this->model_name])) {
             $model->attributes = $_GET[$this->model_name];
         }
-        $model['type_id'] = News::TYPE_NEWS;
+        $model['type_id'] = News::TYPE_ARTICLE;
         $this->breadcrumbs = array(
             $this->title_index,
         );
@@ -36,7 +36,7 @@ class NewsController extends AController
         }
         if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
-            $model->type_id = News::TYPE_NEWS;
+            $model->type_id = News::TYPE_ARTICLE;
             if ($model->save()) {
                 $model = $this->getModel()->findByPk($model->primaryKey);
                 if (empty($model->url)) {

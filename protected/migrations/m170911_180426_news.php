@@ -11,6 +11,7 @@ class m170911_180426_news extends CDbMigration
             'h1_uk' => 'varchar(255)',
             'image_id' => 'int(11) default 0',
             'status' => 'tinyint(1) default 1',
+            'type_id' => 'int(1) default 1',
             'text_ru' => 'text',
             'text_uk' => 'text',
             'url' => 'varchar(255)',

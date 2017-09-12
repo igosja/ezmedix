@@ -70,6 +70,17 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="javascript:">Статьи<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= CHtml::link('Статьи', array('article/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('SEO', array('pagearticle/index')); ?>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="javascript:">Главная страница<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
