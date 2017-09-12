@@ -132,7 +132,10 @@
                     </div>
                 </li>
                 <li>
-                    <a href="index-partners.html">Партнеры</a>
+                    <?= CHtml::link(
+                        Yii::t('views.layouts.main', 'header-link-partner'),
+                        array('partner/index')
+                    ); ?>
                 </li>
                 <li>
                     <?= CHtml::link(
@@ -163,7 +166,10 @@
                 <div class="footer-top__f__menu">
                     <a href="/index-about-us.html">О нас</a>
                     <a href="/index-production.html">Продукция</a>
-                    <a href="/index-partners.html">Партнеры</a>
+                    <?= CHtml::link(
+                        Yii::t('views.layouts.main', 'footer-link-partner'),
+                        array('partner/index')
+                    ); ?>
                     <?= CHtml::link(
                         Yii::t('views.layouts.main', 'footer-link-news'),
                         array('news/index')

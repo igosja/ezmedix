@@ -6,7 +6,7 @@ class m170911_180612_resize extends CDbMigration
     {
         $this->createTable('resize', array(
             'id' => 'pk',
-            'cut' => 'tinyint(1) default 0',
+            'cut' => 'int(1) default 0',
             'height' => 'int(11) default 0',
             'image_id' => 'int(11) default 0',
             'url' => 'varchar(255)',

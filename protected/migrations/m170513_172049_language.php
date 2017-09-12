@@ -8,8 +8,8 @@ class m170513_172049_language extends CDbMigration
             'id' => 'pk',
             'code' => 'varchar(5) not null',
             'name' => 'varchar(255) not null',
-            'order' => 'tinyint(1) default 0',
-            'status' => 'tinyint(1) default 1',
+            'order' => 'int(1) default 0',
+            'status' => 'int(1) default 1',
         ));
 
         $this->insertMultiple('language', array(

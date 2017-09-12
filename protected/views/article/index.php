@@ -2,7 +2,7 @@
 /**
  * @var $a_news array
  * @var $more boolean
- * @var $o_page PageNews
+ * @var $o_page PageArticle
  * @var $offset integer
  * @var $page integer
  * @var $page_first integer

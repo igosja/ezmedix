@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model News
+ * @var $model Partner
  */
 ?>
 <div class="row">
@@ -23,18 +23,26 @@
     $columns = array(
         array(
             'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
-            'name' => 'id',
+            'htmlOptions' => array('class' => 'text-center'),
+            'type' => 'raw',
+            'value' => function () {
+                return '<i class="fa fa-arrows-v sorter">';
+            },
         ),
-        'h1_ru',
         array(
-            'filter' => false,
-            'name' => 'date',
-            'type' => 'date'
+            'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
+            'name' => 'id',
+            'sortable' => false,
+        ),
+        array(
+            'name' => 'h1_ru',
+            'sortable' => false,
         ),
         array(
             'filter' => false,
             'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
             'name' => 'status',
+            'sortable' => false,
             'type' => 'raw',
             'value' => function ($model) {
                 if (1 == $model->status) {
@@ -62,7 +70,6 @@
         'afterAjaxUpdate' => 'function(id, data){CGridViewAfterAjax()}',
         'columns' => $columns,
         'dataProvider' => $model->search(),
-        'filter' => $model,
         'itemsCssClass' => 'table table-striped table-bordered sort-table',
         'htmlOptions' => array('data-controller' => $this->uniqueid),
         'pager' => array(

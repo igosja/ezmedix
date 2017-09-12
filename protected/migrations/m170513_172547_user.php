@@ -6,9 +6,9 @@ class m170513_172547_user extends CDbMigration
     {
         $this->createTable('user', array(
             'id' => 'pk',
-            'username' => 'varchar(255) not null',
-            'password' => 'varchar(32) not null',
-            'userrole_id' => 'tinyint(1) default 3',
+            'username' => 'varchar(255)',
+            'password' => 'varchar(32)',
+            'userrole_id' => 'int(1) default 3',
         ));
 
         $this->insert('user', array(

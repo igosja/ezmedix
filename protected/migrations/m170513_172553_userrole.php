@@ -6,7 +6,7 @@ class m170513_172553_userrole extends CDbMigration
     {
         $this->createTable('userrole', array(
             'id' => 'pk',
-            'name' => 'varchar(255) not null',
+            'name' => 'varchar(255)',
         ));
 
         $this->insertMultiple('userrole', array(

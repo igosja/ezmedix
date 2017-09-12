@@ -70,6 +70,17 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="javascript:">Партнёры<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= CHtml::link('Партнёры', array('partner/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('SEO', array('pagepartner/index')); ?>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="javascript:">Статьи<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>

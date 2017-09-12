@@ -37,6 +37,7 @@ class News extends CActiveRecord
             'seo_description_uk' => 'SEO description (Українська)',
             'seo_keywords_ru' => 'SEO keywords (Русский)',
             'seo_keywords_uk' => 'SEO keywords (Українська)',
+            'status' => 'Статус',
         );
     }
 
@@ -44,9 +45,9 @@ class News extends CActiveRecord
     {
         if (parent::beforeSave()) {
             if ($this->isNewRecord) {
-                $this->date = time();
+                $this['date'] = time();
             }
-            $this->url = str_replace('/', '', $this->url);
+            $this['url'] = str_replace('/', '', $this['url']);
         }
         return true;
     }
@@ -54,8 +55,8 @@ class News extends CActiveRecord
     public function beforeDelete()
     {
         if (parent::beforeDelete()) {
-            if ($this->image_id) {
-                $o_image = Image::model()->findByPk($this->image_id);
+            if ($this['image_id']) {
+                $o_image = Image::model()->findByPk($this['image_id']);
                 if ($o_image) {
                     $o_image->delete();
                 }
@@ -68,8 +69,8 @@ class News extends CActiveRecord
     {
         $criteria = new CDbCriteria;
 
-        $criteria->compare('h1_ru', $this['h1_ru'], true);
         $criteria->compare('id', $this['id']);
+        $criteria->compare('h1_ru', $this['h1_ru'], true);
         $criteria->compare('type_id', $this['type_id']);
 
         return new CActiveDataProvider($this, array(

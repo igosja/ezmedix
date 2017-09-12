@@ -25,7 +25,7 @@
             'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
             'name' => 'id',
         ),
-        'name' => 'h1_ru',
+        'h1_ru',
         array(
             'filter' => false,
             'name' => 'date',
