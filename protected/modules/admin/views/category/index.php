@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model Partner
+ * @var $model Category
  */
 ?>
 <div class="row">

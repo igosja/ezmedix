@@ -114,11 +114,6 @@
             <h2 class="title">Новости и акции:</h2>
             <div class="clearfix news">
                 <?php foreach ($a_news as $item) { ?>
-                    <?php if (News::TYPE_NEWS == $item['type_id']) {
-                        $controller = 'news';
-                    } else {
-                        $controller = 'article';
-                    } ?>
                     <?= CHtml::link(
                         '<img
                             src="' . ImageIgosja::resize($item['image_id'], 370, 201) . '"
@@ -129,7 +124,7 @@
                         <span class="news__i__text">' . mb_substr(strip_tags($item['text_' . Yii::app()->language]), 0,
                             350) . '</span>
                         <span class="news__i__link">' . Yii::t('views.index.index', 'link-detail') . '</span>',
-                        array($controller . '/view', 'id' => $item['url']),
+                        array('news/view', 'id' => $item['url']),
                         array('class' => 'news__i')
                     ) ?>
                 <?php } ?>

@@ -86,6 +86,21 @@ class ArticleController extends Controller
         if (!$o_news) {
             $this->redirect(array('index'));
         }
+        $text = $o_news['text_' . Yii::app()->language];
+        $text = explode('</p>', $text);
+        $length = 0;
+        $pre = array();
+        for ($i=0, $count_text=count($text); $i<$count_text; $i++) {
+            $length = $length + mb_strlen($text[$i]);
+            $pre[] = $text[$i];
+            unset($text[$i]);
+            if (560 <= $length) {
+                break;
+            }
+        }
+        $text = array_values($text);
+        $pre = implode('</p>', $pre) . '</p>';
+        $text = implode('</p>', $text) . '</p>';
         $o_prev = News::model()->findByAttributes(
             array('status' => 1, 'type_id' => News::TYPE_ARTICLE),
             array('condition' => 'id>' . $o_news->primaryKey, 'order' => 'id ASC')
@@ -96,7 +111,7 @@ class ArticleController extends Controller
         );
         $this->setSEO($o_news);
         $this->og_image = ImageIgosja::resize($o_news['image_id'], 560, 280);
-        $o_page = PageNews::model()->findByPk(1);
+        $o_page = PageArticle::model()->findByPk(1);
         $this->breadcrumbs = array(
             $o_page['h1_' . Yii::app()->language] => array('index'),
         );
@@ -105,6 +120,8 @@ class ArticleController extends Controller
             'o_news' => $o_news,
             'o_next' => $o_next,
             'o_prev' => $o_prev,
+            'pre' => $pre,
+            'text' => $text,
         ));
     }
 }

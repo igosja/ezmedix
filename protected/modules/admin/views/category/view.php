@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model News
+ * @var $model Category
  */
 ?>
     <div class="row">
@@ -28,13 +28,9 @@
 $attributes = array(
     'id',
     array(
-        'name' => 'date',
-        'type' => 'date',
-    ),
-    array(
         'name' => 'url',
         'type' => 'raw',
-        'value' => CHtml::link($model->url, array('/article/view', 'id' => $model['url']), array('target' => '_blank'))
+        'value' => CHtml::link($model['url'], array('/catalog/view', 'id' => $model['url']), array('target' => '_blank'))
     ),
     array(
         'name' => 'image_id',
@@ -47,18 +43,10 @@ $attributes = array(
             </div>') :
             '',
     ),
-    array(
-        'name' => 'text_ru',
-        'type' => 'raw',
-    ),
     'seo_title_ru',
     'seo_description_ru',
     'seo_keywords_ru',
     'h1_uk',
-    array(
-        'name' => 'text_uk',
-        'type' => 'raw',
-    ),
     'seo_title_uk',
     'seo_description_uk',
     'seo_keywords_uk',

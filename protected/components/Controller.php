@@ -4,6 +4,7 @@
 
 class Controller extends CController
 {
+    public $a_category = array();
     public $a_language = array();
     public $breadcrumbs = array();
     public $callme = array();
@@ -25,6 +26,9 @@ class Controller extends CController
             $language = Language::model()->find(array('select' => array('code'), 'order' => '`order`'));
             Yii::app()->language = $language['code'];
         }
+        $this->a_category = Category::model()->findAllByAttributes(
+            array('status' => 1), array('order' => '`order` ASC')
+        );
         $clientScript = Yii::app()->getClientScript();
         $clientScript->scriptMap = array(
             'jquery.js' => false,

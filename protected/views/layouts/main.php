@@ -80,55 +80,28 @@
                     ); ?>
                 </li>
                 <li class="nav-h">
-                    <a href="javascript:" class="nav__arrow">Продукция</a>
+                    <?= CHtml::link(
+                        Yii::t('views.layouts.main', 'header-link-catalog'),
+                        array('catalog/index'),
+                        array('class' => 'nav__arrow')
+                    ); ?>
                     <div class="nav__drop">
                         <div class="wrap">
+<!--                            3 раза-->
+                            <?php for ($i=0; $i<3; $i++) { ?>
                             <div class="nav__drop__i">
-                                <a href="index-catalog.html" class="nav__drop__link">
-                                    <img src="/img/cats/cat-1.png" alt="">
-                                    Дентальная профилактика
-                                </a>
-                                <a href="" class="nav__drop__link">
-                                    <img src="/img/cats/cat-2.png" alt="">
-                                    Дезинфекция систем аспирации
-                                </a>
-                                <a href="" class="nav__drop__link">
-                                    <img src="/img/cats/cat-3.png" alt="">
-                                    Дезинфекция шлангов DUWLS
-                                </a>
-                                <a href="" class="nav__drop__link">
-                                    <img src="/img/cats/cat-4.png" alt="">
-                                    Дезинфекция поверхностей
-                                </a>
+                                <?php foreach ($this->a_category as $item) { ?>
+                                    <?= CHtml::link(
+                                        '<img src="' . $item['image']['url'] . '" alt="'
+                                        . $item['h1_' . Yii::app()->language]
+                                        . '">'
+                                        . $item['h1_' . Yii::app()->language],
+                                        array('catalog/view', 'id' => $item['url']),
+                                        array('class' => 'nav__drop__link')
+                                    )?>
+                                <?php } ?>
                             </div>
-
-                            <div class="nav__drop__i">
-                                <a href="" class="nav__drop__link">
-                                    <img src="/img/cats/cat-5.png" alt="">
-                                    Дезинфекция дентального инструментария
-                                </a>
-                                <a href="" class="nav__drop__link">
-                                    <img src="/img/cats/cat-6.png" alt="">
-                                    Стерилизация стомато инструментария
-                                </a>
-                                <a href="" class="nav__drop__link">
-                                    <img src="/img/cats/cat-7.png" alt="">
-                                    Очистка и дезинфекция автоклава
-                                </a>
-                            </div>
-
-                            <div class="nav__drop__i">
-                                <a href="" class="nav__drop__link">
-                                    <img src="/img/cats/cat-8.png" alt="">
-                                    Дезинфекция оттисков
-                                </a>
-                                <a href="" class="nav__drop__link">
-                                    <img src="/img/cats/cat-9.png" alt="">
-                                    Расходные материалы</a>
-                                <a href="" class="nav__drop__link">
-                                    <img src="/img/cats/cat-10.png" alt="">
-                                    Действующие акции</a>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </li>
@@ -174,7 +147,10 @@
                         Yii::t('views.layouts.main', 'footer-link-about'),
                         array('about/index')
                     ); ?>
-                    <a href="/index-production.html">Продукция</a>
+                    <?= CHtml::link(
+                        Yii::t('views.layouts.main', 'footer-link-catalog'),
+                        array('catalog/index')
+                    ); ?>
                     <?= CHtml::link(
                         Yii::t('views.layouts.main', 'footer-link-partner'),
                         array('partner/index')
@@ -201,28 +177,21 @@
                 </div>
             </div>
             <div class="footer-top__s clearfix">
+                <!--                    3 раза-->
+                <?php for ($i=0; $i<3; $i++) { ?>
                 <div class="footer-top__s__i">
                     <ul>
-                        <li><a href="">Дентальная профилактика</a></li>
-                        <li><a href="">Дезинфекция систем аспирации</a></li>
-                        <li><a href="">Дезинфекция шлангов</a></li>
-                        <li><a href="">Дезинфекция поверхности</a></li>
+                        <?php foreach ($this->a_category as $item) { ?>
+                            <li>
+                                <?= CHtml::link(
+                                    $item['h1_' . Yii::app()->language],
+                                    array('catalog/view', 'id' => $item['url'])
+                                )?>
+                            </li>
+                        <?php } ?>
                     </ul>
                 </div>
-                <div class="footer-top__s__i">
-                    <ul>
-                        <li><a href="">Дезинфекция дентального инструментария</a></li>
-                        <li><a href="">Стерилизация стомато инструментария</a></li>
-                        <li><a href="">Очистка и дезинфекция автоклава</a></li>
-                        <li><a href="">Дезинфекция оттисков</a></li>
-                    </ul>
-                </div>
-                <div class="footer-top__s__i">
-                    <ul>
-                        <li><a href="">Расходные материалы</a></li>
-                        <li><a href="">Действующие акции</a></li>
-                    </ul>
-                </div>
+                <?php } ?>
                 <div class="footer-top__s__i">
                     <div class="footer-top__grafik">
                         <strong>График работы:</strong>
