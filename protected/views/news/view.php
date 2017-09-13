@@ -3,6 +3,8 @@
  * @var $o_news News
  * @var $o_next News
  * @var $o_prev News
+ * @var $pre string
+ * @var $text string
  */
 ?>
 <section class="content">
@@ -17,17 +19,17 @@
         </div>
         <div class="wrap">
             <div class="news-one">
-                <div class="news-one__pre__bt clearfix">
-                    <span class="news-one__pre__date">
-                        <?= date('d.m.Y', $o_news['date']); ?>
-                    </span>
-                    <span class="news-one__pre__soc">
-                        <?= Yii::t('views.news.view', 'share'); ?>
-                    </span>
-                </div>
                 <div class="clearfix news-one__pre">
                     <div class="news-one__pre__left">
-                        <?= $o_news['text_' . Yii::app()->language]; ?>
+                        <?= $pre; ?>
+                        <div class="news-one__pre__bt clearfix">
+                            <span class="news-one__pre__date">
+                                <?= date('d.m.Y', $o_news['date']); ?>
+                            </span>
+                            <span class="news-one__pre__soc">
+                                <?= Yii::t('views.news.view', 'share'); ?>
+                            </span>
+                        </div>
                     </div>
                     <div class="news-one__pre__right">
                         <img
@@ -36,7 +38,7 @@
                         />
                     </div>
                 </div>
-                <?= $o_news['text_' . Yii::app()->language]; ?>
+                <?= $text; ?>
                 <div class="news-one__pager clearfix">
                     <?php if ($o_prev) { ?>
                         <?= CHtml::link(
