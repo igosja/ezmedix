@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model PageNews
+ * @var $model PagePartner
  */
 ?>
     <div class="row">
@@ -19,14 +19,14 @@
     </div>
 <?php
 $attributes = array(
-    'h1_uk',
-    'seo_title_uk',
-    'seo_description_uk',
-    'seo_keywords_uk',
     'h1_ru',
     'seo_title_ru',
     'seo_description_ru',
     'seo_keywords_ru',
+    'h1_uk',
+    'seo_title_uk',
+    'seo_description_uk',
+    'seo_keywords_uk',
 );
 $this->widget('zii.widgets.CDetailView', array(
     'attributes' => $attributes,

@@ -1,6 +1,6 @@
 <?php
 /* @var $this SiteController */
-/* @var $model ContactForm */
+/* @var $model FeedBack */
 /* @var $form CActiveForm */
 
 $this->pageTitle=Yii::app()->name . ' - Contact Us';

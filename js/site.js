@@ -31,4 +31,19 @@ jQuery(document).ready(function ($) {
             }
         });
     });
+
+    $('.submit-link').on('click', function() {
+        $(this).parent().find('input').trigger('click');
+    });
+
+    var error_messages = $('.errorMessage');
+    for (var i = 0; i < error_messages.length; i++) {
+        if ('' !== $(error_messages[i]).html()) {
+            var form_id = $(error_messages[i]).closest('form').attr('id');
+            if ('popup-contact-form' === form_id) {
+                $('.footer-btn').trigger('click');
+                break;
+            }
+        }
+    }
 });

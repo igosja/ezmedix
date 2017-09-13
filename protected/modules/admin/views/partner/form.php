@@ -58,22 +58,18 @@
             <tr>
                 <td class="col-lg-3">
                     <?= $form->labelEx($model, 'phone_ru'); ?>
-                    <br/>
-                    Через точку с запятой без пробелов, пример: "(044) 123-45-67;044 123-45-67 - Факс;050 123 4567"
                 </td>
                 <td>
-                    <?= $form->textField($model, 'phone_ru', array('class' => 'form-control')); ?>
+                    <?= $form->textArea($model, 'phone_ru', array('class' => 'form-control')); ?>
                     <?= $form->error($model, 'phone_ru'); ?>
                 </td>
             </tr>
             <tr>
                 <td class="col-lg-3">
                     <?= $form->labelEx($model, 'phone_uk'); ?>
-                    <br/>
-                    Через точку с запятой без пробелов, пример: "(044) 123-45-67;044 123-45-67 - Факс;050 123 4567"
                 </td>
                 <td>
-                    <?= $form->textField($model, 'phone_uk', array('class' => 'form-control')); ?>
+                    <?= $form->textArea($model, 'phone_uk', array('class' => 'form-control')); ?>
                     <?= $form->error($model, 'phone_uk'); ?>
                 </td>
             </tr>

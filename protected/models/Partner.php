@@ -10,9 +10,10 @@ class Partner extends CActiveRecord
     public function rules()
     {
         return array(
-            array('address_ru, address_uk, h1_ru, h1_uk, phone_ru, phone_uk', 'length', 'max' => 255),
+            array('address_ru, address_uk, h1_ru, h1_uk', 'length', 'max' => 255),
             array('order, status', 'numerical'),
             array('address_ru, address_uk, h1_ru, h1_uk, phone_ru, phone_uk', 'required'),
+            array('phone_ru, phone_uk', 'safe'),
         );
     }
 

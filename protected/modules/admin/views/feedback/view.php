@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model PageArticle
+ * @var $model News
  */
 ?>
     <div class="row">
@@ -9,8 +9,8 @@
             <ul class="list-inline preview-links text-center">
                 <li>
                     <?= CHtml::link(
-                        'Редактировать',
-                        array('update', 'id' => $model->primaryKey),
+                        'Список',
+                        array('index'),
                         array('class' => 'btn btn-default')
                     ); ?>
                 </li>
@@ -19,14 +19,19 @@
     </div>
 <?php
 $attributes = array(
-    'h1_ru',
-    'seo_title_ru',
-    'seo_description_ru',
-    'seo_keywords_ru',
-    'h1_uk',
-    'seo_title_uk',
-    'seo_description_uk',
-    'seo_keywords_uk',
+    'id',
+    array(
+        'name' => 'date',
+        'value' => date('H:i d.m.Y', $model['date']),
+    ),
+    'clinic',
+    'email',
+    'phone',
+    'name',
+    array(
+        'name' => 'text',
+        'value' => nl2br($model['text']),
+    ),
 );
 $this->widget('zii.widgets.CDetailView', array(
     'attributes' => $attributes,

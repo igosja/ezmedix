@@ -11,8 +11,8 @@ class m170912_175930_partner extends CDbMigration
             'h1_ru' => 'varchar(255)',
             'h1_uk' => 'varchar(255)',
             'order' => 'int(11) default 0',
-            'phone_ru' => 'varchar(255)',
-            'phone_uk' => 'varchar(255)',
+            'phone_ru' => 'text',
+            'phone_uk' => 'text',
             'status' => 'int(1) default 1',
         ));
     }

@@ -6,6 +6,7 @@ class Controller extends CController
 {
     public $a_language = array();
     public $breadcrumbs = array();
+    public $callme = array();
     public $layout = 'main';
     public $og_image;
     public $seo_title;
@@ -39,6 +40,14 @@ class Controller extends CController
                 $redirect['id'] = Yii::app()->request->getQuery('id');
             }
             $this->redirect($redirect);
+        }
+        $this->callme = new CallMe();
+        if ($data = Yii::app()->request->getPost('CallMe')) {
+            $this->callme->attributes = $data;
+            if ($this->callme->save()) {
+                $this->callme->send();
+                $this->refresh();
+            }
         }
         return $action;
     }

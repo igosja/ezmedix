@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $form CActiveForm
- * @var $model PageNews
+ * @var $model PagePartner
  */
 ?>
 <div class="row">

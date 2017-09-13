@@ -1,19 +1,12 @@
 <?php
 /**
- * @var $model Partner
+ * @var $model Contact
  */
 ?>
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header text-center"><?= $this->h1; ?></h1>
             <ul class="list-inline preview-links text-center">
-                <li>
-                    <?= CHtml::link(
-                        'Список',
-                        array('index'),
-                        array('class' => 'btn btn-default')
-                    ); ?>
-                </li>
                 <li>
                     <?= CHtml::link(
                         'Редактировать',
@@ -26,9 +19,14 @@
     </div>
 <?php
 $attributes = array(
-    'id',
     'h1_ru',
-    'address_ru',
+    array(
+        'name' => 'address_ru',
+        'type' => 'raw',
+        'value' => function ($model) {
+            return nl2br($model['address_ru']);
+        },
+    ),
     array(
         'name' => 'phone_ru',
         'type' => 'raw',
@@ -36,8 +34,24 @@ $attributes = array(
             return nl2br($model['phone_ru']);
         },
     ),
+    array(
+        'name' => 'schedule_ru',
+        'type' => 'raw',
+        'value' => function ($model) {
+            return nl2br($model['schedule_ru']);
+        },
+    ),
+    'seo_title_ru',
+    'seo_description_ru',
+    'seo_keywords_ru',
     'h1_uk',
-    'address_uk',
+    array(
+        'name' => 'address_uk',
+        'type' => 'raw',
+        'value' => function ($model) {
+            return nl2br($model['address_uk']);
+        },
+    ),
     array(
         'name' => 'phone_uk',
         'type' => 'raw',
@@ -45,6 +59,21 @@ $attributes = array(
             return nl2br($model['phone_uk']);
         },
     ),
+    array(
+        'name' => 'schedule_uk',
+        'type' => 'raw',
+        'value' => function ($model) {
+            return nl2br($model['schedule_uk']);
+        },
+    ),
+    'schedule_uk',
+    'seo_title_uk',
+    'seo_description_uk',
+    'seo_keywords_uk',
+    'email',
+    'email_letter',
+    'lat',
+    'lng',
 );
 $this->widget('zii.widgets.CDetailView', array(
     'attributes' => $attributes,

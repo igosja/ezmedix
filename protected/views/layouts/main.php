@@ -1,5 +1,6 @@
 <?php
 /**
+ * @var $form CActiveForm
  * @var $content string
  */
 ?>
@@ -9,6 +10,8 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
     <!--[if gt IE 8]><!--> <html class="no-js homepage"> <!--<![endif]-->
 <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><?= $this->seo_title; ?></title>
@@ -28,12 +31,7 @@
     <link rel="stylesheet" href="/css/libs.css">
     <link rel="stylesheet" href="/css/main.css">
     <!--<link rel="stylesheet" href="/css/mobile.css">-->
-    <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
-    <script src="/js/vendor/libs.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/site.js"></script>
+    <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -76,10 +74,13 @@
         <div class="wrap">
             <ul>
                 <li>
-                    <a href="index-about-us.html">О нас</a>
+                    <?= CHtml::link(
+                        Yii::t('views.layouts.main', 'header-link-about'),
+                        array('about/index')
+                    ); ?>
                 </li>
                 <li class="nav-h">
-                    <a href="javascript:;" class="nav__arrow">Продукция</a>
+                    <a href="javascript:" class="nav__arrow">Продукция</a>
                     <div class="nav__drop">
                         <div class="wrap">
                             <div class="nav__drop__i">
@@ -150,10 +151,15 @@
                     ); ?>
                 </li>
                 <li>
-                    <a href="index-contacts.html">Контакты</a>
+                    <?= CHtml::link(
+                        Yii::t('views.layouts.main', 'header-link-contact'),
+                        array('contact/index')
+                    ); ?>
                 </li>
             </ul>
-            <a href="javascript:;" data-selector="form-call" class="nav-btn overlayElementTrigger">Спрашивайте!</a>
+            <a href="javascript:" data-selector="form-call" class="nav-btn overlayElementTrigger">
+                <?= Yii::t('views.layouts.main', 'header-link-ask')?>
+            </a>
         </div>
     </nav>
     <?= $content; ?>
@@ -164,7 +170,10 @@
         <div class="wrap">
             <div class="footer-top__f clearfix">
                 <div class="footer-top__f__menu">
-                    <a href="/index-about-us.html">О нас</a>
+                    <?= CHtml::link(
+                        Yii::t('views.layouts.main', 'footer-link-about'),
+                        array('about/index')
+                    ); ?>
                     <a href="/index-production.html">Продукция</a>
                     <?= CHtml::link(
                         Yii::t('views.layouts.main', 'footer-link-partner'),
@@ -178,12 +187,17 @@
                         Yii::t('views.layouts.main', 'footer-link-article'),
                         array('article/index')
                     ); ?>
-                    <a href="/index-contacts.html">Контакты</a>
+                    <?= CHtml::link(
+                        Yii::t('views.layouts.main', 'footer-link-contact'),
+                        array('contact/index')
+                    ); ?>
                 </div>
                 <div class="footer-top__f__info">
                     <a href="javascript:" class="facebook-btn"></a>
                     <a href="javascript:" class="twitter-btn"></a>
-                    <a href="javascript:" data-selector="form-call" class="footer-btn overlayElementTrigger">Спрашивайте!</a>
+                    <a href="javascript:" data-selector="form-call" class="footer-btn overlayElementTrigger">
+                        <?= Yii::t('views.layouts.main', 'footer-link-ask')?>
+                    </a>
                 </div>
             </div>
             <div class="footer-top__s clearfix">
@@ -227,10 +241,10 @@
     <div class="footer-bottom">
         <div class="wrap clearfix">
             <div class="footer-copyright">
-                <img src="/img/footer-logo.png" alt=""> EZMEDIX © 2008—<?= date('Y'); ?>  Все права защищены
+                <img src="/img/footer-logo.png" alt="Ezmedix"> EZMEDIX © 2008—<?= date('Y'); ?> Все права защищены
             </div>
             <div class="footer-frog">
-                <a href="">Создание сайта —<img src="/img/frog.png" alt=""></a>
+                <a href="javascript:">Создание сайта —<img src="/img/frog.png" alt="Gabbe"></a>
             </div>
         </div>
     </div>
@@ -240,18 +254,50 @@
     <div class="wrap">
         <div class="of-form form-call">
             <a href="javascript:" class="of-close"></a>
-            <form>
-                <div class="of-form__title">Спрашивайте!</div>
+            <?php $form = $this->beginWidget('CActiveForm', array(
+                'enableAjaxValidation' => false,
+                'enableClientValidation' => true,
+                'id' => 'popup-contact-form'
+            )); ?>
+                <div class="of-form__title"><?= Yii::t('views.layouts.main', 'form-ask-title'); ?></div>
                 <div class="of-wrap clearfix">
-                    <input type="text" class="of-input of-input_name" placeholder="Ваше Имя:" required />
-                    <input type="tel" class="of-input of-input_phone phone_mask" placeholder="Контактный телефон:" required />
-                    <input type="email" class="of-input of-input_email" placeholder="E-mail:" required />
-                    <textarea class="of-textarea" placeholder="Ваш вопрос:"></textarea>
-                    <a href="javascript:" class="of-submit of-submit-form">Отправить</a>
+                    <?= $form->textField($this->callme, 'name', array(
+                            'class' => 'of-input of-input_name',
+                        'placeholder' => Yii::t('views.layouts.main', 'placeholder-name')
+                    )); ?>
+                    <?= $form->error($this->callme, 'name'); ?>
+                    <?= $form->textField($this->callme, 'phone', array(
+                        'class' => 'of-input of-input_phone phone_mask',
+                        'placeholder' => Yii::t('views.layouts.main', 'placeholder-phone')
+                    )); ?>
+                    <?= $form->error($this->callme, 'phone'); ?>
+                    <?= $form->textField($this->callme, 'email', array(
+                        'class' => 'of-input of-input_email',
+                        'placeholder' => Yii::t('views.layouts.main', 'placeholder-email')
+                    )); ?>
+                    <?= $form->error($this->callme, 'email'); ?>
+                    <?= $form->textArea($this->callme, 'text', array(
+                        'class' => 'of-textarea',
+                        'placeholder' => Yii::t('views.layouts.main', 'placeholder-text')
+                    )); ?>
+                    <?= $form->error($this->callme, 'text'); ?>
+                    <span>
+                        <?= CHtml::submitButton('', array('style' => 'display:none;')); ?>
+                        <a href="javascript:" class="of-submit of-submit-form submit-link">
+                            <?=Yii::t('views.layouts.main', 'submit-ask'); ?>
+                        </a>
+                    </span>
                 </div>
-            </form>
+            <?php $this->endWidget(); ?>
         </div>
     </div>
 </section>
+<script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+<script src="/js/vendor/libs.js"></script>
+<?php if ('contact' == $this->uniqueid) { ?>
+    <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAYBg8KC7jzGXqsJO4ZvBUBr-zHT_0qm2s"></script>
+<?php } ?>
+<script src="/js/main.js"></script>
+<script src="/js/site.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $form CActiveForm
- * @var $model PageArticle
+ * @var $model PageAbout
  */
 ?>
 <div class="row">

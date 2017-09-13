@@ -51,10 +51,10 @@ class SiteController extends Controller
 	 */
 	public function actionContact()
 	{
-		$model=new ContactForm;
-		if(isset($_POST['ContactForm']))
+		$model=new FeedBack;
+		if(isset($_POST['FeedBack']))
 		{
-			$model->attributes=$_POST['ContactForm'];
+			$model->attributes=$_POST['FeedBack'];
 			if($model->validate())
 			{
 				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';

@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model PageArticle
+ * @var $model PageAbout
  */
 ?>
     <div class="row">

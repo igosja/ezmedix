@@ -31,21 +31,21 @@
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
-                    <span class="badge"><?= (12); ?></span>
+                    <span class="badge"><?= ($this->notification ? $this->notification : ''); ?></span>
                     <i class="fa fa-envelope fa-fw"></i>
                     <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-messages">
                     <li>
                         <?= CHtml::link(
-                            '<span class="badge">' . 4 . '</span> Обратные звонки',
-                            array('callme/index')
+                            '<span class="badge">' . ($this->feedback ? $this->feedback : '') . '</span> Вопросы',
+                            array('feedback/index')
                         ); ?>
                     </li>
                     <li class="divider"></li>
                     <li>
                         <?= CHtml::link(
-                            '<span class="badge">' . 7 . '</span> Заказы',
+                            '<span class="badge">' . ($this->order ? $this->order : '') . '</span> Заказы',
                             array('order/index')
                         ); ?>
                     </li>
@@ -101,6 +101,9 @@
                                 <?= CHtml::link('Слайдер', array('slide/index')); ?>
                             </li>
                         </ul>
+                    </li>
+                    <li>
+                        <?= CHtml::link('О нас', array('pageabout/index')); ?>
                     </li>
                     <li>
                         <?= CHtml::link('Контакты', array('contact/index')); ?>
