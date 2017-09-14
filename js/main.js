@@ -26,7 +26,6 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
-
     $('.nav-h').hover(function () {
         $('.nav__drop').stop().fadeIn(600);
         $('.nav__arrow').addClass('active');
@@ -161,4 +160,5 @@ jQuery(document).ready(function ($) {
             infinite: false
         });
     }
+    $('.jqui-select > select').selectmenu();
 });
