@@ -1,31 +1,27 @@
 <?php
 
-class Partner extends CActiveRecord
+class UserType extends CActiveRecord
 {
     public function tableName()
     {
-        return 'partner';
+        return 'usertype';
     }
 
     public function rules()
     {
         return array(
-            array('address_ru, address_uk, h1_ru, h1_uk', 'length', 'max' => 255),
-            array('order, status', 'numerical'),
-            array('address_ru, address_uk, h1_ru, h1_uk, phone_ru, phone_uk', 'required'),
-            array('phone_ru, phone_uk', 'safe'),
+            array('h1_ru, h1_uk', 'length', 'max' => 255),
+            array('discount, order, status', 'numerical'),
+            array('h1_ru, h1_uk, discount', 'required'),
         );
     }
 
     public function attributeLabels()
     {
         return array(
-            'address_ru' => 'Адрес (Русский)',
-            'address_uk' => 'Адрес (Українська)',
+            'discount' => 'Скидка, %',
             'h1_ru' => 'Название (Русский)',
             'h1_uk' => 'Название (Українська)',
-            'phone_ru' => 'Телефоны (Русский)',
-            'phone_uk' => 'Телефоны (Українська)',
             'status' => 'Статус',
         );
     }

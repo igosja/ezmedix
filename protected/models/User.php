@@ -1,6 +1,6 @@
 <?php
 
-class Login extends CActiveRecord
+class User extends CActiveRecord
 {
     public $error_login;
 
@@ -28,12 +28,24 @@ class Login extends CActiveRecord
 
     public function validatePassword($password)
     {
-        return md5($password . md5('user-salt')) == $this->password;
+        return md5($password . md5('user-salt')) == $this['password'];
     }
 
     public function hashPassword($password)
     {
         return md5($password . md5('user-salt'));
+    }
+
+    public function search()
+    {
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this['id']);
+        $criteria->compare('username', $this['username'], true);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
     }
 
     public static function model($className = __CLASS__)

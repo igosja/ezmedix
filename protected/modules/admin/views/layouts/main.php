@@ -92,6 +92,17 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="javascript:">Пользователи<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= CHtml::link('Пользователи', array('user/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Категории', array('usertype/index')); ?>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="javascript:">Статьи<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>

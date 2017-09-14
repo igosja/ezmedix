@@ -44,7 +44,7 @@ class DefaultController extends CController
 				$this->redirect(array('index'));
 		}
 		// display the login form
-		$this->render('login',array('model'=>$model));
+		$this->render('User',array('model'=>$model));
 	}
 
 	/**
