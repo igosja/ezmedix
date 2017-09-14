@@ -44,7 +44,7 @@ class PartnerController extends AController
             $this->title_index => array('index'),
         );
         if ($model->primaryKey) {
-            $this->breadcrumbs[$model->h1_ru] = array('view', 'id' => $model->primaryKey);
+            $this->breadcrumbs[$model['h1_ru']] = array('view', 'id' => $model->primaryKey);
             $this->breadcrumbs[] = $this->title_update;
         } else {
             $this->breadcrumbs[] = $this->title_create;
@@ -58,7 +58,7 @@ class PartnerController extends AController
         if (null === $model) {
             throw new CHttpException(404, 'Страница не найдена.');
         }
-        $this->h1 = $model->h1_ru;
+        $this->h1 = $model['h1_ru'];
         $this->breadcrumbs = array(
             $this->title_index => array('index'),
             $this->h1,

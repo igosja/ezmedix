@@ -39,7 +39,7 @@ class CategoryController extends AController
             if ($model->save()) {
                 $model = $this->getModel()->findByPk($model->primaryKey);
                 if (empty($model->url)) {
-                    $model->url = $model->primaryKey . '-' . str_replace($this->rus, $this->lat, $model->h1_ru);
+                    $model->url = $model->primaryKey . '-' . str_replace($this->rus, $this->lat, $model['h1_ru']);
                     $model->save();
                 }
                 $this->uploadImage($model->primaryKey);
@@ -50,7 +50,7 @@ class CategoryController extends AController
             $this->title_index => array('index'),
         );
         if ($model->primaryKey) {
-            $this->breadcrumbs[$model->h1_ru] = array('view', 'id' => $model->primaryKey);
+            $this->breadcrumbs[$model['h1_ru']] = array('view', 'id' => $model->primaryKey);
             $this->breadcrumbs[] = $this->title_update;
         } else {
             $this->breadcrumbs[] = $this->title_create;
@@ -64,7 +64,7 @@ class CategoryController extends AController
         if (null === $model) {
             throw new CHttpException(404, 'Страница не найдена.');
         }
-        $this->h1 = $model->h1_ru;
+        $this->h1 = $model['h1_ru'];
         $this->breadcrumbs = array(
             $this->title_index => array('index'),
             $this->h1,
