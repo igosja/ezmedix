@@ -20,7 +20,8 @@ class AController extends CController
     public function accessRules()
     {
         return array(
-            array('deny',
+            array(
+                'deny',
                 'users' => array('?'),
             ),
         );
@@ -36,6 +37,10 @@ class AController extends CController
 
     public function beforeAction($action)
     {
+        $o_user = User::model()->findByPk(Yii::app()->user->id);
+        if (UserRole::ROLE_ADMIN != $o_user['userrole_id']) {
+            $this->redirect(array('index/index'));
+        }
         $this->feedback = FeedBack::model()->countByAttributes(array('status' => 0));
         $this->notification = $this->feedback + $this->order;
         return $action;

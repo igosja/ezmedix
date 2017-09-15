@@ -5,19 +5,20 @@ class SiteController extends Controller
     public function actionLogin()
     {
         $model = new User;
+        $model->setScenario('login');
         if ($data = Yii::app()->request->getPost('User')) {
-            $username = $data['username'];
-            $password = $data['password'];
-            $identity = new UserIdentity($username, $password);
-            if ($identity->authenticate()) {
-                Yii::app()->user->login($identity);
-                $this->redirect(array('admin/index'));
-            } else {
-                $model->error_login = 'Неправильная комбинация<br/>логин/пароль';
+            $model->attributes = $data;
+            if ($model->validate()) {
+                $identity = new UserIdentity($model['login'], $model['password']);
+                if ($identity->authenticate()) {
+                    Yii::app()->user->login($identity);
+                    $this->redirect(array('profile/index'));
+                } else {
+                    $model->addError('password', Yii::t('controllers.site.login', 'error-password'));
+                }
             }
         }
-        $this->layout = 'User';
-        $this->render('User', array('model' => $model));
+        $this->render('login', array('model' => $model));
     }
 
     public function actionLogout()

@@ -35,7 +35,11 @@
 </head>
 <body>
 <!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a target="_blank" rel="nofollow" href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<p class="browsehappy">
+    You are using an <strong>outdated</strong> browser.
+    Please <a target="_blank" rel="nofollow" href="http://browsehappy.com/">upgrade your browser</a>
+    to improve your experience.
+</p>
 <![endif]-->
 <div class="sitewrap">
     <header class="header">
@@ -44,9 +48,14 @@
                 <?= CHtml::link('<img src="/img/logo.png" alt="Ezmedix">', array('index/index')); ?>
             </div>
             <div class="header__info clearfix">
-                <a href="javascript:" class="facebook-btn"></a>
-                <a href="javascript:" class="twitter-btn"></a>
-                <a href="javascript:" class="header__log-in">Войти</a>
+                <?php foreach ($this->a_social as $item) { ?>
+                    <a href="<?= $item['url']; ?>" class="<?= $item['css']; ?>" target="_blank"></a>
+                <?php } ?>
+                <?= CHtml::link(
+                    Yii::t('views.layouts.main', 'header-link-login'),
+                    array('site/login'),
+                    array('class' => 'header__log-in')
+                ); ?>
                 <div class="lang-select">
                     <form method="post" class="lang-select">
                         <select name="language" id="language-select">
@@ -98,7 +107,7 @@
                                         . $item['h1_' . Yii::app()->language],
                                         array('catalog/view', 'id' => $item['url']),
                                         array('class' => 'nav__drop__link')
-                                    )?>
+                                    ); ?>
                                 <?php } ?>
                             </div>
                             <?php } ?>
@@ -131,7 +140,7 @@
                 </li>
             </ul>
             <a href="javascript:" data-selector="form-call" class="nav-btn overlayElementTrigger">
-                <?= Yii::t('views.layouts.main', 'header-link-ask')?>
+                <?= Yii::t('views.layouts.main', 'header-link-ask'); ?>
             </a>
         </div>
     </nav>
@@ -169,10 +178,11 @@
                     ); ?>
                 </div>
                 <div class="footer-top__f__info">
-                    <a href="javascript:" class="facebook-btn"></a>
-                    <a href="javascript:" class="twitter-btn"></a>
+                    <?php foreach ($this->a_social as $item) { ?>
+                        <a href="<?= $item['url']; ?>" class="<?= $item['css']; ?>" target="_blank"></a>
+                    <?php } ?>
                     <a href="javascript:" data-selector="form-call" class="footer-btn overlayElementTrigger">
-                        <?= Yii::t('views.layouts.main', 'footer-link-ask')?>
+                        <?= Yii::t('views.layouts.main', 'footer-link-ask'); ?>
                     </a>
                 </div>
             </div>
@@ -186,7 +196,7 @@
                                 <?= CHtml::link(
                                     $item['h1_' . Yii::app()->language],
                                     array('catalog/view', 'id' => $item['url'])
-                                )?>
+                                ); ?>
                             </li>
                         <?php } ?>
                     </ul>
@@ -194,8 +204,8 @@
                 <?php } ?>
                 <div class="footer-top__s__i">
                     <div class="footer-top__grafik">
-                        <strong>График работы:</strong>
-                        Понедельник-Пятница с 10 до 17 00
+                        <strong><?= Yii::t('views.layouts.main', 'schedule'); ?></strong>
+                        <?= $this->schedule; ?>
                     </div>
                     <div class="header__search clearfix">
                         <form action="">
@@ -210,10 +220,14 @@
     <div class="footer-bottom">
         <div class="wrap clearfix">
             <div class="footer-copyright">
-                <img src="/img/footer-logo.png" alt="Ezmedix"> EZMEDIX © 2008—<?= date('Y'); ?> Все права защищены
+                <img src="/img/footer-logo.png" alt="Ezmedix">
+                EZMEDIX © 2008—<?= date('Y'); ?> <?= Yii::t('views.layouts.main', 'reserved'); ?>
             </div>
             <div class="footer-frog">
-                <a href="javascript:">Создание сайта —<img src="/img/frog.png" alt="Gabbe"></a>
+                <a href="javascript:">
+                    <?= Yii::t('views.layouts.main', 'developer'); ?>
+                    <img src="/img/frog.png" alt="Gabbe">
+                </a>
             </div>
         </div>
     </div>

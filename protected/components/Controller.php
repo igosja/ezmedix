@@ -6,13 +6,36 @@ class Controller extends CController
 {
     public $a_category = array();
     public $a_language = array();
+    public $a_social = array();
     public $breadcrumbs = array();
     public $callme = array();
     public $layout = 'main';
     public $og_image;
+    public $schedule;
     public $seo_title;
     public $seo_description;
     public $seo_keywords;
+
+    public function filters()
+    {
+        return array(
+            'accessControl',
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array(
+                'deny',
+                'actions' => array('login'),
+                'users' => array('@'),
+                'deniedCallback' => function () {
+                    $this->redirect(array('index/index'));
+                },
+            ),
+        );
+    }
 
     public function init()
     {
@@ -29,6 +52,11 @@ class Controller extends CController
         $this->a_category = Category::model()->findAllByAttributes(
             array('status' => 1), array('order' => '`order` ASC')
         );
+        $this->a_social = Social::model()->findAllByAttributes(
+            array('status' => 1), array('order' => '`order` ASC')
+        );
+        $this->schedule = Contact::model()->findByPk(1, array('select' => 'schedule_' . Yii::app()->language));
+        $this->schedule = $this->schedule['schedule_' . Yii::app()->language];
         $clientScript = Yii::app()->getClientScript();
         $clientScript->scriptMap = array(
             'jquery.js' => false,

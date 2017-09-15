@@ -1,7 +1,7 @@
 <?php
 /**
- * @var $form CActiveForm
- * @var $model FeedBack
+ * @var $form   CActiveForm
+ * @var $model  FeedBack
  * @var $o_page Contact
  */
 ?>
@@ -50,37 +50,37 @@
                             'enableClientValidation' => true,
                             'id' => 'page-form'
                         )); ?>
-                            <div class="clearfix">
-                                <div class="contacts__form__half">
-                                    <?= $form->label($model, 'name', array('class' => 'log-label')); ?>
-                                    <?= $form->textField($model, 'name', array('class' => 'of-input')); ?>
-                                    <?= $form->error($model, 'name'); ?>
-                                </div>
-                                <div class="contacts__form__half">
-                                    <?= $form->label($model, 'clinic', array('class' => 'log-label')); ?>
-                                    <?= $form->textField($model, 'clinic', array('class' => 'of-input')); ?>
-                                    <?= $form->error($model, 'clinic'); ?>
-                                </div>
-                                <div class="contacts__form__half">
-                                    <?= $form->label($model, 'phone', array('class' => 'log-label')); ?>
-                                    <?= $form->textField($model, 'phone', array('class' => 'of-input phone_mask')); ?>
-                                    <?= $form->error($model, 'phone'); ?>
-                                </div>
-                                <div class="contacts__form__half">
-                                    <?= $form->label($model, 'email', array('class' => 'log-label')); ?>
-                                    <?= $form->textField($model, 'email', array('class' => 'of-input')); ?>
-                                    <?= $form->error($model, 'email'); ?>
-                                </div>
+                        <div class="clearfix">
+                            <div class="contacts__form__half">
+                                <?= $form->label($model, 'name', array('class' => 'log-label')); ?>
+                                <?= $form->textField($model, 'name', array('class' => 'of-input')); ?>
+                                <?= $form->error($model, 'name'); ?>
                             </div>
-                            <?= $form->label($model, 'text', array('class' => 'log-label')); ?>
-                            <?= $form->textArea($model, 'text', array('class' => 'of-textarea')); ?>
-                            <?= $form->error($model, 'text'); ?>
-                            <div style="text-align: right;">
-                                <?= CHtml::submitButton('', array('style' => 'display:none;')); ?>
-                                <a href="javascript:" class="btn submit-link">
-                                    <?=Yii::t('views.contact.index', 'submit'); ?>
-                                </a>
+                            <div class="contacts__form__half">
+                                <?= $form->label($model, 'clinic', array('class' => 'log-label')); ?>
+                                <?= $form->textField($model, 'clinic', array('class' => 'of-input')); ?>
+                                <?= $form->error($model, 'clinic'); ?>
                             </div>
+                            <div class="contacts__form__half">
+                                <?= $form->label($model, 'phone', array('class' => 'log-label')); ?>
+                                <?= $form->textField($model, 'phone', array('class' => 'of-input phone_mask')); ?>
+                                <?= $form->error($model, 'phone'); ?>
+                            </div>
+                            <div class="contacts__form__half">
+                                <?= $form->label($model, 'email', array('class' => 'log-label')); ?>
+                                <?= $form->textField($model, 'email', array('class' => 'of-input')); ?>
+                                <?= $form->error($model, 'email'); ?>
+                            </div>
+                        </div>
+                        <?= $form->label($model, 'text', array('class' => 'log-label')); ?>
+                        <?= $form->textArea($model, 'text', array('class' => 'of-textarea')); ?>
+                        <?= $form->error($model, 'text'); ?>
+                        <div style="text-align: right;">
+                            <?= CHtml::submitButton('', array('style' => 'display:none;')); ?>
+                            <a href="javascript:" class="btn submit-link">
+                                <?= Yii::t('views.contact.index', 'submit'); ?>
+                            </a>
+                        </div>
                         <?php $this->endWidget(); ?>
                     </div>
                 </div>

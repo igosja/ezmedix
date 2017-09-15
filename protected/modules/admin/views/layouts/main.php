@@ -125,10 +125,18 @@
                         </ul>
                     </li>
                     <li>
-                        <?= CHtml::link('О нас', array('pageabout/index')); ?>
+                        <a href="javascript:">Контакты<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= CHtml::link('Контакты', array('contact/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Соцсети', array('social/index')); ?>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <?= CHtml::link('Контакты', array('contact/index')); ?>
+                        <?= CHtml::link('О нас', array('pageabout/index')); ?>
                     </li>
                     <li>
                         <?= CHtml::link('Языки', array('language/index')); ?>

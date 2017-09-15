@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model User
+ * @var $model Partner
  */
 ?>
     <div class="row">
@@ -27,20 +27,9 @@
 <?php
 $attributes = array(
     'id',
-    'login',
-    'email',
-    'date',
     'name',
-    'phone',
-    'address',
-    array(
-        'name' => 'usertype_id',
-        'value' => $model['usertype']['h1_ru'],
-    ),
-    array(
-        'name' => 'userrole_id',
-        'value' => $model['userrole']['name'],
-    ),
+    'css',
+    'url',
 );
 $this->widget('zii.widgets.CDetailView', array(
     'attributes' => $attributes,

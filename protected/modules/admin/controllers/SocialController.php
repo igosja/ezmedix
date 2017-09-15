@@ -1,16 +1,18 @@
 <?php
 
-class UserController extends AController
+class SocialController extends AController
 {
-    public $h1 = 'Пользователи';
-    public $h1_edit = 'Редактирование пользователя';
-    public $title_index = 'Пользователи';
+    public $h1 = 'Соцсети';
+    public $h1_edit = 'Редактирование соцсети';
+    public $title_index = 'Соцсети';
+    public $title_create = 'Создание';
     public $title_update = 'Редактирование';
-    public $model_name = 'User';
+    public $model_name = 'Social';
 
     public function actionIndex()
     {
         $model = $this->getModel('search');
+        $model->dbCriteria->order = '`order` ASC';
         $model->unsetAttributes();
         if (isset($_GET[$this->model_name])) {
             $model->attributes = $_GET[$this->model_name];
@@ -21,12 +23,16 @@ class UserController extends AController
         $this->render('index', array('model' => $model));
     }
 
-    public function actionUpdate($id)
+    public function actionUpdate($id = 0)
     {
         $this->h1 = $this->h1_edit;
-        $model = $this->getModel()->findByPk($id);
-        if (null === $model) {
-            throw new CHttpException(404, 'Страница не найдена.');
+        if (0 == $id) {
+            $model = $this->getModel();
+        } else {
+            $model = $this->getModel()->findByPk($id);
+            if (null === $model) {
+                throw new CHttpException(404, 'Страница не найдена.');
+            }
         }
         if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
@@ -37,8 +43,12 @@ class UserController extends AController
         $this->breadcrumbs = array(
             $this->title_index => array('index'),
         );
-        $this->breadcrumbs[$model['login']] = array('view', 'id' => $model->primaryKey);
-        $this->breadcrumbs[] = $this->title_update;
+        if ($model->primaryKey) {
+            $this->breadcrumbs[$model['name']] = array('view', 'id' => $model->primaryKey);
+            $this->breadcrumbs[] = $this->title_update;
+        } else {
+            $this->breadcrumbs[] = $this->title_create;
+        }
         $this->render('form', array('model' => $model));
     }
 
@@ -48,7 +58,7 @@ class UserController extends AController
         if (null === $model) {
             throw new CHttpException(404, 'Страница не найдена.');
         }
-        $this->h1 = $model['login'];
+        $this->h1 = $model['name'];
         $this->breadcrumbs = array(
             $this->title_index => array('index'),
             $this->h1,
@@ -71,6 +81,31 @@ class UserController extends AController
         $model = $this->getModel()->findByPk($id);
         $model->delete();
         $this->redirect(array('index'));
+    }
+
+    public function actionOrder($id)
+    {
+        $id = (int)$id;
+        $order_old = (int)Yii::app()->request->getQuery('order_old');
+        $order_new = (int)Yii::app()->request->getQuery('order_new');
+        $this->getModel()->updateByPk($id, array('order' => $order_new));
+        if ($order_old < $order_new) {
+            $a_model = $this->getModel()->findAll(
+                array('condition' => '`order`>=' . $order_old . ' AND `order`<=' . $order_new . ' AND id!=' . $id)
+            );
+            foreach ($a_model as $model) {
+                $model['order'] = $model['order'] - 1;
+                $model->save();
+            }
+        } else {
+            $a_model = $this->getModel()->findAll(
+                array('condition' => '`order`<=' . $order_old . ' AND `order`>=' . $order_new . ' AND id!=' . $id)
+            );
+            foreach ($a_model as $model) {
+                $model['order'] = $model['order'] + 1;
+                $model->save();
+            }
+        }
     }
 
     /* @return CActiveRecord */

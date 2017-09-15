@@ -1,11 +1,20 @@
 <?php
 /**
- * @var $model User
+ * @var $model Partner
  */
 ?>
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header text-center"><?= $this->h1; ?></h1>
+        <ul class="list-inline preview-links text-center">
+            <li>
+                <?= CHtml::link(
+                    'Добавить',
+                    array('update'),
+                    array('class' => 'btn btn-default')
+                ); ?>
+            </li>
+        </ul>
     </div>
 </div>
 <?= $this->renderPartial('/include/grid-view-text'); ?>
@@ -14,10 +23,43 @@
     $columns = array(
         array(
             'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
-            'name' => 'id',
+            'htmlOptions' => array('class' => 'text-center'),
+            'type' => 'raw',
+            'value' => function () {
+                return '<i class="fa fa-arrows-v sorter">';
+            },
         ),
-        'login',
-        'email',
+        array(
+            'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
+            'name' => 'id',
+            'sortable' => false,
+        ),
+        array(
+            'name' => 'name',
+            'sortable' => false,
+        ),
+        array(
+            'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
+            'name' => 'status',
+            'sortable' => false,
+            'type' => 'raw',
+            'value' => function ($model) {
+                if (1 == $model->status) {
+                    $checked = 'checked';
+                } else {
+                    $checked = '';
+                }
+                $input = '<input
+                                class="status"
+                                data-id="' . $model->id . '"
+                                type="checkbox" ' . $checked . '
+                                data-toggle="toggle"
+                                data-size="mini"
+                                data-onstyle="success"
+                          />';
+                return $input;
+            }
+        ),
         array(
             'class' => 'CButtonColumn',
             'headerHtmlOptions' => array('class' => 'col-lg-1'),
@@ -27,7 +69,6 @@
         'afterAjaxUpdate' => 'function(id, data){CGridViewAfterAjax()}',
         'columns' => $columns,
         'dataProvider' => $model->search(),
-        'filter' => $model,
         'itemsCssClass' => 'table table-striped table-bordered sort-table',
         'htmlOptions' => array('data-controller' => $this->uniqueid),
         'pager' => array(

@@ -2,8 +2,6 @@
 
 class User extends CActiveRecord
 {
-    public $error_login;
-
     public function tableName()
     {
         return 'user';
@@ -12,17 +10,28 @@ class User extends CActiveRecord
     public function rules()
     {
         return array(
-            array('username, password', 'required'),
-            array('username', 'length', 'max' => 50),
-            array('password', 'length', 'max' => 50),
+            array('address, email, name, phone', 'required', 'on' => 'update'),
+            array('login, password', 'required', 'on' => 'login'),
+            array('address, email, login, name, phone', 'length', 'max' => 255),
+            array('email', 'email'),
+            array('date, image_id, status, userrole_id, usertype_id', 'numerical'),
         );
     }
 
     public function attributeLabels()
     {
         return array(
-            'username' => 'Логин',
-            'password' => 'Пароль',
+            'address' => Yii::t('models.User', 'label-address'),
+            'date' => 'Дата регистрации',
+            'email' => 'E-mail',
+            'image_id' => 'Лицензия',
+            'login' => Yii::t('models.User', 'label-login'),
+            'name' => Yii::t('models.User', 'label-name'),
+            'password' => Yii::t('models.User', 'label-password'),
+            'phone' => Yii::t('models.User', 'label-phone'),
+            'status' => 'Статус',
+            'userrole_id' => 'Роль в системе',
+            'usertype_id' => 'Тип пользователя',
         );
     }
 
@@ -41,11 +50,19 @@ class User extends CActiveRecord
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this['id']);
-        $criteria->compare('username', $this['username'], true);
+        $criteria->compare('login', $this['login'], true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
+    }
+
+    public function relations()
+    {
+        return array(
+            'userrole' => array(self::HAS_ONE, 'UserRole', array('id' => 'userrole_id')),
+            'usertype' => array(self::HAS_ONE, 'UserType', array('id' => 'usertype_id')),
+        );
     }
 
     public static function model($className = __CLASS__)

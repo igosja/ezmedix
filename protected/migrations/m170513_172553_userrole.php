@@ -11,6 +11,8 @@ class m170513_172553_userrole extends CDbMigration
 
         $this->insertMultiple('userrole', array(
             array('name' => 'Администратор'),
+            array('name' => 'Модератор'),
+            array('name' => 'Пользователь'),
         ));
     }
 
