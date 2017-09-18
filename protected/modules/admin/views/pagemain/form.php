@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $form CActiveForm
- * @var $model Category
+ * @var $model PageMain
  */
 ?>
 <div class="row">
@@ -11,7 +11,7 @@
             <li>
                 <?= CHtml::link(
                     'Назад',
-                    isset($model->id) ? array('view', 'id' => $model->id) : array('index'),
+                    array('index'),
                     array('class' => 'btn btn-default')
                 ); ?>
             </li>
@@ -23,7 +23,6 @@
         <?php $form = $this->beginWidget('CActiveForm', array(
             'enableAjaxValidation' => false,
             'enableClientValidation' => true,
-            'htmlOptions' => array('enctype' => 'multipart/form-data'),
         )); ?>
         <ul class="nav nav-tabs">
             <li class="active"><a href="#main" data-toggle="tab">Общая информация</a></li>
@@ -44,28 +43,6 @@
                         <td>
                             <?= $form->textField($model, 'h1_uk', array('class' => 'form-control')); ?>
                             <?= $form->error($model, 'h1_uk'); ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-lg-3"><?= $form->labelEx($model, 'url'); ?></td>
-                        <td>
-                            <?= $form->textField($model, 'url', array('class' => 'form-control')); ?>
-                            <?= $form->error($model, 'url'); ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-lg-3"><?= $form->labelEx($model, 'image_id'); ?></td>
-                        <td>
-                            <?php if (isset($model['image']['url'])) { ?>
-                                <div class="col-lg-6">
-                                    <a href="javascript:" class="thumbnail">
-                                        <img src="<?= $model['image']['url']; ?>"/>
-                                    </a>
-                                </div>
-                                <?= CHtml::link('<i class="fa fa-times"></i>', array('image', 'id' => $model['image_id'])); ?>
-                            <?php } else { ?>
-                                <input type="file" name="image" class="form-control"/>
-                            <?php } ?>
                         </td>
                     </tr>
                 </table>

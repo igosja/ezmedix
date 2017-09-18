@@ -21,7 +21,6 @@
 <div class="row">
     <div class="col-lg-12">
         <?php $form = $this->beginWidget('CActiveForm', array(
-            'id' => 'blog-form',
             'enableAjaxValidation' => false,
             'enableClientValidation' => true,
             'htmlOptions' => array('enctype' => 'multipart/form-data'),

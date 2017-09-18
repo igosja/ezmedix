@@ -6,3 +6,7 @@
 .contacts__form__half {
     height: 88px;
 }
+
+#upload-file {
+    display: none;
+}

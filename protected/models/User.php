@@ -12,9 +12,11 @@ class User extends CActiveRecord
         return array(
             array('address, email, name, phone', 'required', 'on' => 'update'),
             array('login, password', 'required', 'on' => 'login'),
+            array('address, email, name, phone', 'required', 'on' => 'signup'),
             array('address, email, login, name, phone', 'length', 'max' => 255),
             array('email', 'email'),
-            array('date, image_id, status, userrole_id, usertype_id', 'numerical'),
+            array('email', 'unique'),
+            array('date, status, userrole_id, usertype_id', 'numerical'),
         );
     }
 
@@ -24,7 +26,6 @@ class User extends CActiveRecord
             'address' => Yii::t('models.User', 'label-address'),
             'date' => 'Дата регистрации',
             'email' => 'E-mail',
-            'image_id' => 'Лицензия',
             'login' => Yii::t('models.User', 'label-login'),
             'name' => Yii::t('models.User', 'label-name'),
             'password' => Yii::t('models.User', 'label-password'),
@@ -33,6 +34,16 @@ class User extends CActiveRecord
             'userrole_id' => 'Роль в системе',
             'usertype_id' => 'Тип пользователя',
         );
+    }
+
+    public function beforeSave()
+    {
+        if (parent::beforeSave()) {
+            if ($this->isNewRecord) {
+                $this['date'] = time();
+            }
+        }
+        return true;
     }
 
     public function validatePassword($password)
@@ -60,6 +71,7 @@ class User extends CActiveRecord
     public function relations()
     {
         return array(
+            'image' => array(self::HAS_MANY, 'UserImage', array('user_id' => 'id')),
             'userrole' => array(self::HAS_ONE, 'UserRole', array('id' => 'userrole_id')),
             'usertype' => array(self::HAS_ONE, 'UserType', array('id' => 'usertype_id')),
         );

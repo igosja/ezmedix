@@ -1,18 +1,22 @@
 <?php
 /**
- * @var $form CActiveForm
+ * @var $form    CActiveForm
  * @var $content string
  */
 ?>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-    <!--[if gt IE 8]><!--> <html class="no-js homepage"> <!--<![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js homepage"> <!--<![endif]-->
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><?= $this->seo_title; ?></title>
     <meta name="description" content="<?= $this->seo_description; ?>">
@@ -25,7 +29,8 @@
     <meta http-equiv="content-language" content="<?= Yii::app()->language; ?>"/>
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i,800&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i,800&amp;subset=cyrillic"
+          rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" href="/css/normalize.min.css">
     <link rel="stylesheet" href="/css/libs.css">
@@ -49,26 +54,32 @@
             </div>
             <div class="header__info clearfix">
                 <?php foreach ($this->a_social as $item) { ?>
-                    <a href="<?= $item['url']; ?>" class="<?= $item['css']; ?>" target="_blank"></a>
+                    <a href="<?= $item['url'] ? $item['url'] : 'javascript:'; ?>" class="<?= $item['css']; ?>"
+                       target="_blank"></a>
                 <?php } ?>
+                <?php if (Yii::app()->user->isGuest) {
+                    $profile_link = Yii::t('views.layouts.main', 'header-link-login');
+                } else {
+                    $profile_link = Yii::t('views.layouts.main', 'header-link-profile');
+                } ?>
                 <?= CHtml::link(
-                    Yii::t('views.layouts.main', 'header-link-login'),
+                    $profile_link,
                     array('site/login'),
                     array('class' => 'header__log-in')
                 ); ?>
                 <div class="lang-select">
-                    <form method="post" class="lang-select">
-                        <select name="language" id="language-select">
-                            <?php foreach ($this->a_language as $item) { ?>
-                                <option
-                                        value="<?= $item['code']; ?>"
-                                        <?php if ($item['code'] == Yii::app()->language) { ?>selected<?php } ?>
-                                >
-                                    <?= $item['name']; ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-                    </form>
+                    <?php $form = $this->beginWidget('CActiveForm', array(
+                        'enableAjaxValidation' => false,
+                        'enableClientValidation' => true,
+                        'htmlOptions' => ['class' => 'lang-select'],
+                    )); ?>
+                    <?= CHtml::dropDownList(
+                        'language',
+                        Yii::app()->language,
+                        CHtml::listData($this->a_language, 'code', 'name'),
+                        array('id' => 'language-select')
+                    ); ?>
+                    <?php $this->endWidget(); ?>
                 </div>
             </div>
             <div class="header__search clearfix">
@@ -96,20 +107,20 @@
                     ); ?>
                     <div class="nav__drop">
                         <div class="wrap">
-<!--                            3 раза-->
-                            <?php for ($i=0; $i<3; $i++) { ?>
-                            <div class="nav__drop__i">
-                                <?php foreach ($this->a_category as $item) { ?>
-                                    <?= CHtml::link(
-                                        '<img src="' . $item['image']['url'] . '" alt="'
-                                        . $item['h1_' . Yii::app()->language]
-                                        . '">'
-                                        . $item['h1_' . Yii::app()->language],
-                                        array('catalog/view', 'id' => $item['url']),
-                                        array('class' => 'nav__drop__link')
-                                    ); ?>
-                                <?php } ?>
-                            </div>
+                            <!--                            3 раза-->
+                            <?php for ($i = 0; $i < 3; $i++) { ?>
+                                <div class="nav__drop__i">
+                                    <?php foreach ($this->a_category as $item) { ?>
+                                        <?= CHtml::link(
+                                            '<img src="' . $item['image']['url'] . '" alt="'
+                                            . $item['h1_' . Yii::app()->language]
+                                            . '">'
+                                            . $item['h1_' . Yii::app()->language],
+                                            array('catalog/view', 'id' => $item['url']),
+                                            array('class' => 'nav__drop__link')
+                                        ); ?>
+                                    <?php } ?>
+                                </div>
                             <?php } ?>
                         </div>
                     </div>
@@ -179,7 +190,7 @@
                 </div>
                 <div class="footer-top__f__info">
                     <?php foreach ($this->a_social as $item) { ?>
-                        <a href="<?= $item['url']; ?>" class="<?= $item['css']; ?>" target="_blank"></a>
+                        <a href="<?= $item['url'] ? $item['url'] : 'javascript:'; ?>" class="<?= $item['css']; ?>" target="_blank"></a>
                     <?php } ?>
                     <a href="javascript:" data-selector="form-call" class="footer-btn overlayElementTrigger">
                         <?= Yii::t('views.layouts.main', 'footer-link-ask'); ?>
@@ -188,19 +199,19 @@
             </div>
             <div class="footer-top__s clearfix">
                 <!--                    3 раза-->
-                <?php for ($i=0; $i<3; $i++) { ?>
-                <div class="footer-top__s__i">
-                    <ul>
-                        <?php foreach ($this->a_category as $item) { ?>
-                            <li>
-                                <?= CHtml::link(
-                                    $item['h1_' . Yii::app()->language],
-                                    array('catalog/view', 'id' => $item['url'])
-                                ); ?>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                </div>
+                <?php for ($i = 0; $i < 3; $i++) { ?>
+                    <div class="footer-top__s__i">
+                        <ul>
+                            <?php foreach ($this->a_category as $item) { ?>
+                                <li>
+                                    <?= CHtml::link(
+                                        $item['h1_' . Yii::app()->language],
+                                        array('catalog/view', 'id' => $item['url'])
+                                    ); ?>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
                 <?php } ?>
                 <div class="footer-top__s__i">
                     <div class="footer-top__grafik">
@@ -242,35 +253,35 @@
                 'enableClientValidation' => true,
                 'id' => 'popup-contact-form'
             )); ?>
-                <div class="of-form__title"><?= Yii::t('views.layouts.main', 'form-ask-title'); ?></div>
-                <div class="of-wrap clearfix">
-                    <?= $form->textField($this->callme, 'name', array(
-                            'class' => 'of-input of-input_name',
-                        'placeholder' => Yii::t('views.layouts.main', 'placeholder-name')
-                    )); ?>
-                    <?= $form->error($this->callme, 'name'); ?>
-                    <?= $form->textField($this->callme, 'phone', array(
-                        'class' => 'of-input of-input_phone phone_mask',
-                        'placeholder' => Yii::t('views.layouts.main', 'placeholder-phone')
-                    )); ?>
-                    <?= $form->error($this->callme, 'phone'); ?>
-                    <?= $form->textField($this->callme, 'email', array(
-                        'class' => 'of-input of-input_email',
-                        'placeholder' => Yii::t('views.layouts.main', 'placeholder-email')
-                    )); ?>
-                    <?= $form->error($this->callme, 'email'); ?>
-                    <?= $form->textArea($this->callme, 'text', array(
-                        'class' => 'of-textarea',
-                        'placeholder' => Yii::t('views.layouts.main', 'placeholder-text')
-                    )); ?>
-                    <?= $form->error($this->callme, 'text'); ?>
-                    <span>
-                        <?= CHtml::submitButton('', array('style' => 'display:none;')); ?>
-                        <a href="javascript:" class="of-submit of-submit-form submit-link">
-                            <?=Yii::t('views.layouts.main', 'submit-ask'); ?>
-                        </a>
-                    </span>
-                </div>
+            <div class="of-form__title"><?= Yii::t('views.layouts.main', 'form-ask-title'); ?></div>
+            <div class="of-wrap clearfix">
+                <?= $form->textField($this->callme, 'name', array(
+                    'class' => 'of-input of-input_name',
+                    'placeholder' => Yii::t('views.layouts.main', 'placeholder-name')
+                )); ?>
+                <?= $form->error($this->callme, 'name'); ?>
+                <?= $form->textField($this->callme, 'phone', array(
+                    'class' => 'of-input of-input_phone phone_mask',
+                    'placeholder' => Yii::t('views.layouts.main', 'placeholder-phone')
+                )); ?>
+                <?= $form->error($this->callme, 'phone'); ?>
+                <?= $form->textField($this->callme, 'email', array(
+                    'class' => 'of-input of-input_email',
+                    'placeholder' => Yii::t('views.layouts.main', 'placeholder-email')
+                )); ?>
+                <?= $form->error($this->callme, 'email'); ?>
+                <?= $form->textArea($this->callme, 'text', array(
+                    'class' => 'of-textarea',
+                    'placeholder' => Yii::t('views.layouts.main', 'placeholder-text')
+                )); ?>
+                <?= $form->error($this->callme, 'text'); ?>
+                <span>
+                    <?= CHtml::submitButton('', array('style' => 'display:none;')); ?>
+                    <a href="javascript:" class="of-submit of-submit-form submit-link">
+                        <?= Yii::t('views.layouts.main', 'submit-ask'); ?>
+                    </a>
+                </span>
+            </div>
             <?php $this->endWidget(); ?>
         </div>
     </div>

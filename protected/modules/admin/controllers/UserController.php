@@ -37,7 +37,7 @@ class UserController extends AController
         $this->breadcrumbs = array(
             $this->title_index => array('index'),
         );
-        $this->breadcrumbs[$model['login']] = array('view', 'id' => $model->primaryKey);
+        $this->breadcrumbs[$model['login'] ? $model['login'] : $model['email']] = array('view', 'id' => $model->primaryKey);
         $this->breadcrumbs[] = $this->title_update;
         $this->render('form', array('model' => $model));
     }
@@ -48,7 +48,7 @@ class UserController extends AController
         if (null === $model) {
             throw new CHttpException(404, 'Страница не найдена.');
         }
-        $this->h1 = $model['login'];
+        $this->h1 = $model['login'] ? $model['login'] : $model['email'];
         $this->breadcrumbs = array(
             $this->title_index => array('index'),
             $this->h1,

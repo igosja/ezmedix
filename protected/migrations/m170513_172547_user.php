@@ -9,7 +9,6 @@ class m170513_172547_user extends CDbMigration
             'address' => 'varchar(255)',
             'date' => 'int(11) default 0',
             'email' => 'varchar(255)',
-            'image_id' => 'int(11)',
             'login' => 'varchar(255)',
             'name' => 'varchar(255)',
             'password' => 'varchar(32)',

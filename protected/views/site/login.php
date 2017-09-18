@@ -30,10 +30,10 @@
                     <div class="centered">
                         <?= CHtml::submitButton('', array('style' => 'display:none;')); ?>
                         <a href="javascript:" class="btn submit-link">
-                            <?=Yii::t('views.contact.index', 'submit'); ?>
+                            <?=Yii::t('views.site.login', 'submit'); ?>
                         </a>
                         <div class="login__text">
-                            <?=Yii::t('views.contact.index', 'or'); ?>
+                            <?=Yii::t('views.site.login', 'or'); ?>
                             <?= CHtml::link(
                                 Yii::t('views.site.login', 'link-signup'),
                                 array('site/signup')

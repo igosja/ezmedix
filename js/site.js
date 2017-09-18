@@ -32,7 +32,7 @@ jQuery(document).ready(function ($) {
         });
     });
 
-    $('.submit-link').on('click', function() {
+    $('.submit-link').on('click', function () {
         $(this).parent().find('input').trigger('click');
     });
 
@@ -46,4 +46,28 @@ jQuery(document).ready(function ($) {
             }
         }
     }
+
+    $('.reg__add_file').on('click', function () {
+        $('#upload-file').trigger('click');
+    });
+
+    $('#upload-file').on('change', function () {
+        var file_html;
+        var file_list = $(this).prop('files');
+        for (var i = 0; i < file_list.length; i++) {
+            file_html = file_html +
+                '<div class="reg__files">' +
+                '<a href="javascript:">' + file_list[i].name + '</a>' +
+                '<a href="javascript:" class="reg__files__del" data-file="' + i + '"></a>' +
+                '</div>';
+        }
+        $(this).after(file_html);
+        $('#upload-file-remove').val('');
+    });
+
+    $(document).on('click', '.reg__files__del', function () {
+        var upload_file_remove = $('#upload-file-remove');
+        upload_file_remove.val(upload_file_remove.val() + ',' + $(this).data('file'));
+        $(this).parent().remove();
+    });
 });

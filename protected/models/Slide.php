@@ -1,43 +1,33 @@
 <?php
 
-class News extends CActiveRecord
+class Slide extends CActiveRecord
 {
-    const ON_PAGE = 6;
-    const TYPE_NEWS = 1;
-    const TYPE_ARTICLE = 2;
-
     public function tableName()
     {
-        return 'news';
+        return 'slide';
     }
 
     public function rules()
     {
         return array(
-            array('h1_ru, h1_uk, seo_title_ru, seo_title_uk, url', 'length', 'max' => 255),
-            array('id, type_id, status', 'numerical'),
-            array('h1_ru, h1_uk, text_ru, text_uk', 'required'),
-            array('seo_description_ru, seo_description_uk, seo_keywords_ru, seo_keywords_uk', 'safe'),
+            array('h1_ru, h1_uk, link_ru, link_uk, url', 'length', 'max' => 255),
+            array('id, order, status', 'numerical'),
+            array('text_ru, text_uk', 'safe'),
         );
     }
 
     public function attributeLabels()
     {
         return array(
-            'date' => 'Дата публикации',
             'h1_ru' => 'Заголовок (Русский)',
             'h1_uk' => 'Заголовок (Українська)',
-            'image_id' => 'Фото',
+            'image_id' => 'Изображение',
             'text_ru' => 'Текст (Русский)',
             'text_uk' => 'Текст (Українська)',
-            'seo_title_ru' => 'SEO title (Русский)',
-            'seo_title_uk' => 'SEO title (Українська)',
-            'seo_description_ru' => 'SEO description (Русский)',
-            'seo_description_uk' => 'SEO description (Українська)',
-            'seo_keywords_ru' => 'SEO keywords (Русский)',
-            'seo_keywords_uk' => 'SEO keywords (Українська)',
+            'link_ru' => 'Текст ссылки (Русский)',
+            'link_uk' => 'Текст ссылки (Українська)',
             'status' => 'Статус',
-            'url' => 'ЧП-URL',
+            'url' => 'URL',
         );
     }
 
@@ -45,9 +35,14 @@ class News extends CActiveRecord
     {
         if (parent::beforeSave()) {
             if ($this->isNewRecord) {
-                $this['date'] = time();
+                $last = self::model()->findByAttributes(array('order' => '`order` DESC'));
+                if ($last) {
+                    $order = $last['order'] + 1;
+                } else {
+                    $order = 0;
+                }
+                $this['order'] = $order;
             }
-            $this['url'] = str_replace('/', '', $this['url']);
         }
         return true;
     }
@@ -68,10 +63,6 @@ class News extends CActiveRecord
     public function search()
     {
         $criteria = new CDbCriteria;
-
-        $criteria->compare('id', $this['id']);
-        $criteria->compare('h1_ru', $this['h1_ru'], true);
-        $criteria->compare('type_id', $this['type_id']);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

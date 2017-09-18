@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model User
+ * @var $model Category
  */
 ?>
     <div class="row">
@@ -27,35 +27,31 @@
 <?php
 $attributes = array(
     'id',
-    'login',
-    'email',
+    'h1_ru',
+    'h1_uk',
     array(
-        'name' => 'date',
-        'type' => 'date',
-    ),
-    'name',
-    'phone',
-    'address',
-    array(
-        'name' => 'usertype_id',
-        'value' => $model['usertype']['h1_ru'],
-    ),
-    array(
-        'name' => 'userrole_id',
-        'value' => $model['userrole']['name'],
-    ),
-    array(
-        'name' => 'Изображение',
+        'name' => 'text_ru',
         'type' => 'raw',
-        'value' => function ($model) {
-            $image = array();
-            foreach ($model['image'] as $item) {
-                if (isset($item['image']['url'])) {
-                    $image[] = '<a href="' . $item['image']['url'] . '" target="_blank">' . $item['name'] . '</a>';
-                }
-            }
-            return implode('<br/>', $image);
-        },
+        'value' => nl2br($model['text_ru']),
+    ),
+    array(
+        'name' => 'text_uk',
+        'type' => 'raw',
+        'value' => nl2br($model['text_ru']),
+    ),
+    'link_ru',
+    'link_uk',
+    'url',
+    array(
+        'name' => 'image_id',
+        'type' => 'raw',
+        'value' => (isset($model['image']['url'])) ?
+            ('<div class="col-lg-6">
+                <a href="javascript:;" class="thumbnail">
+                    <img src="' . $model['image']['url'] . '"/>
+                </a>
+            </div>') :
+            '',
     ),
 );
 $this->widget('zii.widgets.CDetailView', array(
@@ -63,8 +59,7 @@ $this->widget('zii.widgets.CDetailView', array(
     'data' => $model,
     'htmlOptions' => array('class' => 'table'),
     'itemCssClass' => '',
-    'itemTemplate' => '<tr data-controller="' . $this->uniqueid
-        . '"><td class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">{label}</td><td>{value}</td></tr>',
+    'itemTemplate' => '<tr data-controller="' . $this->uniqueid . '"><td class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">{label}</td><td>{value}</td></tr>',
     'nullDisplay' => '-',
 ));
 ?>

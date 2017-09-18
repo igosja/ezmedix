@@ -111,9 +111,9 @@ class ArticleController extends AController
             $o_image = new Image();
             $o_image->url = $image_url;
             $o_image->save();
-            $image_id = $o_image->id;
+            $image_id = $o_image->primaryKey;
             $model = $this->getModel()->findByPk($id);
-            $model->image_id = $image_id;
+            $model['image_id'] = $image_id;
             $model->save();
         }
     }
