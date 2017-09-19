@@ -27,21 +27,11 @@
 <?php
 $attributes = array(
     'id',
-    'h1_ru',
-    'h1_uk',
     array(
-        'name' => 'text_ru',
+        'name' => 'url',
         'type' => 'raw',
-        'value' => nl2br($model['text_ru']),
+        'value' => CHtml::link($model['url'], array('/catalog/view', 'id' => $model['url']), array('target' => '_blank'))
     ),
-    array(
-        'name' => 'text_uk',
-        'type' => 'raw',
-        'value' => nl2br($model['text_ru']),
-    ),
-    'link_ru',
-    'link_uk',
-    'url',
     array(
         'name' => 'image_id',
         'type' => 'raw',
@@ -53,6 +43,14 @@ $attributes = array(
             </div>') :
             '',
     ),
+    'h1_ru',
+    'seo_title_ru',
+    'seo_description_ru',
+    'seo_keywords_ru',
+    'h1_uk',
+    'seo_title_uk',
+    'seo_description_uk',
+    'seo_keywords_uk',
 );
 $this->widget('zii.widgets.CDetailView', array(
     'attributes' => $attributes,

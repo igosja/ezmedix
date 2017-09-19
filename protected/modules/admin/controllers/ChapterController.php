@@ -1,22 +1,22 @@
 <?php
 
-class ArticleController extends AController
+class ChapterController extends AController
 {
-    public $h1 = 'Статьи';
-    public $h1_edit = 'Редактирование статьи';
-    public $title_index = 'Статьи';
+    public $h1 = 'Разделы';
+    public $h1_edit = 'Редактирование раздела';
+    public $title_index = 'Разделы';
     public $title_create = 'Создание';
     public $title_update = 'Редактирование';
-    public $model_name = 'News';
+    public $model_name = 'Chapter';
 
     public function actionIndex()
     {
         $model = $this->getModel('search');
+        $model->dbCriteria->order = '`order` ASC';
         $model->unsetAttributes();
         if (isset($_GET[$this->model_name])) {
             $model->attributes = $_GET[$this->model_name];
         }
-        $model['type_id'] = News::TYPE_ARTICLE;
         $this->breadcrumbs = array(
             $this->title_index,
         );
@@ -36,11 +36,10 @@ class ArticleController extends AController
         }
         if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
-            $model->type_id = News::TYPE_ARTICLE;
             if ($model->save()) {
                 $model = $this->getModel()->findByPk($model->primaryKey);
                 if (empty($model->url)) {
-                    $model->url = $model->primaryKey . '-' . str_replace($this->rus, $this->lat, $model['h1_ru']);
+                    $model['url'] = $model->primaryKey . '-' . str_replace($this->rus, $this->lat, $model['h1_ru']);
                     $model->save();
                 }
                 $this->uploadImage($model->primaryKey);
@@ -111,10 +110,35 @@ class ArticleController extends AController
             $o_image = new Image();
             $o_image->url = $image_url;
             $o_image->save();
-            $image_id = $o_image->primaryKey;
+            $image_id = $o_image->id;
             $model = $this->getModel()->findByPk($id);
-            $model['image_id'] = $image_id;
+            $model->image_id = $image_id;
             $model->save();
+        }
+    }
+
+    public function actionOrder($id)
+    {
+        $id = (int)$id;
+        $order_old = (int)Yii::app()->request->getQuery('order_old');
+        $order_new = (int)Yii::app()->request->getQuery('order_new');
+        $this->getModel()->updateByPk($id, array('order' => $order_new));
+        if ($order_old < $order_new) {
+            $a_model = $this->getModel()->findAll(
+                array('condition' => '`order`>=' . $order_old . ' AND `order`<=' . $order_new . ' AND id!=' . $id)
+            );
+            foreach ($a_model as $model) {
+                $model['order'] = $model['order'] - 1;
+                $model->save();
+            }
+        } else {
+            $a_model = $this->getModel()->findAll(
+                array('condition' => '`order`<=' . $order_old . ' AND `order`>=' . $order_new . ' AND id!=' . $id)
+            );
+            foreach ($a_model as $model) {
+                $model['order'] = $model['order'] + 1;
+                $model->save();
+            }
         }
     }
 

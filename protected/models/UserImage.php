@@ -11,7 +11,7 @@ class UserImage extends CActiveRecord
     {
         return array(
             array('name', 'length', 'max' => 255),
-            array('id, image_id, user_id', 'numerical'),
+            array('image_id, user_id', 'numerical'),
         );
     }
 

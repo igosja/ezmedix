@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $form  CActiveForm
- * @var $model Category
+ * @var $model Filter
  */
 ?>
 <div class="row">
@@ -37,13 +37,6 @@
                 <td>
                     <?= $form->textField($model, 'h1_uk', array('class' => 'form-control')); ?>
                     <?= $form->error($model, 'h1_uk'); ?>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-lg-3"><?= $form->labelEx($model, 'chapter_id'); ?></td>
-                <td>
-                    <?= $form->dropDownList($model, 'chapter_id', CHtml::listData(Chapter::model()->findAll(), 'id', 'h1_ru'), array('class' => 'form-control')); ?>
-                    <?= $form->error($model, 'chapter_id'); ?>
                 </td>
             </tr>
         </table>

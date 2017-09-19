@@ -1,13 +1,13 @@
 <?php
 
-class SlideController extends AController
+class ProductController extends AController
 {
-    public $h1 = 'Слайды';
-    public $h1_edit = 'Редактирование слайда';
-    public $title_index = 'Слады';
+    public $h1 = 'Товары';
+    public $h1_edit = 'Редактирование товара';
+    public $title_index = 'Товары';
     public $title_create = 'Создание';
     public $title_update = 'Редактирование';
-    public $model_name = 'Slide';
+    public $model_name = 'Product';
 
     public function actionIndex()
     {
@@ -33,12 +33,20 @@ class SlideController extends AController
             if (null === $model) {
                 throw new CHttpException(404, 'Страница не найдена.');
             }
+            foreach ($model['filter'] as $item) {
+                $model->filter_field[] = $item['filter_id'];
+            }
         }
         if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
             if ($model->save()) {
-                $model = $this->getModel()->findByPk($model->primaryKey);
+                if (empty($model->url)) {
+                    $model['url'] = $model->primaryKey . '-' . str_replace($this->rus, $this->lat, $model['h1_ru']);
+                    $model->save();
+                }
                 $this->uploadImage($model->primaryKey);
+                $this->uploadPdf($model->primaryKey);
+                $this->saveFilter($model->primaryKey);
                 $this->redirect(array('view', 'id' => $model->primaryKey));
             }
         }
@@ -60,12 +68,16 @@ class SlideController extends AController
         if (null === $model) {
             throw new CHttpException(404, 'Страница не найдена.');
         }
+        $image = new ProductImage('search');
+        $image->dbCriteria->order = '`order` ASC';
+        $image->unsetAttributes();
+        $image->attributes = array('product_id' => $id);
         $this->h1 = $model['h1_ru'];
         $this->breadcrumbs = array(
             $this->title_index => array('index'),
             $this->h1,
         );
-        $this->render('view', array('model' => $model));
+        $this->render('view', array('model' => $model, 'image' => $image));
     }
 
     public function actionStatus($id)
@@ -85,7 +97,7 @@ class SlideController extends AController
         $this->redirect(array('index'));
     }
 
-    public function actionImage($id)
+    public function actionPdf($id)
     {
         $o_image = Image::model()->findByPk($id);
         if ($o_image) {
@@ -94,10 +106,41 @@ class SlideController extends AController
         $this->redirect(Yii::app()->request->urlReferrer);
     }
 
+    public function actionImage($id)
+    {
+        $model = ProductImage::model()->findByPk($id);
+        if ($model) {
+            $model->delete();
+        }
+        $this->redirect(Yii::app()->request->urlReferrer);
+    }
+
     public function uploadImage($id)
     {
-        if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name'])) {
+        if (isset($_FILES['image']['name'][0]) && !empty($_FILES['image']['name'][0])) {
             $image = $_FILES['image'];
+            for ($i=0; $i<count($image['name']); $i++) {
+                $ext = $image['name'][$i];
+                $ext = explode('.', $ext);
+                $ext = end($ext);
+                $file = $image['tmp_name'][$i];
+                $image_url = ImageIgosja::put_file($file, $ext);
+                $o_image = new Image();
+                $o_image->url = $image_url;
+                $o_image->save();
+                $image_id = $o_image->primaryKey;
+                $model = new ProductImage();
+                $model['image_id'] = $image_id;
+                $model['product_id'] = $id;
+                $model->save();
+            }
+        }
+    }
+
+    public function uploadPdf($id)
+    {
+        if (isset($_FILES['pdf']['name']) && !empty($_FILES['pdf']['name'])) {
+            $image = $_FILES['pdf'];
             $ext = $image['name'];
             $ext = explode('.', $ext);
             $ext = end($ext);
@@ -108,8 +151,22 @@ class SlideController extends AController
             $o_image->save();
             $image_id = $o_image->primaryKey;
             $model = $this->getModel()->findByPk($id);
-            $model['image_id'] = $image_id;
+            $model['pdf_id'] = $image_id;
             $model->save();
+        }
+    }
+
+    public function saveFilter($id)
+    {
+        ProductFilter::model()->deleteAllByAttributes(array('product_id' => $id));
+        if (isset($_POST['Product']['filter_field']) && !empty($_POST['Product']['filter_field'])) {
+            $filter = $_POST['Product']['filter_field'];
+            foreach ($filter as $item) {
+                $model = new ProductFilter();
+                $model['filter_id'] = $item;
+                $model['product_id'] = $id;
+                $model->save();
+            }
         }
     }
 
@@ -118,18 +175,24 @@ class SlideController extends AController
         $id = (int)$id;
         $order_old = (int)Yii::app()->request->getQuery('order_old');
         $order_new = (int)Yii::app()->request->getQuery('order_new');
-        $this->getModel()->updateByPk($id, array('order' => $order_new));
+        ProductImage::model()->updateByPk($id, array('order' => $order_new));
+        $model = ProductImage::model()->findByPk($id);
+        if ($model) {
+            $product_id = $model['product_id'];
+        } else {
+            $product_id = 0;
+        }
         if ($order_old < $order_new) {
-            $a_model = $this->getModel()->findAll(
-                array('condition' => '`order`>=' . $order_old . ' AND `order`<=' . $order_new . ' AND id!=' . $id)
+            $a_model = ProductImage::model()->findAll(
+                array('condition' => '`order`>=' . $order_old . ' AND `order`<=' . $order_new . ' AND id!=' . $id . ' AND product_id=' . $product_id)
             );
             foreach ($a_model as $model) {
                 $model['order'] = $model['order'] - 1;
                 $model->save();
             }
         } else {
-            $a_model = $this->getModel()->findAll(
-                array('condition' => '`order`<=' . $order_old . ' AND `order`>=' . $order_new . ' AND id!=' . $id)
+            $a_model = ProductImage::model()->findAll(
+                array('condition' => '`order`<=' . $order_old . ' AND `order`>=' . $order_new . ' AND id!=' . $id . ' AND product_id=' . $product_id)
             );
             foreach ($a_model as $model) {
                 $model['order'] = $model['order'] + 1;

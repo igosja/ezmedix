@@ -73,7 +73,10 @@ class UserController extends AController
         $this->redirect(array('index'));
     }
 
-    /* @return CActiveRecord */
+    /**
+     * @param $search string
+     * @return CActiveRecord
+     */
     public function getModel($search = '')
     {
         $model = new $this->model_name($search);

@@ -6,18 +6,11 @@ class m170913_173701_category extends CDbMigration
     {
         $this->createTable('category', array(
             'id' => 'pk',
+            'chapter_id' => 'int(11) default 0',
             'h1_ru' => 'varchar(255)',
             'h1_uk' => 'varchar(255)',
-            'image_id' => 'int(11) default 0',
             'order' => 'int(11) default 0',
             'status' => 'int(1) default 1',
-            'url' => 'varchar(255)',
-            'seo_title_ru' => 'varchar(255)',
-            'seo_title_uk' => 'varchar(255)',
-            'seo_description_ru' => 'text',
-            'seo_description_uk' => 'text',
-            'seo_keywords_ru' => 'text',
-            'seo_keywords_uk' => 'text',
         ));
     }
 

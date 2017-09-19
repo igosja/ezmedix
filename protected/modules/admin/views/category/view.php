@@ -28,28 +28,11 @@
 $attributes = array(
     'id',
     array(
-        'name' => 'url',
-        'type' => 'raw',
-        'value' => CHtml::link($model['url'], array('/catalog/view', 'id' => $model['url']), array('target' => '_blank'))
+        'name' => 'chapter_id',
+        'value' => $model['chapter']['h1_ru'],
     ),
-    array(
-        'name' => 'image_id',
-        'type' => 'raw',
-        'value' => (isset($model['image']['url'])) ?
-            ('<div class="col-lg-6">
-                <a href="javascript:;" class="thumbnail">
-                    <img src="' . $model['image']['url'] . '"/>
-                </a>
-            </div>') :
-            '',
-    ),
-    'seo_title_ru',
-    'seo_description_ru',
-    'seo_keywords_ru',
+    'h1_ru',
     'h1_uk',
-    'seo_title_uk',
-    'seo_description_uk',
-    'seo_keywords_uk',
 );
 $this->widget('zii.widgets.CDetailView', array(
     'attributes' => $attributes,

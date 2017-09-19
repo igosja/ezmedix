@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model Category
+ * @var $model Chapter
  */
 ?>
 <div class="row">
@@ -39,13 +39,6 @@
             'sortable' => false,
         ),
         array(
-            'name' => 'chapter_id',
-            'sortable' => false,
-            'value' => function ($model) {
-                return $model['chapter']['h1_ru'];
-            }
-        ),
-        array(
             'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
             'name' => 'status',
             'sortable' => false,
@@ -56,8 +49,7 @@
                 } else {
                     $checked = '';
                 }
-                $input
-                    = '<input
+                $input = '<input
                                 class="status"
                                 data-id="' . $model->id . '"
                                 type="checkbox" ' . $checked . '

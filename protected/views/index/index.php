@@ -30,7 +30,7 @@
         <div class="wrap">
             <h2 class="title"><?= Yii::t('views.index.index', 'h2-product'); ?></h2>
             <div class="cleerfix cats">
-                <?php foreach ($this->a_category as $item) { ?>
+                <?php foreach ($this->a_chapter as $item) { ?>
                     <?= CHtml::link(
                         '<img src="' . $item['image']['url'] . '" alt="' . $item['h1_' . Yii::app()->language] . '">' . $item['h1_' . Yii::app()->language],
                         array('category/view', $item['url']),

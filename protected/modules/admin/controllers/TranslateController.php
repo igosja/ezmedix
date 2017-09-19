@@ -42,16 +42,20 @@ class TranslateController extends AController
         $this->render('form', array('model' => $model));
     }
 
-    public function getModel($search = '')
-    {
-        $model = new $this->model_name($search);
-        return $model;
-    }
-
     public function actionExtract()
     {
         $model = new ExtractMessage();
         $model->extract();
         $this->redirect('index');
+    }
+
+    /**
+     * @param $search string
+     * @return CActiveRecord
+     */
+    public function getModel($search = '')
+    {
+        $model = new $this->model_name($search);
+        return $model;
     }
 }

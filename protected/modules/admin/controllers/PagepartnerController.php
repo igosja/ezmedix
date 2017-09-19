@@ -40,7 +40,10 @@ class PagepartnerController extends AController
         $this->render('form', array('model' => $model));
     }
 
-    /* @return CActiveRecord */
+    /**
+     * @param $search string
+     * @return CActiveRecord
+     */
     public function getModel($search = '')
     {
         $model = new $this->model_name($search);

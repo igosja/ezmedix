@@ -1,28 +1,23 @@
 <?php
 
-class Category extends CActiveRecord
+class ProductImage extends CActiveRecord
 {
     public function tableName()
     {
-        return 'category';
+        return 'productimage';
     }
 
     public function rules()
     {
         return array(
-            array('h1_ru, h1_uk', 'length', 'max' => 255),
-            array('chapter_id, order, status', 'numerical'),
-            array('chapter_id, h1_ru, h1_uk', 'required'),
+            array('image_id, product_id, order', 'numerical'),
         );
     }
 
     public function attributeLabels()
     {
         return array(
-            'chapter_id' => 'Раздел',
-            'h1_ru' => 'Название (Русский)',
-            'h1_uk' => 'Название (Українська)',
-            'status' => 'Статус',
+            'image_id' => 'Изображение',
         );
     }
 
@@ -30,7 +25,7 @@ class Category extends CActiveRecord
     {
         if (parent::beforeSave()) {
             if ($this->isNewRecord) {
-                $last = self::model()->findByAttributes(array('order' => '`order` DESC'));
+                $last = self::model()->findByAttributes(array('product_id' => $this['product_id'], 'order' => '`order` DESC'));
                 if ($last) {
                     $order = $last['order'] + 1;
                 } else {
@@ -42,16 +37,31 @@ class Category extends CActiveRecord
         return true;
     }
 
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            if ($this['image_id']) {
+                $o_image = Image::model()->findByPk($this['image_id']);
+                if ($o_image) {
+                    $o_image->delete();
+                }
+            }
+        }
+        return true;
+    }
+
     public function relations()
     {
         return array(
-            'chapter' => array(self::HAS_ONE, 'Chapter', array('id' => 'chapter_id')),
+            'image' => array(self::HAS_ONE, 'Image', array('id' => 'image_id')),
         );
     }
 
     public function search()
     {
         $criteria = new CDbCriteria;
+
+        $criteria->compare('product_id', $this['product_id']);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

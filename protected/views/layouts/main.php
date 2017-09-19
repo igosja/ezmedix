@@ -110,7 +110,7 @@
                             <!--                            3 раза-->
                             <?php for ($i = 0; $i < 3; $i++) { ?>
                                 <div class="nav__drop__i">
-                                    <?php foreach ($this->a_category as $item) { ?>
+                                    <?php foreach ($this->a_chapter as $item) { ?>
                                         <?= CHtml::link(
                                             '<img src="' . $item['image']['url'] . '" alt="'
                                             . $item['h1_' . Yii::app()->language]
@@ -202,7 +202,7 @@
                 <?php for ($i = 0; $i < 3; $i++) { ?>
                     <div class="footer-top__s__i">
                         <ul>
-                            <?php foreach ($this->a_category as $item) { ?>
+                            <?php foreach ($this->a_chapter as $item) { ?>
                                 <li>
                                     <?= CHtml::link(
                                         $item['h1_' . Yii::app()->language],

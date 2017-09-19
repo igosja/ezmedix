@@ -47,6 +47,7 @@ $attributes = array(
             </div>') :
             '',
     ),
+    'h1_ru',
     array(
         'name' => 'text_ru',
         'type' => 'raw',

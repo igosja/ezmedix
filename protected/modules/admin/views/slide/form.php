@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $form  CActiveForm
- * @var $model Category
+ * @var $model Chapter
  */
 ?>
 <div class="row">

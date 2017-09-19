@@ -62,7 +62,16 @@
                         <a href="javascript:">Товары<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
+                                <?= CHtml::link('Товары', array('product/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Фильтры', array('filter/index')); ?>
+                            </li>
+                            <li>
                                 <?= CHtml::link('Категории', array('category/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Разделы', array('chapter/index')); ?>
                             </li>
                             <li>
                                 <?= CHtml::link('SEO', array('pagecatalog/index')); ?>

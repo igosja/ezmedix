@@ -40,7 +40,7 @@ class NewsController extends AController
             if ($model->save()) {
                 $model = $this->getModel()->findByPk($model->primaryKey);
                 if (empty($model->url)) {
-                    $model->url = $model->primaryKey . '-' . str_replace($this->rus, $this->lat, $model['h1_ru']);
+                    $model['url'] = $model->primaryKey . '-' . str_replace($this->rus, $this->lat, $model['h1_ru']);
                     $model->save();
                 }
                 $this->uploadImage($model->primaryKey);
@@ -118,7 +118,10 @@ class NewsController extends AController
         }
     }
 
-    /* @return CActiveRecord */
+    /**
+     * @param $search string
+     * @return CActiveRecord
+     */
     public function getModel($search = '')
     {
         $model = new $this->model_name($search);

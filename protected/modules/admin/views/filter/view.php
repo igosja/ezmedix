@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model Chapter
+ * @var $model Filter
  */
 ?>
     <div class="row">
@@ -29,30 +29,6 @@ $attributes = array(
     'id',
     'h1_ru',
     'h1_uk',
-    array(
-        'name' => 'text_ru',
-        'type' => 'raw',
-        'value' => nl2br($model['text_ru']),
-    ),
-    array(
-        'name' => 'text_uk',
-        'type' => 'raw',
-        'value' => nl2br($model['text_ru']),
-    ),
-    'link_ru',
-    'link_uk',
-    'url',
-    array(
-        'name' => 'image_id',
-        'type' => 'raw',
-        'value' => (isset($model['image']['url'])) ?
-            ('<div class="col-lg-6">
-                <a href="javascript:;" class="thumbnail">
-                    <img src="' . $model['image']['url'] . '"/>
-                </a>
-            </div>') :
-            '',
-    ),
 );
 $this->widget('zii.widgets.CDetailView', array(
     'attributes' => $attributes,

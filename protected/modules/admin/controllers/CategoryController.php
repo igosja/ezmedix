@@ -37,12 +37,6 @@ class CategoryController extends AController
         if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
             if ($model->save()) {
-                $model = $this->getModel()->findByPk($model->primaryKey);
-                if (empty($model->url)) {
-                    $model->url = $model->primaryKey . '-' . str_replace($this->rus, $this->lat, $model['h1_ru']);
-                    $model->save();
-                }
-                $this->uploadImage($model->primaryKey);
                 $this->redirect(array('view', 'id' => $model->primaryKey));
             }
         }
@@ -89,34 +83,6 @@ class CategoryController extends AController
         $this->redirect(array('index'));
     }
 
-    public function actionImage($id)
-    {
-        $o_image = Image::model()->findByPk($id);
-        if ($o_image) {
-            $o_image->delete();
-        }
-        $this->redirect(Yii::app()->request->urlReferrer);
-    }
-
-    public function uploadImage($id)
-    {
-        if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name'])) {
-            $image = $_FILES['image'];
-            $ext = $image['name'];
-            $ext = explode('.', $ext);
-            $ext = end($ext);
-            $file = $image['tmp_name'];
-            $image_url = ImageIgosja::put_file($file, $ext);
-            $o_image = new Image();
-            $o_image->url = $image_url;
-            $o_image->save();
-            $image_id = $o_image->id;
-            $model = $this->getModel()->findByPk($id);
-            $model->image_id = $image_id;
-            $model->save();
-        }
-    }
-
     public function actionOrder($id)
     {
         $id = (int)$id;
@@ -142,7 +108,10 @@ class CategoryController extends AController
         }
     }
 
-    /* @return CActiveRecord */
+    /**
+     * @param $search string
+     * @return CActiveRecord
+     */
     public function getModel($search = '')
     {
         $model = new $this->model_name($search);

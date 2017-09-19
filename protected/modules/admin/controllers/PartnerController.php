@@ -108,7 +108,10 @@ class PartnerController extends AController
         }
     }
 
-    /* @return CActiveRecord */
+    /**
+     * @param $search string
+     * @return CActiveRecord
+     */
     public function getModel($search = '')
     {
         $model = new $this->model_name($search);

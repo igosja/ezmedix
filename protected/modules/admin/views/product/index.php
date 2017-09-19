@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model Category
+ * @var $model Product
  */
 ?>
 <div class="row">
@@ -23,32 +23,15 @@
     $columns = array(
         array(
             'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
-            'htmlOptions' => array('class' => 'text-center'),
-            'type' => 'raw',
-            'value' => function () {
-                return '<i class="fa fa-arrows-v sorter">';
-            },
-        ),
-        array(
-            'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
             'name' => 'id',
-            'sortable' => false,
         ),
         array(
             'name' => 'h1_ru',
-            'sortable' => false,
         ),
         array(
-            'name' => 'chapter_id',
-            'sortable' => false,
-            'value' => function ($model) {
-                return $model['chapter']['h1_ru'];
-            }
-        ),
-        array(
+            'filter' => false,
             'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
             'name' => 'status',
-            'sortable' => false,
             'type' => 'raw',
             'value' => function ($model) {
                 if (1 == $model->status) {
@@ -77,6 +60,7 @@
         'afterAjaxUpdate' => 'function(id, data){CGridViewAfterAjax()}',
         'columns' => $columns,
         'dataProvider' => $model->search(),
+        'filter' => $model,
         'itemsCssClass' => 'table table-striped table-bordered sort-table',
         'htmlOptions' => array('data-controller' => $this->uniqueid),
         'pager' => array(

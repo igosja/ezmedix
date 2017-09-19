@@ -90,7 +90,7 @@ class CDbLogRoute extends CLogRoute
 		$db->createCommand()->createTable($tableName, array(
 			'id'=>'pk',
 			'level'=>'varchar(128)',
-			'category'=>'varchar(128)',
+			'Chapter' =>'varchar(128)',
 			'logtime'=>'integer',
 			'message'=>'text',
 		));
@@ -130,7 +130,7 @@ class CDbLogRoute extends CLogRoute
 		{
 			$command->insert($this->logTableName,array(
 				'level'=>$log[1],
-				'category'=>$log[2],
+				'Chapter' =>$log[2],
 				'logtime'=>(int)$log[3],
 				'message'=>$log[0],
 			));

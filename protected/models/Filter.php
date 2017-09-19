@@ -1,25 +1,24 @@
 <?php
 
-class Category extends CActiveRecord
+class Filter extends CActiveRecord
 {
     public function tableName()
     {
-        return 'category';
+        return 'filter';
     }
 
     public function rules()
     {
         return array(
             array('h1_ru, h1_uk', 'length', 'max' => 255),
-            array('chapter_id, order, status', 'numerical'),
-            array('chapter_id, h1_ru, h1_uk', 'required'),
+            array('order, status', 'numerical'),
+            array('h1_ru, h1_uk', 'required'),
         );
     }
 
     public function attributeLabels()
     {
         return array(
-            'chapter_id' => 'Раздел',
             'h1_ru' => 'Название (Русский)',
             'h1_uk' => 'Название (Українська)',
             'status' => 'Статус',
@@ -40,13 +39,6 @@ class Category extends CActiveRecord
             }
         }
         return true;
-    }
-
-    public function relations()
-    {
-        return array(
-            'chapter' => array(self::HAS_ONE, 'Chapter', array('id' => 'chapter_id')),
-        );
     }
 
     public function search()
