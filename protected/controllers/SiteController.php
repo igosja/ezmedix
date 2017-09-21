@@ -12,7 +12,7 @@ class SiteController extends Controller
                 $identity = new UserIdentity($model['login'], $model['password']);
                 if ($identity->authenticate()) {
                     Yii::app()->user->login($identity);
-                    $this->redirect(array('profile/index'));
+                    $this->redirect(Yii::app()->user->returnUrl);
                 } else {
                     $model->addError('password', Yii::t('controllers.site.login', 'error-password'));
                 }

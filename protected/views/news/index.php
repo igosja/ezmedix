@@ -1,14 +1,14 @@
 <?php
 /**
- * @var $a_news array
- * @var $more boolean
- * @var $o_page PageNews
- * @var $offset integer
- * @var $page integer
+ * @var $a_news     array
+ * @var $more       boolean
+ * @var $o_page     PageNews
+ * @var $offset     integer
+ * @var $page       integer
  * @var $page_first integer
- * @var $page_last integer
- * @var $page_next integer
- * @var $page_prev integer
+ * @var $page_last  integer
+ * @var $page_next  integer
+ * @var $page_prev  integer
  */
 ?>
 <section class="content">
@@ -36,7 +36,11 @@
             <?php } ?>
             <div class="pager">
                 <?php if ($page_prev) { ?>
-                    <?= CHtml::link('', array('index', 'page' => $page_prev), array('class' => 'pager__prev pager-a')); ?>
+                    <?= CHtml::link(
+                        '',
+                        array('index', 'page' => $page_prev),
+                        array('class' => 'pager__prev pager-a')
+                    ); ?>
                 <?php } ?>
                 <?php for ($i = $page_first; $i <= $page_last; $i++) { ?>
                     <?php if ($page == $i) { ?>
@@ -46,7 +50,11 @@
                     <?php } ?>
                 <?php } ?>
                 <?php if ($page_next) { ?>
-                    <?= CHtml::link('', array('index', 'page' => $page_next), array('class' => 'pager__next pager-a')); ?>
+                    <?= CHtml::link(
+                        '',
+                        array('index', 'page' => $page_next),
+                        array('class' => 'pager__next pager-a')
+                    ); ?>
                 <?php } ?>
             </div>
         </div>

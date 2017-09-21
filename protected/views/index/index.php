@@ -1,24 +1,28 @@
 <?php
 /**
- * @var $a_news array
+ * @var $a_news  array
  * @var $a_slide array
- * @var $o_page PageMain
+ * @var $o_page  PageMain
  */
 ?>
 <section class="content">
     <div class="main-slider" id="slider">
         <?php foreach ($a_slide as $item) { ?>
-            <div class="item" style="background: url(<?= ImageIgosja::resize($item['image_id'], 1920, 700)?>) center top no-repeat;">
+            <div class="item" style="background: url(<?= ImageIgosja::resize($item['image_id'], 1920,
+                700) ?>) center top no-repeat;">
                 <div class="wrap">
                     <img src="/img/m-banner-logo.png" alt="<?= $item['h1_' . Yii::app()->language]; ?>">
-                    <div class="m-slider__title"><?= $item['h1_' . Yii::app()->language] ? $item['h1_' . Yii::app()->language] : ''; ?></div>
+                    <div class="m-slider__title"><?= $item['h1_' . Yii::app()->language] ? $item['h1_'
+                        . Yii::app()->language] : ''; ?></div>
                     <div class="m-slider__text">
-                        <?= $item['text_' . Yii::app()->language] ? nl2br($item['text_' . Yii::app()->language]) : ''; ?>
+                        <?= $item['text_' . Yii::app()->language] ? nl2br($item['text_' . Yii::app()->language])
+                            : ''; ?>
                     </div>
                     <?php if ($item['url']) { ?>
                         <div class="centered">
                             <a href="<?= $item['url']; ?>" class="btn">
-                                <?= $item['link_' . Yii::app()->language] ? $item['link_' . Yii::app()->language] : ''; ?>
+                                <?= $item['link_' . Yii::app()->language] ? $item['link_' . Yii::app()->language]
+                                    : ''; ?>
                             </a>
                         </div>
                     <?php } ?>
@@ -29,21 +33,22 @@
     <div class="main-cat">
         <div class="wrap">
             <h2 class="title"><?= Yii::t('views.index.index', 'h2-product'); ?></h2>
-            <div class="cleerfix cats">
-                <?php foreach ($this->a_chapter as $item) { ?>
-                    <?= CHtml::link(
-                        '<img src="' . $item['image']['url'] . '" alt="' . $item['h1_' . Yii::app()->language] . '">' . $item['h1_' . Yii::app()->language],
-                        array('category/view', $item['url']),
+            <div class="clearfix cats">
+                <?php foreach ($this->a_chapter as $item) {
+                    print CHtml::link(
+                        '<img src="' . $item['image']['url'] . '" alt="' . $item['h1_' . Yii::app()->language] . '">'
+                        . $item['h1_' . Yii::app()->language],
+                        array('catalog/index', $item['url']),
                         array('class' => 'cats__i')
-                    ); ?>
-                <?php } ?>
+                    );
+                } ?>
             </div>
             <div class="btn-more__out">
                 <?= CHtml::link(
                     Yii::t('views.index.index', 'all-product'),
                     array('category/index'),
                     array('class' => 'btn-more')
-                )?>
+                ) ?>
             </div>
             <div class="main-cat__text">
                 <?= $o_page['text_1_' . Yii::app()->language]; ?>

@@ -1,6 +1,17 @@
 <?php
 /**
- * @var $o_page PagePartner
+ * @var $a_chapter  array
+ * @var $a_filter   array
+ * @var $a_product  array
+ * @var $more       boolean
+ * @var $o_chapter  Chapter
+ * @var $o_page     PageCatalog
+ * @var $offset     integer
+ * @var $page       integer
+ * @var $page_first integer
+ * @var $page_last  integer
+ * @var $page_next  integer
+ * @var $page_prev  integer
  */
 ?>
 <section class="content">
@@ -16,159 +27,125 @@
         <div class="wrap">
             <div class="cat clearfix">
                 <div class="cat__left">
-                    <a href="javascript:;" class="show-b active">Продукция</a>
+                    <a href="javascript:" class="show-b active">
+                        <?= Yii::t('views.catalog.index', 'product'); ?>
+                    </a>
                     <div class="hidden-b">
                         <ul class="cat-menu">
-                            <li>
-                                <a href="">Дентальная профилактика</a>
-                            </li>
-                            <li>
-                                <a href="">Дезинфекция систем аспирации</a>
-                            </li>
-                            <li>
-                                <a href="">Дезинфекция шлангов DUWLS</a>
-                            </li>
-                            <li>
-                                <a href="">Дезинфекция поверхностей</a>
-                            </li>
-                            <li>
-                                <a href="">Дезинфекция дентального инструментария</a>
-                            </li>
-                            <li>
-                                <a href="">Стерилизация стомато инструментария</a>
-                            </li>
-                            <li>
-                                <a href="">Очистка и дезинфекция автоклава</a>
-                            </li>
-                            <li>
-                                <a href="">Дезинфекция оттисков</a>
-                            </li>
-                            <li>
-                                <a href="">Расходные материалы</a>
-                            </li>
-                            <li>
-                                <a href="">Действующие акции</a>
-                            </li>
+                            <?php
+                            foreach ($a_chapter as $item) {
+                                if ($item['url'] == Yii::app()->request->getQuery('id')) {
+                                    $class = 'strong';
+                                } else {
+                                    $class = '';
+                                }
+                                ?>
+                                <li>
+                                    <?= CHtml::link(
+                                        $item['h1_' . Yii::app()->language],
+                                        array('index', 'id' => $item['url']),
+                                        array('class' => $class)
+                                    ); ?>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
-                    <a href="javascript:" class="show-b active">Фильтр</a>
+                    <a href="javascript:" class="show-b active">
+                        <?= Yii::t('views.catalog.index', 'filter'); ?>
+                    </a>
                     <div class="hidden-b">
-                        <ul class="cat-radio">
-                            <li>
-                                <div class="checkboxes">
-                                    <input id="something-1" type="checkbox" name="something" value="something-1">
-                                    <label for="something-1">Профилактика</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="checkboxes">
-                                    <input id="something-2" type="checkbox" name="something" value="something-2">
-                                    <label for="something-2">Дезинфекция</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="checkboxes">
-                                    <input id="something-3" type="checkbox" name="something" value="something-3">
-                                    <label for="something-3">Инструментарий</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="checkboxes">
-                                    <input id="something-4" type="checkbox" name="something" value="something-4">
-                                    <label for="something-4">Стерилизация</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="checkboxes">
-                                    <input id="something-5" type="checkbox" name="something" value="something-5">
-                                    <label for="something-5">Очистка</label>
-                                </div>
-                            </li>
-                        </ul>
+                        <form method="GET">
+                            <ul class="cat-radio">
+                                <?php foreach ($a_filter as $item) { ?>
+                                    <li>
+                                        <div class="checkboxes">
+                                            <input
+                                                    id="filter-<?= $item['id']; ?>"
+                                                    type="checkbox"
+                                                    name="filter[]"
+                                                    value="<?= $item['id']; ?>"
+                                                    <?php if (in_array($item['id'], Yii::app()->request->getQuery('filter', array()))) { ?>
+                                                        checked
+                                                    <?php } ?>
+                                            >
+                                            <label for="filter-<?= $item['id']; ?>">
+                                                <?= $item['h1_' . Yii::app()->language]; ?>
+                                            </label>
+                                        </div>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </form>
                     </div>
                 </div>
                 <div class="cat__right">
                     <div class="clearfix">
-                        <div class="cat__items clearfix">
-                            <a href="index-product.html" class="cat__i">
-                                <span class="cat__i__img">
-                                    <img src="/img/trash/catalog-1.jpg" alt="">
-                                </span>
-                                <span class="cat__i__title"><span>Дентальная<br/>профилактика</span></span>
-                                <span class="cat__i__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span>
-                                <span class="cat__i__bot">
-                                <span class="cat__i__link">Подробнее</span>
-                            </span>
-
-                            </a>
-
-                            <a href="index-product.html" class="cat__i">
-											<span class="cat__i__img">
-												<img src="/img/trash/catalog-2.jpg" alt="">
-											</span>
-                                <span class="cat__i__title"><span>Дентальная профилактика</span></span>
-                                <span class="cat__i__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span>
-                                <span class="cat__i__bot">
-												<span class="cat__i__link">Подробнее</span>
-											</span>
-                            </a>
-
-                            <a href="index-product.html" class="cat__i">
-											<span class="cat__i__img">
-												<img src="/img/trash/catalog-3.jpg" alt="">
-											</span>
-                                <span class="cat__i__title"><span>Дентальная<br/>профилактика</span></span>
-                                <span class="cat__i__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span>
-                                <span class="cat__i__bot">
-												<span class="cat__i__link">Подробнее</span>
-											</span>
-                            </a>
-
-                            <a href="index-product.html" class="cat__i">
-											<span class="cat__i__img">
-												<img src="/img/trash/catalog-4.jpg" alt="">
-											</span>
-                                <span class="cat__i__title"><span>Дентальная<br/>профилактика</span></span>
-                                <span class="cat__i__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span>
-                                <span class="cat__i__bot">
-												<span class="cat__i__link">Подробнее</span>
-											</span>
-                            </a>
-
-                            <a href="index-product.html" class="cat__i">
-											<span class="cat__i__img">
-												<img src="/img/trash/catalog-5.jpg" alt="">
-											</span>
-                                <span class="cat__i__title"><span>Дентальная<br/>профилактика</span></span>
-                                <span class="cat__i__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span>
-                                <span class="cat__i__bot">
-												<span class="cat__i__link">Подробнее</span>
-											</span>
-                            </a>
-
-                            <a href="index-product.html" class="cat__i">
-											<span class="cat__i__img">
-												<img src="/img/trash/catalog-6.jpg" alt="">
-											</span>
-                                <span class="cat__i__title"><span>Дентальная<br/>профилактика</span></span>
-                                <span class="cat__i__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span>
-                                <span class="cat__i__bot">
-												<span class="cat__i__link">Подробнее</span>
-											</span>
-                            </a>
+                        <div class="cat__items clearfix item-div">
+                            <?php foreach ($a_product as $item) { ?>
+                                <?= $this->renderPartial('item', array('item' => $item)); ?>
+                            <?php } ?>
                         </div>
                     </div>
-                    <div class="centered">
-                        <a href="" class="btn">Загрузить еще</a>
-                    </div>
+                    <?php if ($more) { ?>
+                        <div class="centered">
+                            <a
+                                    href="javascript:"
+                                    class="btn load-more"
+                                    data-type="catalog"
+                                    data-id="<?= Yii::app()->request->getQuery('id'); ?>"
+                                    data-offset="<?= $offset; ?>"
+                                    data-filter="<?= implode(',', Yii::app()->request->getQuery('filter', array())); ?>"
+                            >
+                                <?= Yii::t('views.catalog.index', 'link-more'); ?>
+                            </a>
+                        </div>
+                    <?php } ?>
                     <div class="pager">
-                        <a href="" class="pager__prev pager-a"></a>
-                        <span>1</span>
-                        <a href="">2</a>
-                        <a href="">3</a>
-                        <a href="">4</a>
-                        <a href="">5</a>
-                        <a href="" class="pager__next pager-a"></a>
+                        <?php if (Yii::app()->request->getQuery('filter')) { ?>
+                            <?php if ($page_prev) { ?>
+                                <?= CHtml::link(
+                                    '',
+                                    array('index', 'id' => Yii::app()->request->getQuery('id'), 'page' => $page_prev, 'filter' => Yii::app()->request->getQuery('filter')),
+                                    array('class' => 'pager__prev pager-a')
+                                ); ?>
+                            <?php } ?>
+                            <?php for ($i = $page_first; $i <= $page_last; $i++) { ?>
+                                <?php if ($page == $i) { ?>
+                                    <span><?= $i; ?></span>
+                                <?php } else { ?>
+                                    <?= CHtml::link($i, array('index', 'id' => Yii::app()->request->getQuery('id'), 'page' => $i, 'filter' => Yii::app()->request->getQuery('filter'))); ?>
+                                <?php } ?>
+                            <?php } ?>
+                            <?php if ($page_next) { ?>
+                                <?= CHtml::link(
+                                    '',
+                                    array('index', 'id' => Yii::app()->request->getQuery('id'), 'page' => $page_next, 'filter' => Yii::app()->request->getQuery('filter')),
+                                    array('class' => 'pager__next pager-a')
+                                ); ?>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <?php if ($page_prev) { ?>
+                                <?= CHtml::link(
+                                    '',
+                                    array('index', 'id' => Yii::app()->request->getQuery('id'), 'page' => $page_prev),
+                                    array('class' => 'pager__prev pager-a')
+                                ); ?>
+                            <?php } ?>
+                            <?php for ($i = $page_first; $i <= $page_last; $i++) { ?>
+                                <?php if ($page == $i) { ?>
+                                    <span><?= $i; ?></span>
+                                <?php } else { ?>
+                                    <?= CHtml::link($i, array('index', 'id' => Yii::app()->request->getQuery('id'), 'page' => $i)); ?>
+                                <?php } ?>
+                            <?php } ?>
+                            <?php if ($page_next) { ?>
+                                <?= CHtml::link(
+                                    '',
+                                    array('index', 'id' => Yii::app()->request->getQuery('id'), 'page' => $page_next),
+                                    array('class' => 'pager__next pager-a')
+                                ); ?>
+                            <?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

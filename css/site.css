@@ -10,3 +10,11 @@
 #upload-file {
     display: none;
 }
+
+.cat-menu .strong {
+    font-weight: bold;
+}
+
+.score {
+    width: 69px;
+}

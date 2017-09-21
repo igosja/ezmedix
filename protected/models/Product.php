@@ -2,6 +2,8 @@
 
 class Product extends CActiveRecord
 {
+    const ON_PAGE = 6;
+
     public $filter_field;
 
     public function tableName()
@@ -57,7 +59,7 @@ class Product extends CActiveRecord
         return array(
             'category' => array(self::HAS_ONE, 'Category', array('id' => 'category_id')),
             'filter' => array(self::HAS_MANY, 'ProductFilter', array('product_id' => 'id')),
-            'image' => array(self::HAS_MANY, 'ProductImage', array('product_id' => 'id')),
+            'image' => array(self::HAS_MANY, 'ProductImage', array('product_id' => 'id'), 'order' => '`order` ASC'),
             'pdf' => array(self::HAS_ONE, 'Image', array('id' => 'pdf_id')),
         );
     }

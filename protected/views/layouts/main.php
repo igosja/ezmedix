@@ -64,7 +64,7 @@
                 } ?>
                 <?= CHtml::link(
                     $profile_link,
-                    array('site/login'),
+                    array('profile/index'),
                     array('class' => 'header__log-in')
                 ); ?>
                 <div class="lang-select">
@@ -107,21 +107,42 @@
                     ); ?>
                     <div class="nav__drop">
                         <div class="wrap">
-                            <!--                            3 раза-->
-                            <?php for ($i = 0; $i < 3; $i++) { ?>
-                                <div class="nav__drop__i">
-                                    <?php foreach ($this->a_chapter as $item) { ?>
-                                        <?= CHtml::link(
-                                            '<img src="' . $item['image']['url'] . '" alt="'
-                                            . $item['h1_' . Yii::app()->language]
-                                            . '">'
-                                            . $item['h1_' . Yii::app()->language],
-                                            array('catalog/view', 'id' => $item['url']),
-                                            array('class' => 'nav__drop__link')
-                                        ); ?>
-                                    <?php } ?>
-                                </div>
-                            <?php } ?>
+                            <div class="nav__drop__i">
+                                <?php foreach ($this->a_chapter_1 as $item) { ?>
+                                    <?= CHtml::link(
+                                        '<img src="' . $item['image']['url'] . '" alt="'
+                                        . $item['h1_' . Yii::app()->language]
+                                        . '">'
+                                        . $item['h1_' . Yii::app()->language],
+                                        array('catalog/index', 'id' => $item['url']),
+                                        array('class' => 'nav__drop__link')
+                                    ); ?>
+                                <?php } ?>
+                            </div>
+                            <div class="nav__drop__i">
+                                <?php foreach ($this->a_chapter_2 as $item) { ?>
+                                    <?= CHtml::link(
+                                        '<img src="' . $item['image']['url'] . '" alt="'
+                                        . $item['h1_' . Yii::app()->language]
+                                        . '">'
+                                        . $item['h1_' . Yii::app()->language],
+                                        array('catalog/index', 'id' => $item['url']),
+                                        array('class' => 'nav__drop__link')
+                                    ); ?>
+                                <?php } ?>
+                            </div>
+                            <div class="nav__drop__i">
+                                <?php foreach ($this->a_chapter_3 as $item) { ?>
+                                    <?= CHtml::link(
+                                        '<img src="' . $item['image']['url'] . '" alt="'
+                                        . $item['h1_' . Yii::app()->language]
+                                        . '">'
+                                        . $item['h1_' . Yii::app()->language],
+                                        array('catalog/index', 'id' => $item['url']),
+                                        array('class' => 'nav__drop__link')
+                                    ); ?>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -198,21 +219,42 @@
                 </div>
             </div>
             <div class="footer-top__s clearfix">
-                <!--                    3 раза-->
-                <?php for ($i = 0; $i < 3; $i++) { ?>
-                    <div class="footer-top__s__i">
-                        <ul>
-                            <?php foreach ($this->a_chapter as $item) { ?>
-                                <li>
-                                    <?= CHtml::link(
-                                        $item['h1_' . Yii::app()->language],
-                                        array('catalog/view', 'id' => $item['url'])
-                                    ); ?>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                    </div>
-                <?php } ?>
+                <div class="footer-top__s__i">
+                    <ul>
+                        <?php foreach ($this->a_chapter_1 as $item) { ?>
+                            <li>
+                                <?= CHtml::link(
+                                    $item['h1_' . Yii::app()->language],
+                                    array('catalog/index', 'id' => $item['url'])
+                                ); ?>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+                <div class="footer-top__s__i">
+                    <ul>
+                        <?php foreach ($this->a_chapter_2 as $item) { ?>
+                            <li>
+                                <?= CHtml::link(
+                                    $item['h1_' . Yii::app()->language],
+                                    array('catalog/index', 'id' => $item['url'])
+                                ); ?>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+                <div class="footer-top__s__i">
+                    <ul>
+                        <?php foreach ($this->a_chapter_3 as $item) { ?>
+                            <li>
+                                <?= CHtml::link(
+                                    $item['h1_' . Yii::app()->language],
+                                    array('catalog/index', 'id' => $item['url'])
+                                ); ?>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
                 <div class="footer-top__s__i">
                     <div class="footer-top__grafik">
                         <strong><?= Yii::t('views.layouts.main', 'schedule'); ?></strong>

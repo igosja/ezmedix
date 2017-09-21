@@ -5,6 +5,9 @@
 class Controller extends CController
 {
     public $a_chapter = array();
+    public $a_chapter_1 = array();
+    public $a_chapter_2 = array();
+    public $a_chapter_3 = array();
     public $a_language = array();
     public $a_social = array();
     public $breadcrumbs = array();
@@ -52,6 +55,15 @@ class Controller extends CController
         $this->a_chapter = Chapter::model()->findAllByAttributes(
             array('status' => 1), array('order' => '`order` ASC')
         );
+        for ($i=0, $count_chapter = count($this->a_chapter), $limit = ceil($count_chapter/3); $i<$count_chapter; $i++) {
+            if ($i<$limit) {
+                $this->a_chapter_1[] = $this->a_chapter[$i];
+            } elseif ($i<$limit*2) {
+                $this->a_chapter_2[] = $this->a_chapter[$i];
+            } else {
+                $this->a_chapter_3[] = $this->a_chapter[$i];
+            }
+        }
         $this->a_social = Social::model()->findAllByAttributes(
             array('status' => 1), array('order' => '`order` ASC')
         );
