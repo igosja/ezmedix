@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model FeedBack
+ * @var $model Order
  */
 ?>
     <div class="row">
@@ -24,14 +24,17 @@ $attributes = array(
         'name' => 'date',
         'value' => date('H:i d.m.Y', $model['date']),
     ),
-    'clinic',
     'email',
     'phone',
-    'name',
+    'shipping_ru',
     array(
-        'name' => 'text',
+        'name' => 'total',
+        'value' => Yii::app()->numberFormatter->formatDecimal($model['total']) . ' грн',
+    ),
+    array(
+        'name' => 'comment',
         'type' => 'raw',
-        'value' => nl2br($model['text']),
+        'value' => nl2br($model['comment']),
     ),
 );
 $this->widget('zii.widgets.CDetailView', array(

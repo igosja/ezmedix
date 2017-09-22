@@ -1,44 +1,68 @@
 <?php
 /**
- * @var $model FeedBack
+ * @var $model Shipping
  */
 ?>
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header text-center"><?= $this->h1; ?></h1>
+        <ul class="list-inline preview-links text-center">
+            <li>
+                <?= CHtml::link(
+                    'Добавить',
+                    array('update'),
+                    array('class' => 'btn btn-default')
+                ); ?>
+            </li>
+        </ul>
     </div>
 </div>
+<?= $this->renderPartial('/include/grid-view-text'); ?>
 <div class="col-lg-12">
     <?php
     $columns = array(
         array(
             'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
+            'htmlOptions' => array('class' => 'text-center'),
+            'type' => 'raw',
+            'value' => function () {
+                return '<i class="fa fa-arrows-v sorter">';
+            },
+        ),
+        array(
+            'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
             'name' => 'id',
-        ),
-        'name',
-        array(
-            'name' => 'date',
-            'value' => function($model) {
-                return date('H:i d.m.Y', $model->date);
-            }
+            'sortable' => false,
         ),
         array(
-            'filter' => false,
+            'name' => 'h1_ru',
+            'sortable' => false,
+        ),
+        array(
             'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
             'name' => 'status',
+            'sortable' => false,
+            'type' => 'raw',
             'value' => function ($model) {
                 if (1 == $model->status) {
-                    $result = '';
+                    $checked = 'checked';
                 } else {
-                    $result = 'NEW';
+                    $checked = '';
                 }
-                return $result;
+                $input = '<input
+                                class="status"
+                                data-id="' . $model->id . '"
+                                type="checkbox" ' . $checked . '
+                                data-toggle="toggle"
+                                data-size="mini"
+                                data-onstyle="success"
+                          />';
+                return $input;
             }
         ),
         array(
             'class' => 'CButtonColumn',
             'headerHtmlOptions' => array('class' => 'col-lg-1'),
-            'template' => '{view} {delete}',
         ),
     );
     $this->widget('zii.widgets.grid.CGridView', array(

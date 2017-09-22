@@ -1,6 +1,7 @@
 .errorMessage {
     color: red;
     font-size: 12px;
+    margin-top: -25px;
 }
 
 .contacts__form__half {
@@ -16,5 +17,5 @@
 }
 
 .score {
-    width: 69px;
+    width: 68px;
 }

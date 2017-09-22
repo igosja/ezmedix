@@ -42,6 +42,7 @@ class AController extends CController
             $this->redirect(array('index/index'));
         }
         $this->feedback = FeedBack::model()->countByAttributes(array('status' => 0));
+        $this->order = Order::model()->countByAttributes(array('status' => 0));
         $this->notification = $this->feedback + $this->order;
         return $action;
     }

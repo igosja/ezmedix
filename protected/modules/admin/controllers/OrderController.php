@@ -1,10 +1,10 @@
 <?php
 
-class FeedbackController extends AController
+class OrderController extends AController
 {
-    public $h1 = 'Вопросы';
-    public $title = 'Вопросы';
-    public $model_name = 'FeedBack';
+    public $h1 = 'Заказы';
+    public $title = 'Заказы';
+    public $model_name = 'Order';
 
     public function actionIndex()
     {
@@ -31,7 +31,7 @@ class FeedbackController extends AController
             $model['status'] = 1;
             $model->save();
         }
-        $this->h1 = $model['name'];
+        $this->h1 = $model['email'];
         $this->breadcrumbs = array(
             $this->title => array('index'),
             $this->h1,

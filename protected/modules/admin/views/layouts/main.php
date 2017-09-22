@@ -59,6 +59,17 @@
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
+                        <a href="javascript:">Заказы<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= CHtml::link('Заказы', array('order/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Доставка', array('shipping/index')); ?>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="javascript:">Товары<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>

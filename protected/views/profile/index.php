@@ -31,7 +31,7 @@
                 </h3>
                 <?= CHtml::link(
                     Yii::t('views.profile.index', 'link-product'),
-                    array('update'),
+                    array('product'),
                     array('class' => 'lk-3__l-2')
                 )?>
             </div>
@@ -41,7 +41,7 @@
                 </h3>
                 <?= CHtml::link(
                     Yii::t('views.profile.index', 'link-order'),
-                    array('update'),
+                    array('order'),
                     array('class' => 'lk-3__l-3')
                 )?>
             </div>

@@ -10,7 +10,7 @@ class User extends CActiveRecord
     public function rules()
     {
         return array(
-            array('address, email, name, phone', 'required', 'on' => 'update'),
+            array('address, email, name, phone', 'required', 'on' => 'edit'),
             array('login, password', 'required', 'on' => 'login'),
             array('address, email, name, phone', 'required', 'on' => 'signup'),
             array('address, email, login, name, phone', 'length', 'max' => 255),

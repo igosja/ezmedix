@@ -73,7 +73,54 @@ jQuery(document).ready(function ($) {
         $(this).parent().remove();
     });
 
-    $('.checkboxes input').on('change', function() {
+    $('.checkboxes input').on('change', function () {
         $(this).closest('form').submit();
+    });
+
+    $('.plus').on('click', function () {
+        var input_value = $(this).parent().find('.score').val();
+        input_value = parseInt(input_value);
+        input_value--;
+        $(this).parent().find('.score').val(input_value).trigger('change');
+    });
+
+    $('.minus').on('click', function () {
+        var input_value = $(this).parent().find('.score').val();
+        input_value = parseInt(input_value);
+        input_value++;
+        $(this).parent().find('.score').val(input_value).trigger('change');
+    });
+
+    $('.score').on('change', function () {
+        var input_value = $(this).val();
+        var input_price = $(this).data('price');
+        input_value = parseInt(input_value);
+        input_price = parseFloat(input_price);
+        if (input_value < 1 || isNaN(input_value)) {
+            input_value = 1;
+            $(this).val(input_value);
+        }
+        $(this).parent().parent().find('.td-total').html((input_price * input_value).toFixed(2) + ' грн');
+    });
+
+    $('.add-to-cart').on('click', function () {
+        var input_element = $(this).parent().parent().find('.score');
+        var product_id = input_element.data('product');
+        var quantity = input_element.val();
+        $.ajax({
+            data: {product_id: product_id, quantity: quantity},
+            dataType: 'json',
+            method: 'get',
+            url: '/cart/add',
+            success: function (data) {
+                if ('success' === data.status) {
+                    $('.lk-form__total').find('span').html(data.data + ' грн');
+                }
+            }
+        })
+    });
+
+    $('.to-order').on('click', function () {
+        $('html,body').animate({scrollTop: $('.lk-form').offset().top}, 'slow');
     });
 });

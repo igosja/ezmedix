@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model FeedBack
+ * @var $model Shipping
  */
 ?>
     <div class="row">
@@ -14,25 +14,21 @@
                         array('class' => 'btn btn-default')
                     ); ?>
                 </li>
+                <li>
+                    <?= CHtml::link(
+                        'Редактировать',
+                        array('update', 'id' => $model->primaryKey),
+                        array('class' => 'btn btn-default')
+                    ); ?>
+                </li>
             </ul>
         </div>
     </div>
 <?php
 $attributes = array(
     'id',
-    array(
-        'name' => 'date',
-        'value' => date('H:i d.m.Y', $model['date']),
-    ),
-    'clinic',
-    'email',
-    'phone',
-    'name',
-    array(
-        'name' => 'text',
-        'type' => 'raw',
-        'value' => nl2br($model['text']),
-    ),
+    'h1_ru',
+    'h1_uk',
 );
 $this->widget('zii.widgets.CDetailView', array(
     'attributes' => $attributes,
