@@ -1,11 +1,13 @@
 .errorMessage {
     color: red;
     font-size: 12px;
+    height: 20px;
     margin-top: -20px;
 }
 
 .contacts__form__half .errorMessage {
     margin-top: 0;
+    height: auto;
 }
 
 .contacts__form__half {
