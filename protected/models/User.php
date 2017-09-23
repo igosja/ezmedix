@@ -46,6 +46,17 @@ class User extends CActiveRecord
         return true;
     }
 
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            $a_userimage = UserImage::model()->findAllByAttributes(array('user_id' => $this->primaryKey));
+            foreach ($a_userimage as $item) {
+                $item->delete();
+            }
+        }
+        return true;
+    }
+
     public function validatePassword($password)
     {
         return md5($password . md5('user-salt')) == $this['password'];

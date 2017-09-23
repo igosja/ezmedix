@@ -35,6 +35,22 @@ class Order extends CActiveRecord
         );
     }
 
+    public function send()
+    {
+        $text = 'Сумма заказа - ' . $this['total'] . ' грн';
+        $text .= '<br/>Телефон - ' . $this['phone'];
+        $text .= '<br/>Email - ' . $this['email'];
+        if ($this['comment']) {
+            $text .= '<br/>Сообщение - ' . $this['comment'];
+        }
+        $contact = Contact::model()->findByPk(1);
+        $mail = new Mail();
+        $mail->setTo($contact['email_letter']);
+        $mail->setSubject('Новый заказ с сайта ezmedix');
+        $mail->setHtml($text);
+        $mail->send();
+    }
+
     public function beforeSave()
     {
         if (parent::beforeSave()) {
@@ -52,28 +68,23 @@ class Order extends CActiveRecord
         return true;
     }
 
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            $a_orderproduct = OrderProduct::model()->findAllByAttributes(array('order_id' => $this->primaryKey));
+            foreach ($a_orderproduct as $item) {
+                $item->delete();
+            }
+        }
+        return true;
+    }
+
     public function relations()
     {
         return array(
             'product' => array(self::HAS_MANY, 'OrderProduct', array('order_id' => 'id')),
             'user' => array(self::HAS_ONE, 'User', array('id' => 'user_id')),
         );
-    }
-
-    public function send()
-    {
-        $text = 'Сумма заказа - ' . $this['total'] . ' грн';
-        $text .= '<br/>Телефон - ' . $this['phone'];
-        $text .= '<br/>Email - ' . $this['email'];
-        if ($this['comment']) {
-            $text .= '<br/>Сообщение - ' . $this['comment'];
-        }
-        $contact = Contact::model()->findByPk(1);
-        $mail = new Mail();
-        $mail->setTo($contact['email_letter']);
-        $mail->setSubject('Новый заказ с сайта ezmedix');
-        $mail->setHtml($text);
-        $mail->send();
     }
 
     public function search()

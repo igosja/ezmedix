@@ -41,6 +41,17 @@ class Filter extends CActiveRecord
         return true;
     }
 
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            $a_productfilter = ProductFilter::model()->findAllByAttributes(array('filter_id' => $this->primaryKey));
+            foreach ($a_productfilter as $item) {
+                $item->delete();
+            }
+        }
+        return true;
+    }
+
     public function search()
     {
         $criteria = new CDbCriteria;

@@ -54,6 +54,27 @@ class Product extends CActiveRecord
         return true;
     }
 
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            $a_productfilter = ProductFilter::model()->findAllByAttributes(array('product_id' => $this->primaryKey));
+            foreach ($a_productfilter as $item) {
+                $item->delete();
+            }
+            $a_productimage = ProductImage::model()->findAllByAttributes(array('product_id' => $this->primaryKey));
+            foreach ($a_productimage as $item) {
+                $item->delete();
+            }
+            if ($this['pdf_id']) {
+                $o_image = Image::model()->findByPk($this['pdf_id']);
+                if ($o_image) {
+                    $o_image->delete();
+                }
+            }
+        }
+        return true;
+    }
+
     public function relations()
     {
         return array(
