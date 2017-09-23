@@ -36,7 +36,7 @@ class TranslateController extends AController
         $this->h1 = $this->h1 . '<br/>(' . $model->source->category . ', ' . $model->source->message . ', ' . $model->language . ')';
         $this->breadcrumbs = array(
             $this->title => array('index'),
-            $this->h1,
+            $model->source->category . ', ' . $model->source->message . ', ' . $model->language,
         );
         $this->render('form', array('model' => $model));
     }
