@@ -23,13 +23,13 @@ class User extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'address' => Yii::t('models.User', 'label-address'),
+            'address' => Yii::t('models.Model', 'label-address'),
             'date' => 'Дата регистрации',
             'email' => 'E-mail',
-            'login' => Yii::t('models.User', 'label-login'),
-            'name' => Yii::t('models.User', 'label-name'),
-            'password' => Yii::t('models.User', 'label-password'),
-            'phone' => Yii::t('models.User', 'label-phone'),
+            'login' => Yii::t('models.Model', 'label-login'),
+            'name' => Yii::t('models.Model', 'label-name'),
+            'password' => Yii::t('models.Model', 'label-password'),
+            'phone' => Yii::t('models.Model', 'label-phone'),
             'status' => 'Статус',
             'userrole_id' => 'Роль в системе',
             'usertype_id' => 'Тип пользователя',
