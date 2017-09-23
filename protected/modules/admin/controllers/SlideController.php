@@ -4,7 +4,7 @@ class SlideController extends AController
 {
     public $h1 = 'Слайды';
     public $h1_edit = 'Редактирование слайда';
-    public $title_index = 'Слады';
+    public $title_index = 'Слайды';
     public $title_create = 'Создание';
     public $title_update = 'Редактирование';
     public $model_name = 'Slide';
