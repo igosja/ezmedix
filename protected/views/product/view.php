@@ -3,6 +3,9 @@
  * @var $a_product array
  * @var $o_product Product
  */
+$parameter = $o_product['parameter_' . Yii::app()->language];
+$parameter = nl2br($parameter);
+$parameter = explode('<br>', $parameter);
 ?>
 <section class="content">
     <div class="in-page">
@@ -68,7 +71,9 @@
                         <div class="prod__table__title">
                             <?= Yii::t('views.product.views', 'parameter'); ?>
                         </div>
-                        <div class="prod__table__i"><?= $o_product['parameter_' . Yii::app()->language]; ?></div>
+                        <?php foreach ($parameter as $item) { ?>
+                            <div class="prod__table__i"><?= $item; ?></div>
+                        <?php } ?>
                     </div>
                     <?= $o_product['text_' . Yii::app()->language]; ?>
                 </div>

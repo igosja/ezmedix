@@ -4,6 +4,10 @@
     margin-top: -25px;
 }
 
+.contacts__form__half .errorMessage {
+    margin-top: 0;
+}
+
 .contacts__form__half {
     height: 88px;
 }

@@ -21,7 +21,7 @@ class ProductController extends Controller
         $o_page = PageCatalog::model()->findByPk(1);
         $this->breadcrumbs = array(
             $o_page['h1_' . Yii::app()->language] => array('catalog/index'),
-            $o_product['category']['chapter']['h1_' . Yii::app()->language] => array('catalog/view', 'id' => $o_product['category']['chapter']['url']),
+            $o_product['category']['chapter']['h1_' . Yii::app()->language] => array('catalog/index', 'id' => $o_product['category']['chapter']['url']),
         );
         $this->breadcrumbs[] = $o_product['h1_' . Yii::app()->language];
         $this->render('view', array(
