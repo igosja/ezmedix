@@ -63,7 +63,7 @@
                     $profile_link = Yii::t('views.layouts.main', 'header-link-profile');
                 } ?>
                 <?= CHtml::link(
-                    $profile_link,
+                    Yii::t('views.layouts.main', 'header-link-profile'),
                     array('profile/index'),
                     array('class' => 'header__log-in')
                 ); ?>
