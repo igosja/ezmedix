@@ -21,6 +21,15 @@
                         array('class' => 'btn btn-default')
                     ); ?>
                 </li>
+                <?php if (!$model->login) { ?>
+                    <li>
+                        <?= CHtml::link(
+                            'Подтвердить регистрацию',
+                            array('complete', 'id' => $model->primaryKey),
+                            array('class' => 'btn btn-default')
+                        ); ?>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
     </div>
@@ -31,7 +40,7 @@ $attributes = array(
     'email',
     array(
         'name' => 'date',
-        'type' => 'date',
+        'value' => date('H:i d.m.Y', $model['date']),
     ),
     'name',
     'phone',

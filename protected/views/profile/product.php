@@ -37,9 +37,10 @@ $opened = true;
                                     <th><?= Yii::t('views.profile.product', 'th-total'); ?></th>
                                     <th><?= Yii::t('views.profile.product', 'th-cart'); ?></th>
                                 </tr>
+                                <?php $i = 1; ?>
                                 <?php foreach ($item['product'] as $product) { ?>
                                     <tr>
-                                        <td>1</td>
+                                        <td><?= $i; ?></td>
                                         <td>
                                             <?= CHtml::link(
                                                 $product['h1_' . Yii::app()->language],
@@ -83,6 +84,7 @@ $opened = true;
                                         </td>
                                         <td><a href="javascript:" class="cart add-to-cart"></a></td>
                                     </tr>
+                                    <?php $i++; ?>
                                 <?php } ?>
                                 <tr>
                                     <td colspan="8">
@@ -94,8 +96,8 @@ $opened = true;
                             </table>
                         </div>
                     </div>
-                    <?php $opened = false;
-                } ?>
+                    <?php $opened = false; ?>
+                <?php } ?>
             </div>
         </div>
         <div class="lk-form clearfix">

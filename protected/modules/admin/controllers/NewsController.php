@@ -44,6 +44,7 @@ class NewsController extends AController
                     $model->save();
                 }
                 $this->uploadImage($model->primaryKey);
+                Yii::app()->user->setFlash('success', $this->saved);
                 $this->redirect(array('view', 'id' => $model->primaryKey));
             }
         }
@@ -87,6 +88,7 @@ class NewsController extends AController
     {
         $model = $this->getModel()->findByPk($id);
         $model->delete();
+        Yii::app()->user->setFlash('success', $this->saved);
         $this->redirect(array('index'));
     }
 
@@ -96,6 +98,7 @@ class NewsController extends AController
         if ($o_image) {
             $o_image->delete();
         }
+        Yii::app()->user->setFlash('success', $this->saved);
         $this->redirect(Yii::app()->request->urlReferrer);
     }
 

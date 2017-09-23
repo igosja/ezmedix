@@ -20,10 +20,18 @@
 <?php
 $attributes = array(
     'h1_ru',
+    array(
+        'name' => 'text_ru',
+        'type' => 'raw',
+    ),
     'seo_title_ru',
     'seo_description_ru',
     'seo_keywords_ru',
     'h1_uk',
+    array(
+        'name' => 'text_ru',
+        'type' => 'raw',
+    ),
     'seo_title_uk',
     'seo_description_uk',
     'seo_keywords_uk',

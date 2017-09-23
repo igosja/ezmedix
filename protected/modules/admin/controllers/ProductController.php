@@ -12,7 +12,6 @@ class ProductController extends AController
     public function actionIndex()
     {
         $model = $this->getModel('search');
-        $model->dbCriteria->order = '`order` ASC';
         $model->unsetAttributes();
         if (isset($_GET[$this->model_name])) {
             $model->attributes = $_GET[$this->model_name];
@@ -47,6 +46,7 @@ class ProductController extends AController
                 $this->uploadImage($model->primaryKey);
                 $this->uploadPdf($model->primaryKey);
                 $this->saveFilter($model->primaryKey);
+                Yii::app()->user->setFlash('success', $this->saved);
                 $this->redirect(array('view', 'id' => $model->primaryKey));
             }
         }
@@ -94,6 +94,7 @@ class ProductController extends AController
     {
         $model = $this->getModel()->findByPk($id);
         $model->delete();
+        Yii::app()->user->setFlash('success', $this->saved);
         $this->redirect(array('index'));
     }
 
@@ -103,6 +104,7 @@ class ProductController extends AController
         if ($o_image) {
             $o_image->delete();
         }
+        Yii::app()->user->setFlash('success', $this->saved);
         $this->redirect(Yii::app()->request->urlReferrer);
     }
 
@@ -112,6 +114,7 @@ class ProductController extends AController
         if ($model) {
             $model->delete();
         }
+        Yii::app()->user->setFlash('success', $this->saved);
         $this->redirect(Yii::app()->request->urlReferrer);
     }
 

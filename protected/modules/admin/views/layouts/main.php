@@ -170,13 +170,17 @@
     </nav>
     <div id="page-wrapper">
         <?php $this->widget('zii.widgets.CBreadcrumbs', array(
-            'separator' => '',
             'activeLinkTemplate' => '<li><a href="{url}">{label}</a></li>',
-            'inactiveLinkTemplate' => '<li class="active">{label}</li>',
-            'tagName' => 'ul',
             'htmlOptions' => array('class' => 'breadcrumb'),
+            'homeLink' => false,
+            'inactiveLinkTemplate' => '<li class="active">{label}</li>',
             'links' => $this->breadcrumbs,
+            'separator' => '',
+            'tagName' => 'ul',
         )); ?>
+        <?php foreach(Yii::app()->user->getFlashes() as $key => $message) {
+            print '<div class="alert alert-' . $key . '">' . $message . '</div>';
+        } ?>
         <?= $content; ?>
     </div>
 </div>

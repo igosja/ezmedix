@@ -37,7 +37,7 @@ class ShippingController extends AController
         if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
             if ($model->save()) {
-                $model = $this->getModel()->findByPk($model->primaryKey);
+                Yii::app()->user->setFlash('success', $this->saved);
                 $this->redirect(array('view', 'id' => $model->primaryKey));
             }
         }
@@ -81,6 +81,7 @@ class ShippingController extends AController
     {
         $model = $this->getModel()->findByPk($id);
         $model->delete();
+        Yii::app()->user->setFlash('success', $this->saved);
         $this->redirect(array('index'));
     }
 

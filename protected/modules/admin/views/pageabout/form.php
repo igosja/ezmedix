@@ -23,6 +23,7 @@
         <?php $form = $this->beginWidget('CActiveForm', array(
             'enableAjaxValidation' => false,
             'enableClientValidation' => true,
+            'htmlOptions' => array('enctype' => 'multipart/form-data'),
         )); ?>
         <ul class="nav nav-tabs">
             <li class="active"><a href="#main" data-toggle="tab">Общая информация</a></li>
@@ -43,6 +44,108 @@
                         <td>
                             <?= $form->textField($model, 'h1_uk', array('class' => 'form-control')); ?>
                             <?= $form->error($model, 'h1_uk'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'h3_ru'); ?></td>
+                        <td>
+                            <?= $form->textField($model, 'h3_ru', array('class' => 'form-control')); ?>
+                            <?= $form->error($model, 'h3_ru'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'h3_uk'); ?></td>
+                        <td>
+                            <?= $form->textField($model, 'h3_uk', array('class' => 'form-control')); ?>
+                            <?= $form->error($model, 'h3_uk'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'image_1_id'); ?></td>
+                        <td>
+                            <?php if (isset($model['image_1']['url'])) { ?>
+                                <div class="col-lg-6">
+                                    <a href="javascript:" class="thumbnail">
+                                        <img src="<?= $model['image_1']['url'] ?>"/>
+                                    </a>
+                                </div>
+                                <?= CHtml::link('<i class="fa fa-times"></i>', array('image', 'id' => $model['image_1_id'])); ?>
+                            <?php } else { ?>
+                                <input type="file" name="image_1" class="form-control"/>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'image_2_id'); ?></td>
+                        <td>
+                            <?php if (isset($model['image_2']['url'])) { ?>
+                                <div class="col-lg-6">
+                                    <a href="javascript:" class="thumbnail">
+                                        <img src="<?= $model['image_2']['url'] ?>"/>
+                                    </a>
+                                </div>
+                                <?= CHtml::link('<i class="fa fa-times"></i>', array('image', 'id' => $model['image_2_id'])); ?>
+                            <?php } else { ?>
+                                <input type="file" name="image_2" class="form-control"/>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'image_3_id'); ?></td>
+                        <td>
+                            <?php if (isset($model['image_3']['url'])) { ?>
+                                <div class="col-lg-6">
+                                    <a href="javascript:" class="thumbnail">
+                                        <img src="<?= $model['image_3']['url'] ?>"/>
+                                    </a>
+                                </div>
+                                <?= CHtml::link('<i class="fa fa-times"></i>', array('image', 'id' => $model['image_3_id'])); ?>
+                            <?php } else { ?>
+                                <input type="file" name="image_3" class="form-control"/>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'image_4_id'); ?></td>
+                        <td>
+                            <?php if (isset($model['image_4']['url'])) { ?>
+                                <div class="col-lg-6">
+                                    <a href="javascript:" class="thumbnail">
+                                        <img src="<?= $model['image_4']['url'] ?>"/>
+                                    </a>
+                                </div>
+                                <?= CHtml::link('<i class="fa fa-times"></i>', array('image', 'id' => $model['image_4_id'])); ?>
+                            <?php } else { ?>
+                                <input type="file" name="image_4" class="form-control"/>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'text_1_ru'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'text_1_ru', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'text_1_ru'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'text_1_uk'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'text_1_uk', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'text_1_uk'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'text_2_ru'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'text_2_ru', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'text_2_ru'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'text_2_uk'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'text_2_uk', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'text_2_uk'); ?>
                         </td>
                     </tr>
                 </table>

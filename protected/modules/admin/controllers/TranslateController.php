@@ -15,19 +15,13 @@ class TranslateController extends AController
             $model->attributes = $_GET[$this->model_name];
         }
         $this->breadcrumbs = array(
-            $this->title => array('index'),
-            'Список',
+            $this->title
         );
         $this->render('index', array('model' => $model));
     }
 
     public function actionUpdate($id)
     {
-        $this->h1 = $this->h1_edit;
-        $this->breadcrumbs = array(
-            $this->title => array('index'),
-            $this->h1,
-        );
         $model = $this->getModel()->findByPk($id);
         if (null === $model) {
             throw new CHttpException(404, 'Страница не найдена.');
@@ -35,10 +29,15 @@ class TranslateController extends AController
         if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
             if ($model->save()) {
+                Yii::app()->user->setFlash('success', $this->saved);
                 $this->redirect(array('index'));
             }
         }
         $this->h1 = $this->h1 . '<br/>(' . $model->source->category . ', ' . $model->source->message . ', ' . $model->language . ')';
+        $this->breadcrumbs = array(
+            $this->title => array('index'),
+            $this->h1,
+        );
         $this->render('form', array('model' => $model));
     }
 
@@ -46,6 +45,7 @@ class TranslateController extends AController
     {
         $model = new ExtractMessage();
         $model->extract();
+        Yii::app()->user->setFlash('success', $this->saved);
         $this->redirect('index');
     }
 

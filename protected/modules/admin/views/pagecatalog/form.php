@@ -45,6 +45,20 @@
                             <?= $form->error($model, 'h1_uk'); ?>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'text_ru'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'text_ru', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'text_ru'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'text_uk'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'text_uk', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'text_uk'); ?>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <?= $this->renderPartial('/include/seo-form', array('model' => $model, 'form' => $form)) ?>

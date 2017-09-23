@@ -29,7 +29,7 @@ $attributes = array(
     'id',
     array(
         'name' => 'date',
-        'type' => 'date',
+        'value' => date('H:i d.m.Y', $model['date']),
     ),
     array(
         'name' => 'url',

@@ -25,11 +25,13 @@ class Order extends CActiveRecord
         return array(
             'comment' => 'Комментарий',
             'date' => 'Время',
-            'email' => Yii::t('models.ContactForm', 'label-email'),
-            'phone' => Yii::t('models.ContactForm', 'label-phone'),
+            'email' => Yii::t('models.Model', 'label-email'),
+            'phone' => Yii::t('models.Model', 'label-phone'),
+            'shipping_id' => Yii::t('models.Model', 'label-shipping'),
             'shipping_ru' => 'Служба доставки',
             'status' => 'Статус',
             'total' => 'Общая стоимость',
+            'user_id' => 'Пользователь',
         );
     }
 
@@ -54,6 +56,7 @@ class Order extends CActiveRecord
     {
         return array(
             'product' => array(self::HAS_MANY, 'OrderProduct', array('order_id' => 'id')),
+            'user' => array(self::HAS_ONE, 'User', array('id' => 'user_id')),
         );
     }
 
@@ -76,6 +79,9 @@ class Order extends CActiveRecord
     public function search()
     {
         $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this['id']);
+        $criteria->compare('phone', $this['phone'], true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

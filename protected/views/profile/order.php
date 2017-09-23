@@ -37,16 +37,31 @@ $opened = true;
                                     <th><?= Yii::t('views.profile.order', 'th-discount'); ?></th>
                                     <th><?= Yii::t('views.profile.order', 'th-total'); ?></th>
                                 </tr>
+                                <?php $i = 1; ?>
                                 <?php foreach ($item['product'] as $product) { ?>
                                     <tr>
-                                        <td>1</td>
-                                        <td><a href="">ZZ BUFF</a></td>
+                                        <td><?= $i; ?></td>
+                                        <td>
+                                            <?php if (isset($product['product'])) { ?>
+                                                <?= CHtml::link(
+                                                    $product['product_' . Yii::app()->language],
+                                                    array('product/view', 'id' => $product['product']['url']),
+                                                    array('target' => '_blank')
+                                                ); ?>
+                                            <?php } else { ?>
+                                                <?= $product['product_' . Yii::app()->language]; ?>
+                                            <?php } ?>
+                                        </td>
                                         <td><?= $product['category_' . Yii::app()->language]; ?></td>
                                         <td><?= $product['quantity']; ?></td>
-                                        <td><?= Yii::app()->numberFormatter->formatDecimal($product['price']); ?> грн</td>
-                                        <td><?= Yii::app()->numberFormatter->formatDecimal($product['discount']); ?>%</td>
-                                        <td><?= Yii::app()->numberFormatter->formatDecimal($product['total']); ?> грн</td>
+                                        <td><?= Yii::app()->numberFormatter->formatDecimal($product['price']); ?>грн
+                                        </td>
+                                        <td><?= Yii::app()->numberFormatter->formatDecimal($product['discount']); ?>%
+                                        </td>
+                                        <td><?= Yii::app()->numberFormatter->formatDecimal($product['total']); ?>грн
+                                        </td>
                                     </tr>
+                                    <?php $i++; ?>
                                 <?php } ?>
                                 <tr>
                                     <td colspan="7">
@@ -60,8 +75,8 @@ $opened = true;
                             </table>
                         </div>
                     </div>
-                    <?php $opened = false;
-                } ?>
+                    <?php $opened = false; ?>
+                <?php } ?>
             </div>
         </div>
     </div>

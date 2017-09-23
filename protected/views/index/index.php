@@ -38,7 +38,7 @@
                     print CHtml::link(
                         '<img src="' . $item['image']['url'] . '" alt="' . $item['h1_' . Yii::app()->language] . '">'
                         . $item['h1_' . Yii::app()->language],
-                        array('catalog/index', $item['url']),
+                        array('catalog/index', 'id' => $item['url']),
                         array('class' => 'cats__i')
                     );
                 } ?>

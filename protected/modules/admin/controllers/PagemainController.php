@@ -30,6 +30,7 @@ class PagemainController extends AController
         if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
             if ($model->save()) {
+                Yii::app()->user->setFlash('success', $this->saved);
                 $this->redirect(array('index'));
             }
         }

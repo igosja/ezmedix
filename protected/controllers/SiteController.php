@@ -2,6 +2,11 @@
 
 class SiteController extends Controller
 {
+    public function actionAuth()
+    {
+        $this->render('auth');
+    }
+
     public function actionLogin()
     {
         $model = new User;
@@ -36,10 +41,23 @@ class SiteController extends Controller
         $this->render('signup', array('model' => $model, 'a_usertype' => $a_usertype));
     }
 
+    public function actionForget()
+    {
+        $model = new Forget();
+        if ($data = Yii::app()->request->getPost('Forget')) {
+            $model->attributes = $data;
+            if ($model->validate() && $model->check()) {
+                $model->send();
+                $this->redirect(array('profile/index'));
+            }
+        }
+        $this->render('forget', array('model' => $model));
+    }
+
     public function actionLogout()
     {
         Yii::app()->user->logout();
-        $this->redirect(array('site/login'));
+        $this->redirect(array('index/index'));
     }
 
     public function uploadImage($id)
@@ -48,7 +66,7 @@ class SiteController extends Controller
             $image = $_FILES['image'];
             $remove = $_POST['image-remove'];
             $remove = explode(',', $remove);
-            for ($i=0; $i<count($image['name']); $i++) {
+            for ($i = 0; $i < count($image['name']); $i++) {
                 if (!in_array($i, $remove)) {
                     $ext = $image['name'][$i];
                     $ext = explode('.', $ext);

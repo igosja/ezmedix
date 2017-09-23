@@ -45,6 +45,7 @@ class FeedbackController extends AController
         if ($model) {
             $model->delete();
         }
+        Yii::app()->user->setFlash('success', $this->saved);
         $this->redirect(array('index'));
     }
 

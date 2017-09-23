@@ -29,7 +29,9 @@
         array(
             'filter' => false,
             'name' => 'date',
-            'type' => 'date'
+            'value' => function ($model) {
+                return date('d.m.Y', $model['date']);
+            },
         ),
         array(
             'filter' => false,

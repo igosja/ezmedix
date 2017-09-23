@@ -19,13 +19,17 @@
             <div class="contacts clearfix">
                 <div class="contacts__left">
                     <div class="contacts__i">
-                        <h3 class="partners__item__title"><?= Yii::t('views.contact.index', 'address'); ?></h3>
+                        <h3 class="partners__item__title">
+                            <?= Yii::t('views.contact.index', 'address'); ?>
+                        </h3>
                         <div class="partners__item__adress">
                             <?= nl2br($o_page['address_' . Yii::app()->language]); ?>
                         </div>
                     </div>
                     <div class="contacts__i">
-                        <h3 class="partners__item__title"><?= Yii::t('views.contact.index', 'phone'); ?></h3>
+                        <h3 class="partners__item__title">
+                            <?= Yii::t('views.contact.index', 'phone'); ?>
+                        </h3>
                         <div class="partners__item__phones">
                             <?= nl2br($o_page['phone_' . Yii::app()->language]); ?>
                         </div>
@@ -35,7 +39,9 @@
                         <a href="javascript:"><?= $o_page['email']; ?></a>
                     </div>
                     <div class="contacts__i">
-                        <h3 class="partners__item__title"><?= Yii::t('views.contact.index', 'schedule'); ?></h3>
+                        <h3 class="partners__item__title">
+                            <?= Yii::t('views.contact.index', 'schedule'); ?>
+                        </h3>
                         <span class="contacts__i__clock">
                             <?= nl2br($o_page['schedule_' . Yii::app()->language]); ?>
                         </span>

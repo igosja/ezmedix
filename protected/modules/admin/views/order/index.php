@@ -17,6 +17,7 @@
         ),
         'phone',
         array(
+            'filter' => false,
             'name' => 'date',
             'value' => function($model) {
                 return date('H:i d.m.Y', $model->date);
@@ -45,6 +46,7 @@
         'afterAjaxUpdate' => 'function(id, data){CGridViewAfterAjax()}',
         'columns' => $columns,
         'dataProvider' => $model->search(),
+        'filter' => $model,
         'itemsCssClass' => 'table table-striped table-bordered sort-table',
         'htmlOptions' => array('data-controller' => $this->uniqueid),
         'pager' => array(

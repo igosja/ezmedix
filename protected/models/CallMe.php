@@ -20,13 +20,13 @@ class CallMe extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'clinic' => Yii::t('models.ContactForm', 'label-clinic'),
+            'clinic' => Yii::t('models.Model', 'label-clinic'),
             'date' => 'Время',
-            'email' => Yii::t('models.ContactForm', 'label-email'),
-            'name' => Yii::t('models.ContactForm', 'label-name'),
-            'phone' => Yii::t('models.ContactForm', 'label-phone'),
+            'email' => Yii::t('models.Model', 'label-email'),
+            'name' => Yii::t('models.Model', 'label-name'),
+            'phone' => Yii::t('models.Model', 'label-phone'),
             'status' => 'Статус',
-            'text' => Yii::t('models.ContactForm', 'label-text'),
+            'text' => Yii::t('models.Model', 'label-text'),
         );
     }
 

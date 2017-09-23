@@ -28,6 +28,7 @@ class OrderController extends AController
             throw new CHttpException(404, 'Страница не найдена.');
         }
         if (!$model['status']) {
+            $model['shipping_id'] = 1;
             $model['status'] = 1;
             $model->save();
         }
@@ -45,6 +46,7 @@ class OrderController extends AController
         if ($model) {
             $model->delete();
         }
+        Yii::app()->user->setFlash('success', $this->saved);
         $this->redirect(array('index'));
     }
 

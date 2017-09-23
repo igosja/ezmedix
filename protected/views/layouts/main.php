@@ -71,7 +71,7 @@
                     <?php $form = $this->beginWidget('CActiveForm', array(
                         'enableAjaxValidation' => false,
                         'enableClientValidation' => true,
-                        'htmlOptions' => ['class' => 'lang-select'],
+                        'htmlOptions' => array('class' => 'lang-select'),
                     )); ?>
                     <?= CHtml::dropDownList(
                         'language',
