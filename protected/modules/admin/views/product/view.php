@@ -58,10 +58,12 @@ $attributes = array(
     array(
         'name' => 'parameter_ru',
         'type' => 'raw',
+        'value' => nl2br($model['parameter_ru']),
     ),
     array(
         'name' => 'parameter_uk',
         'type' => 'raw',
+        'value' => nl2br($model['parameter_uk']),
     ),
     array(
         'name' => 'filter_field',
