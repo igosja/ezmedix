@@ -67,6 +67,19 @@ class User extends CActiveRecord
         return md5($password . md5('user-salt'));
     }
 
+    public function send()
+    {
+        $text = 'Имя - ' . $this['name'];
+        $text .= '<br/>Телефон - ' . $this['phone'];
+        $text .= '<br/>Email - ' . $this['email'];
+        $contact = Contact::model()->findByPk(1);
+        $mail = new Mail();
+        $mail->setTo($contact['email_letter']);
+        $mail->setSubject('Новая регистриция на сайте ezmedix');
+        $mail->setHtml($text);
+        $mail->send();
+    }
+
     public function search()
     {
         $criteria = new CDbCriteria;

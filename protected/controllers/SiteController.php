@@ -35,6 +35,7 @@ class SiteController extends Controller
             $model->attributes = $data;
             if ($model->save()) {
                 $this->uploadImage($model->primaryKey);
+                $model->send();
                 $this->refresh();
             }
         }
