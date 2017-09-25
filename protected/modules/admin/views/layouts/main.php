@@ -49,6 +49,13 @@
                             array('order/index')
                         ); ?>
                     </li>
+                    <li class="divider"></li>
+                    <li>
+                        <?= CHtml::link(
+                            '<span class="badge">' . ($this->user ? $this->user : '') . '</span> Регистрации',
+                            array('user/index')
+                        ); ?>
+                    </li>
                 </ul>
             </li>
             <li class="dropdown">

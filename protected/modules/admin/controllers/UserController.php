@@ -75,6 +75,10 @@ class UserController extends AController
         if (null === $model) {
             throw new CHttpException(404, 'Страница не найдена.');
         }
+        if ($model['new']) {
+            $model['new'] = 0;
+            $model->save();
+        }
         $this->h1 = $model['login'] ? $model['login'] : $model['email'];
         $this->breadcrumbs = array(
             $this->title_index => array('index'),

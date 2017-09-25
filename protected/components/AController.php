@@ -10,6 +10,7 @@ class AController extends CController
     public $order = 0;
     public $rus = array('А', 'Б', 'В', 'Г', 'Д', 'Е', 'Є', 'Ё', 'Ж', 'З', 'И', 'І', 'Ї', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'а', 'б', 'в', 'г', 'д', 'е', 'є', 'ё', 'ж', 'з', 'и', 'і', 'ї', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', ' ', '(', ')', ',', '.', ':', ';', '"', "'", '!', '@', '#', '$', '%', '^', '&', '*', '-', '=', '+', '<', '>', '\\', '|', '№', '/', '`', '~');
     public $saved = 'Изменения успешно сохранены';
+    public $user = 0;
 
     public function filters()
     {
@@ -45,7 +46,8 @@ class AController extends CController
         }
         $this->feedback = FeedBack::model()->countByAttributes(array('status' => 0));
         $this->order = Order::model()->countByAttributes(array('status' => 0));
-        $this->notification = $this->feedback + $this->order;
+        $this->user = User::model()->countByAttributes(array('new' => 1));
+        $this->notification = $this->feedback + $this->order + $this->user;
         return $action;
     }
 }
