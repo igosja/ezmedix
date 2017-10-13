@@ -45,6 +45,9 @@
                             $new_name_2 = $new_name_2 . ' ' . $name[$i];
                         }
                     }
+                    if (!$new_name_2) {
+                        $new_name_2 = '&nbsp;';
+                    }
                     print CHtml::link(
                         '<img src="' . $item['image']['url'] . '" alt="' . $item['h1_' . Yii::app()->language] . '">'
                         . $new_name_1 . '<br/>' . $new_name_2,
