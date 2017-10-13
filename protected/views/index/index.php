@@ -12,17 +12,16 @@
                 700) ?>) center top no-repeat;">
                 <div class="wrap">
                     <img src="/img/m-banner-logo.png" alt="<?= $item['h1_' . Yii::app()->language]; ?>">
-                    <div class="m-slider__title"><?= $item['h1_' . Yii::app()->language] ? $item['h1_'
-                        . Yii::app()->language] : ''; ?></div>
+                    <div class="m-slider__title">
+                        <?= $item['h1_' . Yii::app()->language] ? $item['h1_' . Yii::app()->language] : ''; ?>
+                    </div>
                     <div class="m-slider__text">
-                        <?= $item['text_' . Yii::app()->language] ? nl2br($item['text_' . Yii::app()->language])
-                            : ''; ?>
+                        <?= $item['text_' . Yii::app()->language] ? nl2br($item['text_' . Yii::app()->language]) : ''; ?>
                     </div>
                     <?php if ($item['url']) { ?>
                         <div class="centered">
                             <a href="<?= $item['url']; ?>" class="btn">
-                                <?= $item['link_' . Yii::app()->language] ? $item['link_' . Yii::app()->language]
-                                    : ''; ?>
+                                <?= $item['link_' . Yii::app()->language] ? $item['link_' . Yii::app()->language] : ''; ?>
                             </a>
                         </div>
                     <?php } ?>
@@ -35,9 +34,20 @@
             <h2 class="title"><?= Yii::t('views.index.index', 'h2-product'); ?></h2>
             <div class="clearfix cats">
                 <?php foreach ($this->a_chapter as $item) {
+                    $name = $item['h1_' . Yii::app()->language];
+                    $name = explode(' ', $name);
+                    $new_name_1 = '';
+                    $new_name_2 = '';
+                    for ($i = 0, $count_name = count($name); $i<$count_name; $i++) {
+                        if ($i<$count_name/2) {
+                            $new_name_1 = $new_name_1 . ' ' . $name[$i];
+                        } else {
+                            $new_name_2 = $new_name_2 . ' ' . $name[$i];
+                        }
+                    }
                     print CHtml::link(
                         '<img src="' . $item['image']['url'] . '" alt="' . $item['h1_' . Yii::app()->language] . '">'
-                        . $item['h1_' . Yii::app()->language],
+                        . $new_name_1 . '<br/>' . $new_name_2,
                         array('catalog/index', 'id' => $item['url']),
                         array('class' => 'cats__i')
                     );
