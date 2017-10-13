@@ -46,7 +46,7 @@
                         }
                     }
                     if (!$new_name_2) {
-                        $new_name_2 = '&nbsp;';
+                        $new_name_2 = '<br/>';
                     }
                     print CHtml::link(
                         '<img src="' . $item['image']['url'] . '" alt="' . $item['h1_' . Yii::app()->language] . '">'
