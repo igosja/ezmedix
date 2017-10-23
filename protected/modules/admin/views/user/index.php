@@ -34,6 +34,7 @@
         array(
             'class' => 'CButtonColumn',
             'headerHtmlOptions' => array('class' => 'col-lg-1'),
+            'template'=>'{view}',
         ),
     );
     $this->widget('zii.widgets.grid.CGridView', array(
