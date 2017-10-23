@@ -8,7 +8,7 @@ class ArticleController extends Controller
         $offset = ($page - 1) * News::ON_PAGE;
         $a_news = News::model()->findAllByAttributes(
             array('status' => 1, 'type_id' => News::TYPE_ARTICLE),
-            array('offset' => $offset, 'limit' => News::ON_PAGE, 'order' => 'id DESC')
+            array('offset' => $offset, 'limit' => News::ON_PAGE, 'order' => 'date DESC')
         );
         $count = News::model()->countByAttributes(array('status' => 1, 'type_id' => News::TYPE_ARTICLE));
         $more = false;
@@ -55,7 +55,7 @@ class ArticleController extends Controller
         $a_news = News::model()->findAllByAttributes(
             array('status' => 1, 'type_id' => News::TYPE_ARTICLE),
             array(
-                'order' => 'id DESC',
+                'order' => 'date DESC',
                 'offset' => Yii::app()->request->getQuery('offset', 0) + News::ON_PAGE,
                 'limit' => News::ON_PAGE
             )
@@ -103,11 +103,11 @@ class ArticleController extends Controller
         $text = implode('</p>', $text) . '</p>';
         $o_prev = News::model()->findByAttributes(
             array('status' => 1, 'type_id' => News::TYPE_ARTICLE),
-            array('condition' => 'id>' . $o_news->primaryKey, 'order' => 'id ASC')
+            array('condition' => 'date>' . $o_news['date'], 'order' => 'date ASC')
         );
         $o_next = News::model()->findByAttributes(
             array('status' => 1, 'type_id' => News::TYPE_ARTICLE),
-            array('condition' => 'id<' . $o_news->primaryKey, 'order' => 'id DESC')
+            array('condition' => 'date<' . $o_news['date'], 'order' => 'date DESC')
         );
         $this->setSEO($o_news);
         $this->og_image = ImageIgosja::resize($o_news['image_id'], 560, 280);

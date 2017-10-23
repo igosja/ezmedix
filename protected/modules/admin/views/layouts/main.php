@@ -14,6 +14,7 @@
     <title>Административный раздел</title>
     <link href="/css/admin.css" rel="stylesheet">
     <link href="/css/bootstrap-toggle.css" rel="stylesheet">
+    <link href="/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -196,5 +197,7 @@
 <script src="/js/rowsorter.js"></script>
 <script src="/js/admin.min.js"></script>
 <script src="/js/admin.js"></script>
+<script src="/js/moment-with-locales.js"></script>
+<script src="/js/bootstrap-datetimepicker.js"></script>
 </body>
 </html>

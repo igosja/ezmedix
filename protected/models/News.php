@@ -15,7 +15,7 @@ class News extends CActiveRecord
     {
         return array(
             array('h1_ru, h1_uk, seo_title_ru, seo_title_uk, url', 'length', 'max' => 255),
-            array('id, type_id, status', 'numerical'),
+            array('id, date, type_id, status', 'numerical'),
             array('h1_ru, h1_uk, text_ru, text_uk', 'required'),
             array('seo_description_ru, seo_description_uk, seo_keywords_ru, seo_keywords_uk', 'safe'),
         );

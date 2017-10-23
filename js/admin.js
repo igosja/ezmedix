@@ -21,6 +21,14 @@ $(document).ready(function ($) {
         }
     });
 
+    var datetimepicker1 = $('#datetimepicker1');
+    if (datetimepicker1.length) {
+        datetimepicker1.datetimepicker({
+            locale: 'ru',
+            date: moment.unix($('.date-td').data('time'))
+        });
+    }
+
     CGridViewAfterAjax();
 });
 

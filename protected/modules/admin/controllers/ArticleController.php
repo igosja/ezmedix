@@ -35,6 +35,9 @@ class ArticleController extends AController
             }
         }
         if ($data = Yii::app()->request->getPost($this->model_name)) {
+            if (isset($data['date'])) {
+                $data['date'] = strtotime($data['date']);
+            }
             $model->attributes = $data;
             $model->type_id = News::TYPE_ARTICLE;
             if ($model->save()) {

@@ -46,6 +46,20 @@
                             <?= $form->error($model, 'h1_uk'); ?>
                         </td>
                     </tr>
+                    <?php if ($model['date']) { ?>
+                        <tr>
+                            <td class="col-lg-3"><?= $form->labelEx($model, 'date'); ?></td>
+                            <td class="date-td" data-time="<?= $model['date']; ?>">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <?= $form->textField($model, 'date', array('class' => 'form-control')); ?>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                                <?= $form->error($model, 'date'); ?>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     <tr>
                         <td class="col-lg-3"><?= $form->labelEx($model, 'url'); ?></td>
                         <td>
