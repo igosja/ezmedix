@@ -2,6 +2,8 @@
 
 class User extends CActiveRecord
 {
+    public $password_new;
+
     public function tableName()
     {
         return 'user';
@@ -13,7 +15,7 @@ class User extends CActiveRecord
             array('address, email, name, phone', 'required', 'on' => 'edit'),
             array('login, password', 'required', 'on' => 'login'),
             array('address, email, name, phone', 'required', 'on' => 'signup'),
-            array('address, email, login, name, phone', 'length', 'max' => 255),
+            array('address, email, login, name, phone, password_new', 'length', 'max' => 255),
             array('email', 'email'),
             array('email', 'unique'),
             array('date, status, userrole_id, usertype_id', 'numerical'),
@@ -29,6 +31,7 @@ class User extends CActiveRecord
             'login' => Yii::t('models.Model', 'label-login'),
             'name' => Yii::t('models.Model', 'label-name'),
             'password' => Yii::t('models.Model', 'label-password'),
+            'password_new' => 'Пароль',
             'phone' => Yii::t('models.Model', 'label-phone'),
             'status' => 'Статус',
             'userrole_id' => 'Роль в системе',
@@ -41,6 +44,9 @@ class User extends CActiveRecord
         if (parent::beforeSave()) {
             if ($this->isNewRecord) {
                 $this['date'] = time();
+            }
+            if ($this->password_new) {
+                $this['password'] = $this->hashPassword($this->password_new);
             }
         }
         return true;

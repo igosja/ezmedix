@@ -14,13 +14,15 @@
                         array('class' => 'btn btn-default')
                     ); ?>
                 </li>
-                <li>
-                    <?= CHtml::link(
-                        'Редактировать',
-                        array('update', 'id' => $model->primaryKey),
-                        array('class' => 'btn btn-default')
-                    ); ?>
-                </li>
+                <?php if ($model->login) { ?>
+                    <li>
+                        <?= CHtml::link(
+                            'Редактировать',
+                            array('update', 'id' => $model->primaryKey),
+                            array('class' => 'btn btn-default')
+                        ); ?>
+                    </li>
+                <?php } ?>
                 <?php if (!$model->login) { ?>
                     <li>
                         <?= CHtml::link(

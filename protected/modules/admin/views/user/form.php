@@ -34,6 +34,13 @@
                 </td>
             </tr>
             <tr>
+                <td class="col-lg-3"><?= $form->labelEx($model, 'password_new'); ?></td>
+                <td>
+                    <?= $form->textField($model, 'password_new', array('class' => 'form-control')); ?>
+                    <?= $form->error($model, 'password_new'); ?>
+                </td>
+            </tr>
+            <tr>
                 <td class="col-lg-3"><?= $form->labelEx($model, 'email'); ?></td>
                 <td>
                     <?= $form->textField($model, 'email', array('class' => 'form-control')); ?>
