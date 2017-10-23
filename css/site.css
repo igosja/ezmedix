@@ -23,3 +23,7 @@
 .score {
     width: 68px;
 }
+
+.prod strong {
+    font-weight: bold;
+}
