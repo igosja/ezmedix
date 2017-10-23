@@ -25,7 +25,18 @@ $(document).ready(function ($) {
     if (datetimepicker1.length) {
         datetimepicker1.datetimepicker({
             locale: 'ru',
-            date: moment.unix($('.date-td').data('time'))
+            date: moment.unix($('.date-td').data('time')),
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down",
+                previous: 'fa fa-angle-left',
+                next: 'fa fa-angle-right',
+                today: 'fa fa-crosshairs',
+                clear: 'fa fa-trash',
+                close: 'fa fa-times'
+            }
         });
     }
 

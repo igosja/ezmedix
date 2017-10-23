@@ -53,7 +53,7 @@
                                 <div class='input-group date' id='datetimepicker1'>
                                     <?= $form->textField($model, 'date', array('class' => 'form-control')); ?>
                                     <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
+                                        <span class="fa fa-calendar"></span>
                                     </span>
                                 </div>
                                 <?= $form->error($model, 'date'); ?>
