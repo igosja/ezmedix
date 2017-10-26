@@ -147,4 +147,27 @@ class ImageIgosja
             return self::put_file($file, $ext);
         }
     }
+
+    public static function put_image($file, $ext)
+    {
+        $file_name = substr(md5(uniqid()), -20) . '.' . $ext;
+
+        $dir = '/upload_image/';
+        $upload_dir = $_SERVER['DOCUMENT_ROOT'] . $dir;
+
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0777, 1);
+        }
+
+        $file_url = $upload_dir . '/' . $file_name;
+
+        if (!file_exists($file_url)) {
+            if (copy($file, $file_url)) {
+                chmod($file_url, 0777);
+            }
+            return $dir . '/' . $file_name;
+        } else {
+            return self::put_image($file, $ext);
+        }
+    }
 }

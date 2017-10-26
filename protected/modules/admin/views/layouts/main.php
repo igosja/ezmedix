@@ -170,6 +170,9 @@
                         <?= CHtml::link('Языки', array('language/index')); ?>
                     </li>
                     <li>
+                        <?= CHtml::link('Изображения', array('image/index')); ?>
+                    </li>
+                    <li>
                         <?= CHtml::link('Переводы', array('translate/index')); ?>
                     </li>
                 </ul>
