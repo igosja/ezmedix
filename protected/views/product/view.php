@@ -79,26 +79,28 @@ $parameter = explode('<br>', $parameter);
                 </div>
             </div>
         </div>
-        <div class="gr-text gr-text_prod">
-            <div class="wrap">
-                <div class="prod-bot">
-                    <h2 class="prod-bot__title"><?= Yii::t('views.product.views', 'category-product'); ?></h2>
-                    <div class="owl-carousel prod-more">
-                        <?php foreach ($a_product as $item) { ?>
-                            <div class="item">
-                                <?= CHtml::link(
-                                    '<img
-                                        src="' . ImageIgosja::resize(isset($item['image'][0]) ? $item['image'][0]['image_id'] : 0, 200, 200) . '"
-                                        alt="' . $item['h1_' . Yii::app()->language] . '">
-                                    <span>' . $item['h1_' . Yii::app()->language] . '</span>
-                                    <small>' . Yii::t('views.product.views', 'link-detail') . '</small>',
-                                    array('view', 'id' => $item['url'])
-                                ); ?>
-                            </div>
-                        <?php } ?>
+        <?php if ($a_product) { ?>
+            <div class="gr-text gr-text_prod">
+                <div class="wrap">
+                    <div class="prod-bot">
+                        <h2 class="prod-bot__title"><?= Yii::t('views.product.views', 'category-product'); ?></h2>
+                        <div class="owl-carousel prod-more">
+                            <?php foreach ($a_product as $item) { ?>
+                                <div class="item">
+                                    <?= CHtml::link(
+                                        '<img
+                                            src="' . ImageIgosja::resize(isset($item['image'][0]) ? $item['image'][0]['image_id'] : 0, 200, 200) . '"
+                                            alt="' . $item['h1_' . Yii::app()->language] . '">
+                                        <span>' . $item['h1_' . Yii::app()->language] . '</span>
+                                        <small>' . Yii::t('views.product.views', 'link-detail') . '</small>',
+                                        array('view', 'id' => $item['url'])
+                                    ); ?>
+                                </div>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php } ?>
     </div>
 </section>
