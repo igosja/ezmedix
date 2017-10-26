@@ -1314,6 +1314,7 @@ header .wrap{
   width: 580px;
   float: left;
   margin-right: 20px;
+  margin-bottom: 20px;
 }
 .slider-out{
   position: relative;
@@ -1502,7 +1503,10 @@ header .wrap{
   width: 50px;
   border-bottom: 1px solid #1cb3fd;
 }
-.prod__table__i{
+.prod__table__i br{
+  display: none;
+}
+.prod__table__i .prod__table__i{
   font-size:14px;
   color:#121212;  
   line-height: 18px;
@@ -1512,6 +1516,12 @@ header .wrap{
 
 .prod p{
   font-size:14px;
+}
+.prod p strong{
+  display: block;
+  margin-top: 20px; 
+  font-size:16px;
+  text-transform: uppercase;
 }
 .prod p.grey-text{
   color:#77797f;
@@ -1527,6 +1537,14 @@ header .wrap{
   font-style: italic;
   margin-bottom: 3px;
   font-size:12px;
+}
+.prod ol{
+  display: inline-block;
+}
+.prod ol li{
+  margin-bottom: 10px;
+  font-size:14px;
+  padding-left: 25px;
 }
 .prod-bot{
   padding-bottom: 20px;
