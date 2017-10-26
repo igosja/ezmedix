@@ -29,14 +29,13 @@
     <meta http-equiv="content-language" content="<?= Yii::app()->language; ?>"/>
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i,800&amp;subset=cyrillic"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=cyrillic" rel="stylesheet">
-    <link rel="stylesheet" href="/css/normalize.min.css">
-    <link rel="stylesheet" href="/css/libs.css">
-    <link rel="stylesheet" href="/css/main.css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i,800&amp;subset=cyrillic" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="/css/normalize.min.css?v=<?= filemtime(__DIR__ . '/../../../css/normalize.min.css'); ?>">
+    <link rel="stylesheet" href="/css/libs.css?v=<?= filemtime(__DIR__ . '/../../../css/libs.css'); ?>">
+    <link rel="stylesheet" href="/css/main.css?v=<?= filemtime(__DIR__ . '/../../../css/main.css'); ?>">
     <!--<link rel="stylesheet" href="/css/mobile.css">-->
-    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="/css/site.css?v=<?= filemtime(__DIR__ . '/../../../css/site.css'); ?>">
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -328,12 +327,12 @@
         </div>
     </div>
 </section>
-<script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-<script src="/js/vendor/libs.js"></script>
+<script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js?v=<?= filemtime(__DIR__ . '/../../../js/vendor/modernizr-2.6.2-respond-1.1.0.min.js'); ?>"></script>
+<script src="/js/vendor/libs.js?v=<?= filemtime(__DIR__ . '/../../../js/vendor/libs.js'); ?>"></script>
 <?php if ('contact' == $this->uniqueid) { ?>
     <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAYBg8KC7jzGXqsJO4ZvBUBr-zHT_0qm2s"></script>
 <?php } ?>
-<script src="/js/main.js"></script>
-<script src="/js/site.js"></script>
+<script src="/js/main.js?v=<?= filemtime(__DIR__ . '/../../../js/main.js'); ?>"></script>
+<script src="/js/site.js?v=<?= filemtime(__DIR__ . '/../../../js/site.js'); ?>"></script>
 </body>
 </html>

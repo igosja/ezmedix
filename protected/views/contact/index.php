@@ -49,7 +49,9 @@
                 </div>
                 <div class="contacts__right">
                     <h3 class="partners__item__title"><?= Yii::t('views.contact.index', 'h3'); ?></h3>
-                    <p class="contacts__text"><?= Yii::t('views.contact.index', 'p'); ?></p>
+                    <?php if (false) { ?>
+                        <p class="contacts__text"><?= Yii::t('views.contact.index', 'p'); ?></p>
+                    <?php } ?>
                     <div class="contacts__form clearfix">
                         <?php $form = $this->beginWidget('CActiveForm', array(
                             'enableAjaxValidation' => false,
@@ -92,6 +94,8 @@
                 </div>
             </div>
         </div>
+        <?php if (false) { ?>
         <div class="map" id="map" data-lat="<?= $o_page['lat']; ?>" data-lng="<?= $o_page['lng']; ?>"></div>
+        <?php } ?>
     </div>
 </section>

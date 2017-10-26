@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model Chapter
+ * @var $model Slide
  */
 ?>
     <div class="row">
