@@ -51,32 +51,28 @@ $parameter = explode('<br>', $parameter);
                         <?php } ?>
                     </div>
                 </div>
-                <div class="prod__right">
-                    <div class="clearfix">
-                        <?= CHtml::link(
-                            Yii::t('views.product.view', 'order')
-                            . '<img src="/img/cart.png" alt="'
-                            . Yii::t('views.product.view', 'order')
-                            . '">',
-                            array('profile/product'),
-                            array('class' => 'prod__btn')
-                        ); ?>
-                        <?php if ($o_product['pdf_id']) { ?>
-                            <a href="<?= $o_product['pdf']['url']; ?>" class="prod__intruction">
-                                <?= Yii::t('views.product.view', 'instruction'); ?>
-                            </a>
-                        <?php } ?>
+                <?= CHtml::link(
+                    Yii::t('views.product.view', 'order')
+                    . '<img src="/img/cart.png" alt="'
+                    . Yii::t('views.product.view', 'order')
+                    . '">',
+                    array('profile/product'),
+                    array('class' => 'prod__btn')
+                ); ?>
+                <?php if ($o_product['pdf_id']) { ?>
+                    <a href="<?= $o_product['pdf']['url']; ?>" class="prod__intruction">
+                        <?= Yii::t('views.product.view', 'instruction'); ?>
+                    </a>
+                <?php } ?>
+                <div class="prod__table">
+                    <div class="prod__table__title">
+                        <?= Yii::t('views.product.views', 'parameter'); ?>
                     </div>
-                    <div class="prod__table">
-                        <div class="prod__table__title">
-                            <?= Yii::t('views.product.views', 'parameter'); ?>
-                        </div>
-                        <?php foreach ($parameter as $item) { ?>
-                            <div class="prod__table__i"><?= $item; ?></div>
-                        <?php } ?>
-                    </div>
-                    <?= $o_product['text_' . Yii::app()->language]; ?>
+                    <?php foreach ($parameter as $item) { ?>
+                        <div class="prod__table__i"><?= $item; ?></div>
+                    <?php } ?>
                 </div>
+                <?= $o_product['text_' . Yii::app()->language]; ?>
             </div>
         </div>
         <?php if ($a_product) { ?>

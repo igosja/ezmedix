@@ -337,6 +337,9 @@ header .wrap{
   width: auto;
   right:12px!important;
 }
+.show-m-menu{
+  display: none;
+}
 /*
 .ui-selectmenu-menu .ui-menu{
   border:0;
@@ -366,6 +369,16 @@ header .wrap{
   line-height: 1;
   text-align: center;
   position: relative;
+}
+.nav .header__search{
+  display: none;
+}
+.nav .facebook-btn,
+.nav .twitter-btn{
+  display: none;
+}
+.menu-close{
+  display: none;
 }
 .nav .wrap{
   padding-top: 21px;
@@ -462,8 +475,8 @@ header .wrap{
 .nav__drop__i:last-of-type{
   margin-right: 10px;
 }
-.nav__drop__link{
-  display: block!important;
+.nav__drop__i .nav__drop__link{
+  display: block;
   height: 49px!important;
   border-bottom: 1px solid #e5e5e5!important;
   text-align: left!important;
@@ -484,9 +497,9 @@ header .wrap{
 }
 
 /*==================== main slider =============================*/
-
 .main-slider{
   margin-bottom: 52px;
+  width:100%;
 }
 .main-slider .item{
   height: 700px;
@@ -1091,7 +1104,6 @@ header .wrap{
 .cat__left{
   width: 240px;
   float: left;
-  height: 100px;
   padding-right: 20px;
   box-sizing: border-box;
 }
@@ -1301,6 +1313,7 @@ header .wrap{
 .prod__left{
   width: 580px;
   float: left;
+  margin-right: 20px;
 }
 .slider-out{
   position: relative;
@@ -1407,11 +1420,6 @@ header .wrap{
   padding: 0;
 }
 
-.prod__right{
-  width: 560px;
-  float: right;
-  position: relative;
-}
 .prod__btn{
   display: table-cell;
   width: 360px;
@@ -1473,6 +1481,7 @@ header .wrap{
 .prod__table{
   margin-top: 27px;
   margin-bottom: 23px;
+  display: inline-block;
 }
 .prod__table__title{
   color:#424242;
@@ -1482,6 +1491,7 @@ header .wrap{
   border-bottom:1px solid #ebebeb;
   padding-bottom:11px; 
   position: relative;  
+  width: 580px;
 }
 .prod__table__title:after{
   content:'';
@@ -1500,17 +1510,19 @@ header .wrap{
   border-bottom:1px solid #ebebeb;
 }
 
-.prod__right p{
+.prod p{
   font-size:14px;
 }
-.prod__right p.grey-text{
+.prod p.grey-text{
   color:#77797f;
   font-size:12px;
+  line-height: 18px;
 }
-.prod__right .sm-dote{
+.prod .sm-dote{
+  display: inline-block;
   margin-bottom: 17px;
 }
-.prod__right .sm-dote li{
+.prod .sm-dote li{
   font-weight: 700;
   font-style: italic;
   margin-bottom: 3px;
@@ -1622,6 +1634,7 @@ header .wrap{
 .prod-bot{
   width: 1198px;
 }
+
 /*==================== contacts =============================*/
 .contacts__left{
   width: 280px;
@@ -1671,7 +1684,6 @@ header .wrap{
 .contacts__right{
   width: 860px;
   float: right;
-  height: 100px;
 }
 .contacts__right  .partners__item__title{
   border-bottom: 0;
@@ -1698,6 +1710,7 @@ header .wrap{
 .contacts__form__half .of-input{
   margin-bottom: 0;
 }
+
 /*==================== non autorized =============================*/
 .log-page{
   -webkit-box-shadow: inset 0px 5px 10px 0px rgba(0,0,0,0.1);
@@ -2408,6 +2421,8 @@ header .wrap{
 .about-cert .cat__i:nth-of-type(4n){
   margin-right: 0;  
 }
+
+
 /*==================== footer =============================*/
 footer{
   background:#3147b4;
