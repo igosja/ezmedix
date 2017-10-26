@@ -10,9 +10,9 @@ class Image extends CActiveRecord
     public function beforeDelete()
     {
         if (parent::beforeDelete()) {
-            if (isset($this->url)) {
-                if (file_exists(__DIR__ . '/../../' . $this->url)) {
-                    unlink(__DIR__ . '/../../' . $this->url);
+            if (isset($this['url'])) {
+                if (file_exists(__DIR__ . '/../../' . $this['url'])) {
+                    unlink(__DIR__ . '/../../' . $this['url']);
                 }
             }
             $a_resize = Resize::model()->findAllByAttributes(array('image_id' => $this->id));
