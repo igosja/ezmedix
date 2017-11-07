@@ -187,7 +187,7 @@
             <a href="javascript:" data-selector="form-call" class="nav-btn overlayElementTrigger">
                 <?= Yii::t('views.layouts.main', 'header-link-ask'); ?>
             </a>
-            <a href="javascipt:" class="menu-close menu-close_1"></a>
+            <a href="javascript:" class="menu-close menu-close_1"></a>
         </div>
     </nav>
     <?= $content; ?>
