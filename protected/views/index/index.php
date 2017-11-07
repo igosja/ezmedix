@@ -59,7 +59,7 @@
             <div class="btn-more__out">
                 <?= CHtml::link(
                     Yii::t('views.index.index', 'all-product'),
-                    array('category/index'),
+                    array('catalog/index'),
                     array('class' => 'btn-more')
                 ) ?>
             </div>
