@@ -110,7 +110,7 @@
                         array('class' => 'nav__arrow')
                     ); ?>
                     <div class="nav__drop">
-                        <div class="wrap">
+                        <div class="wrap clearfix">
                             <div class="nav__drop__i">
                                 <?php foreach ($this->a_chapter_1 as $item) { ?>
                                     <?= CHtml::link(
@@ -148,6 +148,7 @@
                                 <?php } ?>
                             </div>
                         </div>
+                        <a href="javascript:" class="menu-close menu-close_2"></a>
                     </div>
                 </li>
                 <li>
