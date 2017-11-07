@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="/css/normalize.min.css?v=<?= filemtime(__DIR__ . '/../../../css/normalize.min.css'); ?>">
     <link rel="stylesheet" href="/css/libs.css?v=<?= filemtime(__DIR__ . '/../../../css/libs.css'); ?>">
     <link rel="stylesheet" href="/css/main.css?v=<?= filemtime(__DIR__ . '/../../../css/main.css'); ?>">
-    <!--<link rel="stylesheet" href="/css/mobile.css">-->
+    <link rel="stylesheet" href="/css/mobile.css">
     <link rel="stylesheet" href="/css/site.css?v=<?= filemtime(__DIR__ . '/../../../css/site.css'); ?>">
 </head>
 <body>
@@ -80,6 +80,11 @@
                     ); ?>
                     <?php $this->endWidget(); ?>
                 </div>
+                <a href="javascript:" class="show-m-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
             </div>
             <div class="header__search clearfix">
                 <form action="">
