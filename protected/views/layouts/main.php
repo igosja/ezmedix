@@ -175,9 +175,19 @@
                     ); ?>
                 </li>
             </ul>
+            <div class="header__search clearfix">
+                <form action="">
+                    <input type="submit" class="header__search__subm" value="">
+                    <input type="text" class="header__search__text">
+                </form>
+            </div>
+            <?php foreach ($this->a_social as $item) { ?>
+                <a href="<?= $item['url'] ? $item['url'] : 'javascript:'; ?>" class="<?= $item['css']; ?>" target="_blank"></a>
+            <?php } ?>
             <a href="javascript:" data-selector="form-call" class="nav-btn overlayElementTrigger">
                 <?= Yii::t('views.layouts.main', 'header-link-ask'); ?>
             </a>
+            <a href="javascipt:" class="menu-close menu-close_1"></a>
         </div>
     </nav>
     <?= $content; ?>
