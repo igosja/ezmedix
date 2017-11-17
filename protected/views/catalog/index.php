@@ -79,6 +79,30 @@
                     </div>
                 </div>
                 <div class="cat__right">
+                    <?php if ($o_chapter) { ?>
+                        <h1 class="cat__title">
+                            <span>
+                                <?= $o_chapter['h1_' . Yii::app()->language]; ?>
+                            </span>
+                        </h1>
+                        <?php if (isset($o_chapter['image_big']['url'])) { ?>
+                            <div class="cat-img">
+                                <img
+                                    src="<?= ImageIgosja::resize($o_chapter['image_id_big'], 940, 238); ?>"
+                                    alt="<?= $o_chapter['h1_' . Yii::app()->language]; ?>"
+                                />
+                            </div>
+                        <?php } ?>
+                        <p class="cat-text">
+                            <?= $o_chapter['text_' . Yii::app()->language]; ?>
+                        </p>
+                    <?php } else { ?>
+                        <h1 class="cat__title">
+                            <span>
+                                <?= $o_page['h1_' . Yii::app()->language]; ?>
+                            </span>
+                        </h1>
+                    <?php } ?>
                     <div class="clearfix">
                         <div class="cat__items clearfix item-div">
                             <?php foreach ($a_product as $item) { ?>

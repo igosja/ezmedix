@@ -11,18 +11,21 @@ class Chapter extends CActiveRecord
     {
         return array(
             array('h1_ru, h1_uk, seo_title_ru, seo_title_uk, url', 'length', 'max' => 255),
-            array('order, status', 'numerical'),
+            array('image_id, image_id_big, order, status', 'numerical'),
             array('h1_ru, h1_uk', 'required'),
-            array('seo_description_ru, seo_description_uk, seo_keywords_ru, seo_keywords_uk', 'safe'),
+            array('text_ru, text_uk, seo_description_ru, seo_description_uk, seo_keywords_ru, seo_keywords_uk', 'safe'),
         );
     }
 
     public function attributeLabels()
     {
         return array(
-            'image_id' => 'Изображение',
+            'image_id' => 'Изображение (иконка)',
+            'image_id_big' => 'Изображение (большое)',
             'h1_ru' => 'Название (Русский)',
             'h1_uk' => 'Название (Українська)',
+            'text_ru' => 'Текст (Русский)',
+            'text_uk' => 'Текст (Українська)',
             'seo_title_ru' => 'SEO title (Русский)',
             'seo_title_uk' => 'SEO title (Українська)',
             'seo_description_ru' => 'SEO description (Русский)',
@@ -60,6 +63,12 @@ class Chapter extends CActiveRecord
                     $o_image->delete();
                 }
             }
+            if ($this['image_id_big']) {
+                $o_image = Image::model()->findByPk($this['image_id_big']);
+                if ($o_image) {
+                    $o_image->delete();
+                }
+            }
         }
         return true;
     }
@@ -77,6 +86,7 @@ class Chapter extends CActiveRecord
     {
         return array(
             'image' => array(self::HAS_ONE, 'Image', array('id' => 'image_id')),
+            'image_big' => array(self::HAS_ONE, 'Image', array('id' => 'image_id_big')),
         );
     }
 

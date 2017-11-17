@@ -47,6 +47,20 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'text_ru'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'text_ru', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'text_ru'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'text_uk'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'text_uk', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'text_uk'); ?>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="col-lg-3"><?= $form->labelEx($model, 'url'); ?></td>
                         <td>
                             <?= $form->textField($model, 'url', array('class' => 'form-control')); ?>
@@ -65,6 +79,21 @@
                                 <?= CHtml::link('<i class="fa fa-times"></i>', array('image', 'id' => $model['image_id'])); ?>
                             <?php } else { ?>
                                 <input type="file" name="image" class="form-control"/>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'image_id_big'); ?></td>
+                        <td>
+                            <?php if (isset($model['image_big']['url'])) { ?>
+                                <div class="col-lg-6">
+                                    <a href="javascript:" class="thumbnail">
+                                        <img src="<?= $model['image_big']['url']; ?>"/>
+                                    </a>
+                                </div>
+                                <?= CHtml::link('<i class="fa fa-times"></i>', array('image', 'id' => $model['image_id_big'])); ?>
+                            <?php } else { ?>
+                                <input type="file" name="image_big" class="form-control"/>
                             <?php } ?>
                         </td>
                     </tr>

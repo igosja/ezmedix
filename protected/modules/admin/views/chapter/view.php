@@ -43,11 +43,30 @@ $attributes = array(
             </div>') :
             '',
     ),
+    array(
+        'name' => 'image_id_big',
+        'type' => 'raw',
+        'value' => (isset($model['image_big']['url'])) ?
+            ('<div class="col-lg-6">
+                <a href="javascript:;" class="thumbnail">
+                    <img src="' . $model['image_big']['url'] . '"/>
+                </a>
+            </div>') :
+            '',
+    ),
     'h1_ru',
+    array(
+        'name' => 'text_ru',
+        'type' => 'raw',
+    ),
     'seo_title_ru',
     'seo_description_ru',
     'seo_keywords_ru',
     'h1_uk',
+    array(
+        'name' => 'text_uk',
+        'type' => 'raw',
+    ),
     'seo_title_uk',
     'seo_description_uk',
     'seo_keywords_uk',

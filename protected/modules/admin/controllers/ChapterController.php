@@ -43,6 +43,7 @@ class ChapterController extends AController
                     $model->save();
                 }
                 $this->uploadImage($model->primaryKey);
+                $this->uploadImageBig($model->primaryKey);
                 Yii::app()->user->setFlash('success', $this->saved);
                 $this->redirect(array('view', 'id' => $model->primaryKey));
             }
@@ -116,6 +117,25 @@ class ChapterController extends AController
             $image_id = $o_image->id;
             $model = $this->getModel()->findByPk($id);
             $model->image_id = $image_id;
+            $model->save();
+        }
+    }
+
+    public function uploadImageBig($id)
+    {
+        if (isset($_FILES['image_big']['name']) && !empty($_FILES['image_big']['name'])) {
+            $image = $_FILES['image_big'];
+            $ext = $image['name'];
+            $ext = explode('.', $ext);
+            $ext = end($ext);
+            $file = $image['tmp_name'];
+            $image_url = ImageIgosja::put_file($file, $ext);
+            $o_image = new Image();
+            $o_image->url = $image_url;
+            $o_image->save();
+            $image_id = $o_image->id;
+            $model = $this->getModel()->findByPk($id);
+            $model->image_id_big = $image_id;
             $model->save();
         }
     }
