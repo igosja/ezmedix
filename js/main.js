@@ -161,4 +161,25 @@ jQuery(document).ready(function ($) {
         });
     }
     $('.jqui-select > select').selectmenu();
+
+
+    /*============== mobile ==============*/
+    $(".show-m-menu").click(function (e) {
+      e.preventDefault();
+      $(".nav").fadeIn();
+    });
+
+    $(".menu-close_1").click(function (e) {
+      e.preventDefault();
+      $(".nav").fadeOut();
+    });
+    $(".menu-close_2").click(function (e) {
+      e.preventDefault();
+      $(".nav__drop").removeClass("active");
+    });
+
+    $(".nav__arrow").click(function (e) {
+      e.preventDefault();
+      $(".nav__drop").addClass("active");
+    });  
 });
