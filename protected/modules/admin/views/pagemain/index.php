@@ -30,11 +30,6 @@ $attributes = array(
         'type' => 'raw',
         'value' => $model['text_2_ru'],
     ),
-    array(
-        'name' => 'text_3_ru',
-        'type' => 'raw',
-        'value' => $model['text_3_ru'],
-    ),
     'seo_title_ru',
     'seo_description_ru',
     'seo_keywords_ru',
@@ -48,11 +43,6 @@ $attributes = array(
         'name' => 'text_2_uk',
         'type' => 'raw',
         'value' => $model['text_2_uk'],
-    ),
-    array(
-        'name' => 'text_3_uk',
-        'type' => 'raw',
-        'value' => $model['text_3_uk'],
     ),
     'seo_title_uk',
     'seo_description_uk',

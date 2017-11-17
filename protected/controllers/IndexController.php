@@ -8,6 +8,7 @@ class IndexController extends Controller
             array('status' => 1, 'type_id' => News::TYPE_NEWS),
             array('limit' => 3, 'order' => 'id DESC')
         );
+        $a_product = Product::model()->findAllByAttributes(array('status' => 1), array('order' => 'RAND()', 'limit' => 7));
         $a_slide = Slide::model()->findAllByAttributes(array('status' => 1), array('order' => '`order` ASC'));
         $o_page = PageMain::model()->findByPk(1);
         $this->setSEO($o_page);
@@ -16,6 +17,7 @@ class IndexController extends Controller
         );
         $this->render('index', array(
             'a_news' => $a_news,
+            'a_product' => $a_product,
             'a_slide' => $a_slide,
             'o_page' => $o_page,
         ));

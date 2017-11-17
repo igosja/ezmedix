@@ -1,6 +1,7 @@
 <?php
 /**
  * @var $a_news  array
+ * @var $a_product array
  * @var $a_slide array
  * @var $o_page  PageMain
  */
@@ -29,6 +30,16 @@
             </div>
         <?php } ?>
     </div>
+    <div class="main-about">
+        <div class="wrap clearfix">
+            <div class="main-about__l">
+                <span><?= Yii::t('views.index.index', 'about'); ?></span>
+            </div>
+            <div class="main-about__r">
+                <?= $o_page['text_1_' . Yii::app()->language]; ?>
+            </div>
+        </div>
+    </div>
     <div class="main-cat">
         <div class="wrap">
             <h2 class="title"><?= Yii::t('views.index.index', 'h2-product'); ?></h2>
@@ -56,22 +67,54 @@
                     );
                 } ?>
             </div>
+        </div>
+    </div>
+    <div class="main-tov">
+        <div class="wrap">
+            <h2 class="title"><?= Yii::t('views.index.index', 'popular'); ?></h2>
+            <div class="tovar-slider" id="tovar-slider">
+                <?php foreach ($a_product as $item) { ?>
+                    <div class="item">
+                        <div class="cat__i">
+                            <?= CHtml::link(
+                                '<img
+                                    src="' . ImageIgosja::resize(isset($item['image'][0]) ? $item['image'][0]['image_id'] : 0, 280, 280) . '"
+                                    alt="' . $item['h1_' . Yii::app()->language] . '"
+                                />',
+                                array('product/view', 'id' => $item['url']),
+                                array('class' => 'cat__i__img')
+                            ); ?>
+                            <span class="cat__i__title">
+                                <span>
+                                    <?= $item['h1_' . Yii::app()->language]; ?>
+                                </span>
+                            </span>
+                            <span class="cat__i__text">
+                                <?= mb_substr(strip_tags($item['text_' . Yii::app()->language]), 0, 120); ?>
+                            </span>
+                            <span class="cat__i__bot clearfix">
+                                <span class="cat__i__price"><?= Yii::app()->numberFormatter->formatDecimal($item['price']); ?> грн.</span>
+                                <?= CHtml::link(
+                                    '',
+                                    array('profile/product'),
+                                    array('class' => 'cat__i__basket')
+                                ); ?>
+                                <?= CHtml::link(
+                                    Yii::t('views.index.index', 'link-detail'),
+                                    array('product/view', 'id' => $item['url']),
+                                    array('class' => 'cat__i__link')
+                                ); ?>
+                            </span>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
             <div class="btn-more__out">
                 <?= CHtml::link(
                     Yii::t('views.index.index', 'all-product'),
                     array('catalog/index'),
                     array('class' => 'btn-more')
                 ) ?>
-            </div>
-            <div class="main-cat__text">
-                <?= $o_page['text_1_' . Yii::app()->language]; ?>
-            </div>
-        </div>
-    </div>
-    <div class="main-b">
-        <div class="wrap">
-            <div class="main-b__in">
-                <?= $o_page['text_2_' . Yii::app()->language]; ?>
             </div>
         </div>
     </div>
@@ -106,7 +149,7 @@
     </div>
     <div class="gr-text">
         <div class="wrap">
-            <?= $o_page['text_3_' . Yii::app()->language]; ?>
+            <?= $o_page['text_2_' . Yii::app()->language]; ?>
         </div>
     </div>
 </section>

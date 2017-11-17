@@ -73,20 +73,6 @@
                             <?= $form->error($model, 'text_2_uk'); ?>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-lg-3"><?= $form->labelEx($model, 'text_3_ru'); ?></td>
-                        <td>
-                            <?= $form->textArea($model, 'text_3_ru', array('class' => 'form-control', 'rows' => 10)); ?>
-                            <?= $form->error($model, 'text_3_ru'); ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-lg-3"><?= $form->labelEx($model, 'text_3_uk'); ?></td>
-                        <td>
-                            <?= $form->textArea($model, 'text_3_uk', array('class' => 'form-control', 'rows' => 10)); ?>
-                            <?= $form->error($model, 'text_3_uk'); ?>
-                        </td>
-                    </tr>
                 </table>
             </div>
             <?= $this->renderPartial('/include/seo-form', array('model' => $model, 'form' => $form)) ?>
