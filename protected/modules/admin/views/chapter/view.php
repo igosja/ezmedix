@@ -30,7 +30,7 @@ $attributes = array(
     array(
         'name' => 'url',
         'type' => 'raw',
-        'value' => CHtml::link($model['url'], array('/catalog/view', 'id' => $model['url']), array('target' => '_blank'))
+        'value' => CHtml::link($model['url'], array('/catalog/index', 'id' => $model['url']), array('target' => '_blank'))
     ),
     array(
         'name' => 'image_id',
