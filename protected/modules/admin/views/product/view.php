@@ -48,22 +48,52 @@ $attributes = array(
             '',
     ),
     array(
+        'name' => 'parameter_ru',
+        'type' => 'raw',
+    ),
+    array(
+        'name' => 'parameter_uk',
+        'type' => 'raw',
+    ),
+    array(
+        'name' => 'composition_ru',
+        'type' => 'raw',
+    ),
+    array(
+        'name' => 'composition_uk',
+        'type' => 'raw',
+    ),
+    array(
+        'name' => 'release_form_ru',
+        'type' => 'raw',
+    ),
+    array(
+        'name' => 'release_form_uk',
+        'type' => 'raw',
+    ),
+    array(
+        'name' => 'shelf_life_ru',
+        'type' => 'raw',
+    ),
+    array(
+        'name' => 'shelf_life_uk',
+        'type' => 'raw',
+    ),
+    array(
+        'name' => 'attention_ru',
+        'type' => 'raw',
+    ),
+    array(
+        'name' => 'attention_uk',
+        'type' => 'raw',
+    ),
+    array(
         'name' => 'text_ru',
         'type' => 'raw',
     ),
     array(
         'name' => 'text_uk',
         'type' => 'raw',
-    ),
-    array(
-        'name' => 'parameter_ru',
-        'type' => 'raw',
-        'value' => nl2br($model['parameter_ru']),
-    ),
-    array(
-        'name' => 'parameter_uk',
-        'type' => 'raw',
-        'value' => nl2br($model['parameter_uk']),
     ),
     array(
         'name' => 'filter_field',

@@ -10,6 +10,11 @@ class ProductController extends Controller
         if (!$o_product) {
             $this->redirect(array('catalog/index'));
         }
+        if (Yii::app()->user->isGuest) {
+            $o_user = null;
+        } else {
+            $o_user = User::model()->findByPk(Yii::app()->user->id);
+        }
         $a_product = Product::model()->findAllByAttributes(
             array('status' => 1, 'category_id' => $o_product['category_id']),
             array('condition' => 'id!=' . $o_product['id'], 'order' => 'RAND()', 'limit' => 10)
@@ -27,6 +32,7 @@ class ProductController extends Controller
         $this->render('view', array(
             'a_product' => $a_product,
             'o_product' => $o_product,
+            'o_user' => $o_user,
         ));
     }
 }

@@ -92,15 +92,71 @@
                     <tr>
                         <td class="col-lg-3"><?= $form->labelEx($model, 'parameter_ru'); ?></td>
                         <td>
-                            <?= $form->textArea($model, 'parameter_ru', array('class' => 'form-control')); ?>
+                            <?= $form->textArea($model, 'parameter_ru', array('class' => 'ckeditor')); ?>
                             <?= $form->error($model, 'parameter_ru'); ?>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-lg-3"><?= $form->labelEx($model, 'parameter_uk'); ?></td>
                         <td>
-                            <?= $form->textArea($model, 'parameter_uk', array('class' => 'form-control')); ?>
+                            <?= $form->textArea($model, 'parameter_uk', array('class' => 'ckeditor')); ?>
                             <?= $form->error($model, 'parameter_uk'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'composition_ru'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'composition_ru', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'composition_ru'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'composition_uk'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'composition_uk', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'composition_uk'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'release_form_ru'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'release_form_ru', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'release_form_ru'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'release_form_uk'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'release_form_uk', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'release_form_uk'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'shelf_life_ru'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'shelf_life_ru', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'shelf_life_ru'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'shelf_life_uk'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'shelf_life_uk', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'shelf_life_uk'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'attention_ru'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'attention_ru', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'attention_ru'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'attention_uk'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'attention_uk', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'attention_uk'); ?>
                         </td>
                     </tr>
                     <tr>

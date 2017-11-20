@@ -17,14 +17,18 @@ class Product extends CActiveRecord
             array('h1_ru, h1_uk, url', 'length', 'max' => 255),
             array('category_id, status, price, pdf_id', 'numerical'),
             array('category_id, h1_ru, h1_uk, price', 'required'),
-            array('filter_field, parameter_ru, parameter_uk, text_ru, text_uk, seo_description_ru, seo_description_uk, seo_keywords_ru, seo_keywords_uk', 'safe'),
+            array('attention_ru, attention_uk, composition_ru, composition_uk, release_form_ru, release_form_uk, shelf_life_ru, shelf_life_uk, filter_field, parameter_ru, parameter_uk, text_ru, text_uk, seo_description_ru, seo_description_uk, seo_keywords_ru, seo_keywords_uk', 'safe'),
         );
     }
 
     public function attributeLabels()
     {
         return array(
+            'attention_ru' => 'Внимание (Русский)',
+            'attention_uk' => 'Внимание (Українська)',
             'category_id' => 'Категория',
+            'composition_ru' => 'Состав (Русский)',
+            'composition_uk' => 'Состав (Українська)',
             'filter_field' => 'Фильтры',
             'image' => 'Изображения',
             'h1_ru' => 'Название (Русский)',
@@ -33,6 +37,10 @@ class Product extends CActiveRecord
             'parameter_uk' => 'Параметры (Українська)',
             'price' => 'Цена, грн',
             'pdf_id' => 'Инструкция',
+            'release_form_ru' => 'Форма выпуска (Русский)',
+            'release_form_uk' => 'Форма выпуска (Українська)',
+            'shelf_life_ru' => 'Срок годности (Русский)',
+            'shelf_life_uk' => 'Срок годности (Українська)',
             'text_ru' => 'Описание (Русский)',
             'text_uk' => 'Описание (Українська)',
             'seo_title_ru' => 'SEO title (Русский)',
