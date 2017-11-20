@@ -195,6 +195,8 @@ header .wrap{
 }
 .header__info{
   float: right;
+  position: relative;
+  z-index: 2;
 }
 .header__search{
   float: left;
@@ -1532,7 +1534,7 @@ header .wrap{
 .cat__title span{
   background: #fff;
   position: relative;
-  z-index: 2;
+  z-index: 1;
   padding:0 18px;
 }
 .cat-text{

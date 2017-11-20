@@ -112,7 +112,6 @@ jQuery(document).ready(function ($) {
         autoPlay: 5000,
         transitionStyle: "fade"
     });
-
     $("#transitionType").change(function () {
         var newValue = $(this).val();
         slide.data("owlCarousel").transitionTypes(newValue);
@@ -121,46 +120,68 @@ jQuery(document).ready(function ($) {
 
     var slideTov = $(".prod-more");
     slideTov.owlCarousel({
-        navigation: true,
-        slideSpeed: 300,
-        paginationSpeed: 400,
-        items: 5,
-        responsive: true,
-        responsiveRefreshRate: 1,
-        pagination: false,
-        navigationText: false,
-        autoPlay: false,
-        loop: false
+      navigation: true,
+      slideSpeed: 300,
+      paginationSpeed: 400,
+      items: 5,
+      responsive: true,
+      responsiveRefreshRate: 1,
+      pagination: false,
+      navigationText: false,
+      autoPlay: 5000,
+      itemsDesktop : [1000,5], 
+      itemsDesktopSmall : [767,3], 
+      itemsTablet: [480,2], 
+      itemsMobile : [360,1]
     });
 
     if ($(".slider").length) {
-        $('.slider').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            infinite: false,
-            fade: true,
-            cssEase: 'linear',
-            variableWidth: false,
-            variableHeight: false,
-            centerMode: false,
-            asNavFor: '.slider-nav',
-            prevArrow: $('.prev'),
-            nextArrow: $('.next')
-        });
+      $('.slider').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: false,
+        fade: true,
+        cssEase: 'linear',
+        variableWidth: false,
+        variableHeight: false,
+        centerMode: false,
+        asNavFor: '.slider-nav',
+        prevArrow: $('.prev'),
+        nextArrow: $('.next')
+      });
     }
 
     if ($(".slider").length) {
-        $('.slider-nav').slick({
-            slidesToShow: 6,
-            slidesToScroll: 1,
-            asNavFor: '.slider',
-            vertical: false,
-            dots: false,
-            arrows: false,
-            infinite: false
-        });
+      $('.slider-nav').slick({
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        asNavFor: '.slider',
+        vertical: false,
+        dots: false,
+        arrows: false,
+        infinite: false
+      });
     }
     $('.jqui-select > select').selectmenu();
+
+    var slide = $("#tovar-slider");
+    slide.owlCarousel({
+        slideSpeed: 300,
+        paginationSpeed: 400,
+        items: 3,
+        singleItem: false,
+        responsive : true,
+        itemsDesktop : [1999,3],
+        itemsDesktopSmall : [980,3],
+        itemsTablet: [767,2],
+        itemsTabletSmall: [640,1],
+        responsiveRefreshRate: 1,
+        pagination: false,
+        navigationText: false,
+        navigation: true,
+        autoPlay:5000
+    });
+
 
 
     /*============== mobile ==============*/
@@ -181,5 +202,5 @@ jQuery(document).ready(function ($) {
     $(".nav__arrow").click(function (e) {
       e.preventDefault();
       $(".nav__drop").addClass("active");
-    });  
+    });    
 });
