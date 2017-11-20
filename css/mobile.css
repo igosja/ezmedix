@@ -495,7 +495,6 @@
 	/*==================== product =============================*/
 	.prod{
 	  margin-bottom: 30px;
-	  overflow: hidden;
 	}
 	.prod__left{
 		max-width: 580px;
@@ -536,12 +535,7 @@
 	  float: none;
 	}
 
-	.prod__intruction{
-	  display: inline-block;
-	  position: absolute;
-	  right: 0;
-	  top: 20px;  
-	}
+
 	.prod-bot__title{
 		font-size:28px;
 		line-height: 32px;
@@ -971,24 +965,6 @@
 	}
 
 	/*==================== product =============================*/	
-	.prod__btn{
-	  width: 150px;
-	  height: 50px;
-	  font-size: 16px;
-	  margin-right: 0px;
-	}
-	.prod__intruction:before {
-    left: -35px;
-	}
-	.prod__intruction {
-    top: 16px;
-	}
-	.prod__table {
-    margin-top: 20px;
-	}	
-	.prod-bot__title {
-	  padding-right: 90px;
-	}
 
 	.prod-more .owl-next {
     top: -75px;
