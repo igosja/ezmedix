@@ -18,7 +18,7 @@
         </span>
     </span>
     <span class="cat__i__text">
-        <?= mb_substr(strip_tags($item['text_' . Yii::app()->language]), 0, 120); ?>
+        <?= mb_substr(strip_tags($item['parameter_' . Yii::app()->language]), 0, 120); ?>
     </span>
     <span class="cat__i__bot clearfix">
         <span class="cat__i__price"><?= Yii::app()->numberFormatter->formatDecimal($item['price']); ?> грн.</span>
