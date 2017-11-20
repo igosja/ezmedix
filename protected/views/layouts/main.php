@@ -34,8 +34,7 @@
     <link rel="stylesheet" href="/css/normalize.min.css?v=<?= filemtime(__DIR__ . '/../../../css/normalize.min.css'); ?>">
     <link rel="stylesheet" href="/css/libs.css?v=<?= filemtime(__DIR__ . '/../../../css/libs.css'); ?>">
     <link rel="stylesheet" href="/css/main.css?v=<?= filemtime(__DIR__ . '/../../../css/main.css'); ?>">
-    <link rel="stylesheet" href="http://inpinto.ru/test/ezmedix/css/main.css">
-    <link rel="stylesheet" href="/css/mobile.css?v=<?= filemtime(__DIR__ . '/../../../css/main.css'); ?>">
+    <link rel="stylesheet" href="/css/mobile.css?v=<?= filemtime(__DIR__ . '/../../../css/mobile.css'); ?>">
     <link rel="stylesheet" href="/css/site.css?v=<?= filemtime(__DIR__ . '/../../../css/site.css'); ?>">
 </head>
 <body>
