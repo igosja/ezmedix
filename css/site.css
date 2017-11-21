@@ -30,7 +30,7 @@
 }
 
 .prod p strong {
-    display: inherit;
+    display: inline;
     margin: 0;
     font-size: inherit;
     text-transform: inherit;
