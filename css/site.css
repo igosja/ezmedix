@@ -28,3 +28,10 @@
 .prod strong {
     font-weight: bold;
 }
+
+.prod p strong {
+    display: inherit;
+    margin: 0;
+    font-size: inherit;
+    text-transform: inherit;
+}
