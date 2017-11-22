@@ -1,6 +1,8 @@
 <?php
 /**
+ * @var $a_cart    array
  * @var $a_chapter array
+ * @var $count     integer
  * @var $form      CActiveForm
  * @var $model     Order
  * @var $o_user    array
@@ -39,6 +41,18 @@ $opened = true;
                                 </tr>
                                 <?php $i = 1; ?>
                                 <?php foreach ($item['product'] as $product) { ?>
+                                    <?php
+
+                                    $css = '';
+                                    $value = 1;
+                                    foreach ($a_cart as $cart_item) {
+                                        if ($cart_item['product_id'] == $product['id']) {
+                                            $value = $cart_item['quantity'];
+                                            $css = 'active';
+                                        }
+                                    }
+
+                                    ?>
                                     <tr>
                                         <td><?= $i; ?></td>
                                         <td>
@@ -48,19 +62,21 @@ $opened = true;
                                             ); ?>
                                         <td><?= $product['category']['h1_' . Yii::app()->language]; ?></td>
                                         <td>
-                                            <a href="javascript:" class="plus"></a>
-                                            <input
-                                                    type="text"
-                                                    class="score"
-                                                    value="1"
-                                                    data-product="<?= $product['id']; ?>"
-                                                    data-price="<?= round(
-                                                        $product['price'] * (100 - $o_user['usertype']['discount'])
-                                                        / 100,
-                                                        2
-                                                    ); ?>"
-                                            />
-                                            <a href="javascript:" class="minus"></a>
+                                            <div class="order-cnt clearfix">
+                                                <a href="javascript:" class="plus"></a>
+                                                <input
+                                                        type="text"
+                                                        class="score"
+                                                        value="<?= $value; ?>"
+                                                        data-product="<?= $product['id']; ?>"
+                                                        data-price="<?= round(
+                                                            $product['price'] * (100 - $o_user['usertype']['discount'])
+                                                            / 100,
+                                                            2
+                                                        ); ?>"
+                                                />
+                                                <a href="javascript:" class="minus"></a>
+                                            </div>
                                         </td>
                                         <td>
                                             <?= Yii::app()->numberFormatter->formatDecimal(
@@ -82,12 +98,20 @@ $opened = true;
                                             ); ?>
                                             грн
                                         </td>
-                                        <td><a href="javascript:" class="cart add-to-cart"></a></td>
+                                        <td><a href="javascript:" class="cart <?= $css; ?> add-to-cart"></a></td>
                                     </tr>
                                     <?php $i++; ?>
                                 <?php } ?>
                                 <tr>
                                     <td colspan="8">
+                                        <strong class="total">
+                                            <?= Yii::t('views.profile.product', 'table-your-order'); ?>
+                                            <span class="cart-total-count"><?= $count; ?> тов</span>
+                                        </strong>
+                                        <strong class="total">
+                                            <?= Yii::t('views.profile.product', 'table-your-sum'); ?>
+                                            <span class="cart-total-price"><?= Yii::app()->numberFormatter->formatDecimal($price); ?> грн</span>
+                                        </strong>
                                         <a href="javascript:" class="to-order">
                                             <?= Yii::t('views.profile.product', 'link-order'); ?>
                                         </a>
@@ -144,15 +168,21 @@ $opened = true;
                 </div>
                 <?= $form->textArea($model, 'comment', array('class' => 'lk-form__textarea')); ?>
                 <?= $form->error($model, 'comment'); ?>
+                <div class="lk-form__total">
+                    <strong>
+                        <?= Yii::t('views.profile.product', 'your-order'); ?>
+                        <span class="cart-total-count"><?= $count; ?> тов</span>
+                    </strong>
+                    <strong>
+                        <?= Yii::t('views.profile.product', 'total'); ?>
+                        <span class="cart-total-price"><?= Yii::app()->numberFormatter->formatDecimal($price); ?> грн</span>
+                    </strong>
+                </div>
                 <div class="centered">
                     <?= CHtml::submitButton('', array('style' => 'display:none;')); ?>
                     <a href="javascript:" class="btn submit-link">
                         <?= Yii::t('views.profile.product', 'submit'); ?>
                     </a>
-                </div>
-                <div class="lk-form__total">
-                    <?= Yii::t('views.profile.product', 'total'); ?>:
-                    <span><?= Yii::app()->numberFormatter->formatDecimal($price); ?> грн</span>
                 </div>
                 <?php $this->endWidget(); ?>
             </div>

@@ -74,6 +74,7 @@ class ProfileController extends Controller
     public function actionProduct()
     {
         $model = new Order();
+        $count = 0;
         $price = 0;
         $o_user = User::model()->findByPk(Yii::app()->user->id);
         $model['email'] = $o_user['email'];
@@ -82,6 +83,7 @@ class ProfileController extends Controller
         foreach ($a_cart as $item) {
             $o_product = Product::model()->findByAttributes(array('id' => $item['product_id'], 'status' => 1));
             if ($o_product) {
+                $count = $count + $item['quantity'];
                 $price = $price + round($o_product['price'] * (100 - $o_user['usertype']['discount']) / 100, 2) * $item['quantity'];
             } else {
                 Cart::model()->deleteAllByAttributes(array('product_id' => $item['product_id']));
@@ -144,7 +146,9 @@ class ProfileController extends Controller
             Yii::t('controllers.profile.product', 'bread'),
         );
         $this->render('product', array(
+            'a_cart' => $a_cart,
             'a_chapter' => $a_chapter,
+            'count' => $count,
             'model' => $model,
             'o_user' => $o_user,
             'price' => $price,

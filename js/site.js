@@ -114,7 +114,8 @@ jQuery(document).ready(function ($) {
             url: '/cart/add',
             success: function (data) {
                 if ('success' === data.status) {
-                    $('.lk-form__total').find('span').html(data.data + ' грн');
+                    $('.cart-total-price').html(data.price + ' грн');
+                    $('.cart-total-count').html(data.count + ' тов');
                 }
             }
         })

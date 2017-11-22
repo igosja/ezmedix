@@ -37,16 +37,22 @@ class CartController extends Controller
             $o_cart->save();
         }
         $price = 0;
+        $count = 0;
         $o_user = User::model()->findByPk(Yii::app()->user->id);
         $a_cart = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->user->id));
         foreach ($a_cart as $item) {
             $o_product = Product::model()->findByAttributes(array('id' => $item['product_id'], 'status' => 1));
             if ($o_product) {
                 $price = $price + round($o_product['price'] * (100 - $o_user['usertype']['discount']) / 100, 2) * $item['quantity'];
+                $count = $count + $item['quantity'];
             } else {
                 Cart::model()->deleteAllByAttributes(array('product_id' => $item['product_id']));
             }
         }
-        print CJSON::encode(array('status' => 'success', 'data' => Yii::app()->numberFormatter->formatDecimal($price)));
+        print CJSON::encode(array(
+            'status' => 'success',
+            'count' => $count,
+            'price' => Yii::app()->numberFormatter->formatDecimal($price)
+        ));
     }
 }
