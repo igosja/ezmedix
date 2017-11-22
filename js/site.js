@@ -118,7 +118,10 @@ jQuery(document).ready(function ($) {
                     $('.cart-total-count').html(data.count + ' тов');
                 }
             }
-        })
+        });
+        if (!$(this).hasClass('active')) {
+            $(this).addClass('active');
+        }
     });
 
     $('.to-order').on('click', function () {
