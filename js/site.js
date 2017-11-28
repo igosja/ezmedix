@@ -119,7 +119,9 @@ jQuery(document).ready(function ($) {
                 }
             }
         });
-        if (!$(this).hasClass('active')) {
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+        } else {
             $(this).addClass('active');
         }
     });

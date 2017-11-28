@@ -28,13 +28,13 @@ class CartController extends Controller
                 array('user_id' => Yii::app()->user->id, 'product_id' => $product_id)
             );
             if ($o_cart) {
-                $o_cart['quantity'] = $quantity;
+                $o_cart->delete();
             } else {
                 $o_cart = new Cart();
                 $o_cart['product_id'] = $product_id;
                 $o_cart['quantity'] = $quantity;
+                $o_cart->save();
             }
-            $o_cart->save();
         }
         $price = 0;
         $count = 0;
