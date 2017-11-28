@@ -41,11 +41,18 @@ $attributes = array(
     ),
     'price',
     array(
-        'name' => 'pdf_id',
+        'name' => 'pdf_field',
         'type' => 'raw',
-        'value' => (isset($model['pdf']['url'])) ?
-            ('<a href="' . $model['pdf']['url'] . '" target="_blank">' . $model['pdf']['url'] . '</a>') :
-            '',
+        'value' => function($model) {
+            $return = '';
+            foreach ($model['pdf'] as $item) {
+                $return = $return
+                    . '<a href="' . $item['pdf']['url'] . '" target="blank">' . $item['name'] . '</a> '
+                    . CHtml::link('&times;', array('pdf', 'id' => $item['id']))
+                    . '<br/>';
+            }
+            return $return;
+        }
     ),
     array(
         'name' => 'parameter_ru',

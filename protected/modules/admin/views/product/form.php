@@ -70,17 +70,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="col-lg-3"><?= $form->labelEx($model, 'pdf_id'); ?></td>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'pdf_field'); ?></td>
                         <td>
-                            <?php if (isset($model['pdf']['url'])) { ?>
-                                <a href="<?= $model['pdf']['url'] ?>" target="_blank">
-                                    <?= $model['pdf']['url'] ?>
-                                </a>
-                                <?= CHtml::link('<i class="fa fa-times"></i>',
-                                    array('pdf', 'id' => $model['pdf_id'])); ?>
-                            <?php } else { ?>
-                                <input type="file" name="pdf" class="form-control"/>
-                            <?php } ?>
+                            <input type="file" name="pdf[]" class="form-control" multiple="multiple" />
                         </td>
                     </tr>
                     <tr>

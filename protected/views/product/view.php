@@ -113,11 +113,14 @@ $parameter = explode('<br>', $parameter);
                     <?= $o_product['text_' . Yii::app()->language]; ?>
                     <br />
                     <br />
-                    <?php if ($o_product['pdf_id']) { ?>
+                    <?php if ($o_product['pdf']) { ?>
                         <div class="prod__title"><?= Yii::t('views.product.views', 'documents'); ?></div>
-                        <a href="<?= $o_product['pdf']['url']; ?>" class="prod__intruction" target="_blank">
-                            <?= Yii::t('views.product.view', 'instruction'); ?>
-                        </a>
+                        <?php foreach ($o_product['pdf'] as $item) { ?>
+                            <a href="<?= $item['pdf']['url']; ?>" class="prod__intruction" target="_blank">
+                                <?= $item['name']; ?>
+                            </a>
+                            <br/>
+                        <?php } ?>
                     <?php } ?>
                 </div>
             </div>

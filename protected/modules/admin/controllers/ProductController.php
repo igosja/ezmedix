@@ -100,9 +100,9 @@ class ProductController extends AController
 
     public function actionPdf($id)
     {
-        $o_image = Image::model()->findByPk($id);
-        if ($o_image) {
-            $o_image->delete();
+        $model = ProductPdf::model()->findByPk($id);
+        if ($model) {
+            $model->delete();
         }
         Yii::app()->user->setFlash('success', $this->saved);
         $this->redirect(Yii::app()->request->urlReferrer);
@@ -142,20 +142,24 @@ class ProductController extends AController
 
     public function uploadPdf($id)
     {
-        if (isset($_FILES['pdf']['name']) && !empty($_FILES['pdf']['name'])) {
+        if (isset($_FILES['pdf']['name'][0]) && !empty($_FILES['pdf']['name'][0])) {
             $image = $_FILES['pdf'];
-            $ext = $image['name'];
-            $ext = explode('.', $ext);
-            $ext = end($ext);
-            $file = $image['tmp_name'];
-            $image_url = ImageIgosja::put_file($file, $ext);
-            $o_image = new Image();
-            $o_image['url'] = $image_url;
-            $o_image->save();
-            $image_id = $o_image->primaryKey;
-            $model = $this->getModel()->findByPk($id);
-            $model['pdf_id'] = $image_id;
-            $model->save();
+            for ($i=0; $i<count($image['name']); $i++) {
+                $ext = $image['name'][$i];
+                $ext = explode('.', $ext);
+                $ext = end($ext);
+                $file = $image['tmp_name'][$i];
+                $image_url = ImageIgosja::put_file($file, $ext);
+                $o_image = new Image();
+                $o_image->url = $image_url;
+                $o_image->save();
+                $image_id = $o_image->primaryKey;
+                $model = new ProductPdf();
+                $model['pdf_id'] = $image_id;
+                $model['name'] = $image['name'][$i];
+                $model['product_id'] = $id;
+                $model->save();
+            }
         }
     }
 

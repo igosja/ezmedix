@@ -5,6 +5,7 @@ class Product extends CActiveRecord
     const ON_PAGE = 6;
 
     public $filter_field;
+    public $pdf_field;
 
     public function tableName()
     {
@@ -15,9 +16,9 @@ class Product extends CActiveRecord
     {
         return array(
             array('h1_ru, h1_uk, url', 'length', 'max' => 255),
-            array('category_id, status, price, pdf_id', 'numerical'),
+            array('category_id, status, price', 'numerical'),
             array('category_id, h1_ru, h1_uk, price', 'required'),
-            array('attention_ru, attention_uk, composition_ru, composition_uk, release_form_ru, release_form_uk, shelf_life_ru, shelf_life_uk, filter_field, parameter_ru, parameter_uk, text_ru, text_uk, seo_description_ru, seo_description_uk, seo_keywords_ru, seo_keywords_uk', 'safe'),
+            array('attention_ru, attention_uk, composition_ru, composition_uk, release_form_ru, release_form_uk, shelf_life_ru, shelf_life_uk, filter_field, parameter_ru, parameter_uk, pdf_field, text_ru, text_uk, seo_description_ru, seo_description_uk, seo_keywords_ru, seo_keywords_uk', 'safe'),
         );
     }
 
@@ -36,7 +37,7 @@ class Product extends CActiveRecord
             'parameter_ru' => 'Краткое описание (Русский)',
             'parameter_uk' => 'Краткое описание (Українська)',
             'price' => 'Цена, грн',
-            'pdf_id' => 'Инструкция',
+            'pdf_field' => 'Инструкции',
             'release_form_ru' => 'Форма выпуска (Русский)',
             'release_form_uk' => 'Форма выпуска (Українська)',
             'shelf_life_ru' => 'Срок годности (Русский)',
@@ -73,11 +74,9 @@ class Product extends CActiveRecord
             foreach ($a_productimage as $item) {
                 $item->delete();
             }
-            if ($this['pdf_id']) {
-                $o_image = Image::model()->findByPk($this['pdf_id']);
-                if ($o_image) {
-                    $o_image->delete();
-                }
+            $a_productpdf = ProductPdf::model()->findAllByAttributes(array('product_id' => $this->primaryKey));
+            foreach ($a_productpdf as $item) {
+                $item->delete();
             }
         }
         return true;
@@ -89,7 +88,7 @@ class Product extends CActiveRecord
             'category' => array(self::HAS_ONE, 'Category', array('id' => 'category_id')),
             'filter' => array(self::HAS_MANY, 'ProductFilter', array('product_id' => 'id')),
             'image' => array(self::HAS_MANY, 'ProductImage', array('product_id' => 'id'), 'order' => '`order` ASC'),
-            'pdf' => array(self::HAS_ONE, 'Image', array('id' => 'pdf_id')),
+            'pdf' => array(self::HAS_MANY, 'ProductPdf', array('product_id' => 'id')),
         );
     }
 
