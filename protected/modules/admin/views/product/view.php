@@ -94,6 +94,8 @@ $attributes = array(
         'name' => 'attention_uk',
         'type' => 'raw',
     ),
+    'probe_ru',
+    'probe_uk',
     array(
         'name' => 'text_ru',
         'type' => 'raw',

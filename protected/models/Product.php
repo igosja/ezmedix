@@ -17,6 +17,7 @@ class Product extends CActiveRecord
         return array(
             array('h1_ru, h1_uk, url', 'length', 'max' => 255),
             array('category_id, status, price', 'numerical'),
+            array('probe_ru, probe_uk', 'url'),
             array('category_id, h1_ru, h1_uk, price', 'required'),
             array('attention_ru, attention_uk, composition_ru, composition_uk, release_form_ru, release_form_uk, shelf_life_ru, shelf_life_uk, filter_field, parameter_ru, parameter_uk, pdf_field, text_ru, text_uk, seo_description_ru, seo_description_uk, seo_keywords_ru, seo_keywords_uk', 'safe'),
         );
@@ -36,8 +37,10 @@ class Product extends CActiveRecord
             'h1_uk' => 'Название (Українська)',
             'parameter_ru' => 'Краткое описание (Русский)',
             'parameter_uk' => 'Краткое описание (Українська)',
-            'price' => 'Цена, грн',
             'pdf_field' => 'Инструкции',
+            'price' => 'Цена, грн',
+            'probe_ru' => 'Ссылка на пробник (Русский)',
+            'probe_uk' => 'Ссылка на пробник (Українська)',
             'release_form_ru' => 'Форма выпуска (Русский)',
             'release_form_uk' => 'Форма выпуска (Українська)',
             'shelf_life_ru' => 'Срок годности (Русский)',

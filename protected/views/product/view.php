@@ -103,11 +103,12 @@ $parameter = explode('<br>', $parameter);
                         ); ?>
                         <p style="text-align: center;">
                             <?= Yii::t('views.product.views', 'want-free'); ?>
-                            <a href="javascript:"><?= Yii::t('views.product.views', 'want-free-more'); ?></a>
+                            <a href="<?= $o_product['probe_' . Yii::app()->language] ? $o_product['probe_' . Yii::app()->language] : 'javascript:'; ?>" target="_blank">
+                                <?= Yii::t('views.product.views', 'want-free-more'); ?>
+                            </a>
                         </p>
                     </div>
                 </div>
-
                 <div class="prod__bottom">
                     <div class="prod__title"><?= Yii::t('views.product.views', 'features'); ?></div>
                     <?= $o_product['text_' . Yii::app()->language]; ?>
