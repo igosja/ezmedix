@@ -21,6 +21,9 @@ $opened = true;
             </div>
         </div>
         <div class="wrap">
+            <div style="margin-bottom: 40px;">
+                <?= Yii::t('views.profile.product', 'text'); ?>
+            </div>
             <div class="acrdn acdn_faq">
                 <?php foreach ($a_chapter as $item) { ?>
                     <div class="acrdn-item <?php if ($opened) { ?>opened<?php } ?>">
@@ -178,6 +181,7 @@ $opened = true;
                         <span class="cart-total-price"><?= Yii::app()->numberFormatter->formatDecimal($price); ?> грн</span>
                     </strong>
                 </div>
+                <?php $this->renderPartial('cart', array('a_cart' => $a_cart, 'o_user' => $o_user)); ?>
                 <div class="centered">
                     <?= CHtml::submitButton('', array('style' => 'display:none;')); ?>
                     <a href="javascript:" class="btn submit-link">

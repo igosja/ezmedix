@@ -52,7 +52,8 @@ class CartController extends Controller
         print CJSON::encode(array(
             'status' => 'success',
             'count' => $count,
-            'price' => Yii::app()->numberFormatter->formatDecimal($price)
+            'price' => Yii::app()->numberFormatter->formatDecimal($price),
+            'table' => $this->renderPartial('/profile/cart', array('a_cart' => $a_cart, 'o_user' => $o_user), true)
         ));
     }
 }

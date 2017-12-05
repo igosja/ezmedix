@@ -116,6 +116,7 @@ jQuery(document).ready(function ($) {
                 if ('success' === data.status) {
                     $('.cart-total-price').html(data.price + ' грн');
                     $('.cart-total-count').html(data.count + ' тов');
+                    $('.table-products__out').html(data.table);
                 }
             }
         });

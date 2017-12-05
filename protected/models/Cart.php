@@ -26,6 +26,13 @@ class Cart extends CActiveRecord
         return true;
     }
 
+    public function relations()
+    {
+        return array(
+            'product' => array(self::HAS_ONE, 'Product', array('id' => 'product_id')),
+        );
+    }
+
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
