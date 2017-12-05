@@ -101,12 +101,14 @@ $parameter = explode('<br>', $parameter);
                             array('profile/product'),
                             array('class' => 'prod__btn')
                         ); ?>
-                        <p style="text-align: center;">
-                            <?= Yii::t('views.product.views', 'want-free'); ?>
-                            <a href="<?= $o_product['probe_' . Yii::app()->language] ? $o_product['probe_' . Yii::app()->language] : 'javascript:'; ?>" target="_blank">
-                                <?= Yii::t('views.product.views', 'want-free-more'); ?>
-                            </a>
-                        </p>
+                        <?php if ($o_product['probe_' . Yii::app()->language]) { ?>
+                            <p style="text-align: center;">
+                                <?= Yii::t('views.product.views', 'want-free'); ?>
+                                <a href="<?= $o_product['probe_' . Yii::app()->language]; ?>" target="_blank">
+                                    <?= Yii::t('views.product.views', 'want-free-more'); ?>
+                                </a>
+                            </p>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="prod__bottom">
