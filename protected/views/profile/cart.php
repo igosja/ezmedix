@@ -6,8 +6,8 @@
  */
 
 ?>
-<?php if ($a_cart) { ?>
-    <div class="table-products__out">
+<div class="table-products__out">
+    <?php if ($a_cart) { ?>
         <table class="table-products table-products_b">
             <tr>
                 <th><?= Yii::t('views.profile.cart', 'product'); ?></th>
@@ -32,5 +32,5 @@
                 </tr>
             <?php } ?>
         </table>
-    </div>
-<?php } ?>
+    <?php } ?>
+</div>
