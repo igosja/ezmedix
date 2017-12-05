@@ -9,11 +9,11 @@
 <div class="table-products__out">
     <table class="table-products table-products_b">
         <tr>
-            <th>Товар</th>
-            <th>Количество</th>
-            <th>Цена</th>
-            <th>Скидка</th>
-            <th>Сумма</th>
+            <th><?= Yii::t('views.profile.cart', 'product'); ?></th>
+            <th><?= Yii::t('views.profile.cart', 'quantity'); ?></th>
+            <th><?= Yii::t('views.profile.cart', 'price'); ?></th>
+            <th><?= Yii::t('views.profile.cart', 'discount'); ?></th>
+            <th><?= Yii::t('views.profile.cart', 'total'); ?></th>
         </tr>
         <?php foreach ($a_cart as $item) { ?>
             <tr>
