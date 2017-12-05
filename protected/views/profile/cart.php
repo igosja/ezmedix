@@ -6,29 +6,31 @@
  */
 
 ?>
-<div class="table-products__out">
-    <table class="table-products table-products_b">
-        <tr>
-            <th><?= Yii::t('views.profile.cart', 'product'); ?></th>
-            <th><?= Yii::t('views.profile.cart', 'quantity'); ?></th>
-            <th><?= Yii::t('views.profile.cart', 'price'); ?></th>
-            <th><?= Yii::t('views.profile.cart', 'discount'); ?></th>
-            <th><?= Yii::t('views.profile.cart', 'total'); ?></th>
-        </tr>
-        <?php foreach ($a_cart as $item) { ?>
+<?php if ($a_cart) { ?>
+    <div class="table-products__out">
+        <table class="table-products table-products_b">
             <tr>
-                <td><?= $item['product']['h1_' . Yii::app()->language]; ?></td>
-                <td><?= $item['quantity']; ?></td>
-                <td><?= Yii::app()->numberFormatter->formatDecimal($item['product']['price']); ?> грн</td>
-                <td><?= Yii::app()->numberFormatter->formatDecimal($o_user['usertype']['discount']); ?>%</td>
-                <td>
-                    <?= round(
-                        $item['product']['price'] * (100 - $o_user['usertype']['discount'])
-                        / 100,
-                        2
-                    ); ?> грн
-                </td>
+                <th><?= Yii::t('views.profile.cart', 'product'); ?></th>
+                <th><?= Yii::t('views.profile.cart', 'quantity'); ?></th>
+                <th><?= Yii::t('views.profile.cart', 'price'); ?></th>
+                <th><?= Yii::t('views.profile.cart', 'discount'); ?></th>
+                <th><?= Yii::t('views.profile.cart', 'total'); ?></th>
             </tr>
-        <?php } ?>
-    </table>
-</div>
+            <?php foreach ($a_cart as $item) { ?>
+                <tr>
+                    <td><?= $item['product']['h1_' . Yii::app()->language]; ?></td>
+                    <td><?= $item['quantity']; ?></td>
+                    <td><?= Yii::app()->numberFormatter->formatDecimal($item['product']['price']); ?> грн</td>
+                    <td><?= Yii::app()->numberFormatter->formatDecimal($o_user['usertype']['discount']); ?>%</td>
+                    <td>
+                        <?= round(
+                            $item['product']['price'] * (100 - $o_user['usertype']['discount'])
+                            / 100,
+                            2
+                        ); ?> грн
+                    </td>
+                </tr>
+            <?php } ?>
+        </table>
+    </div>
+<?php } ?>
