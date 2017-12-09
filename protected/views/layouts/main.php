@@ -87,10 +87,18 @@
                 </a>
             </div>
             <div class="header__search clearfix">
-                <form action="/" onsubmit="return false">
-                    <input type="submit" class="header__search__subm" value="">
-                    <input type="text" class="header__search__text">
-                </form>
+                <?php $form = $this->beginWidget('CActiveForm', array(
+                    'action' => array('search/index'),
+                    'enableAjaxValidation' => false,
+                    'enableClientValidation' => true,
+                    'id' => 'search-top',
+                    'method' => 'get'
+                )); ?>
+                <?= CHtml::submitButton('', array('class' => 'header__search__subm')); ?>
+                <?= $form->textField($this->searchInfo, 'q', array(
+                    'class' => 'header__search__text',
+                )); ?>
+                <?php $this->endWidget(); ?>
             </div>
         </div>
     </header>
@@ -177,10 +185,18 @@
                 </li>
             </ul>
             <div class="header__search clearfix">
-                <form action="">
-                    <input type="submit" class="header__search__subm" value="">
-                    <input type="text" class="header__search__text">
-                </form>
+                <?php $form = $this->beginWidget('CActiveForm', array(
+                    'action' => array('search/index'),
+                    'enableAjaxValidation' => false,
+                    'enableClientValidation' => true,
+                    'id' => 'search-top-m',
+                    'method' => 'get'
+                )); ?>
+                <?= CHtml::submitButton('', array('class' => 'header__search__subm')); ?>
+                <?= $form->textField($this->searchInfo, 'q', array(
+                    'class' => 'header__search__text',
+                )); ?>
+                <?php $this->endWidget(); ?>
             </div>
             <?php foreach ($this->a_social as $item) { ?>
                 <a href="<?= $item['url'] ? $item['url'] : 'javascript:'; ?>" class="<?= $item['css']; ?>" target="_blank"></a>
@@ -276,10 +292,18 @@
                         <?= $this->schedule; ?>
                     </div>
                     <div class="header__search clearfix">
-                        <form action="/" onsubmit="return false">
-                            <input type="submit" class="header__search__subm" value="">
-                            <input type="text" class="header__search__text">
-                        </form>
+                        <?php $form = $this->beginWidget('CActiveForm', array(
+                            'action' => array('search/index'),
+                            'enableAjaxValidation' => false,
+                            'enableClientValidation' => true,
+                            'id' => 'search-bootom',
+                            'method' => 'get'
+                        )); ?>
+                        <?= CHtml::submitButton('', array('class' => 'header__search__subm')); ?>
+                        <?= $form->textField($this->searchInfo, 'q', array(
+                            'class' => 'header__search__text',
+                        )); ?>
+                        <?php $this->endWidget(); ?>
                     </div>
                 </div>
             </div>

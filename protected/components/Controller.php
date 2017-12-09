@@ -11,13 +11,14 @@ class Controller extends CController
     public $a_language = array();
     public $a_social = array();
     public $breadcrumbs = array();
-    public $callme = array();
+    public $callme;
     public $layout = 'main';
     public $og_image;
     public $schedule;
     public $seo_title;
     public $seo_description;
     public $seo_keywords;
+    public $searchInfo;
 
     public function filters()
     {
@@ -93,6 +94,7 @@ class Controller extends CController
                 $this->refresh();
             }
         }
+        $this->searchInfo = new SearchInfo();
         return $action;
     }
 

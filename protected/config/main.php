@@ -52,6 +52,7 @@ return array(
                 'partner' => 'partner/index',
                 'profile' => 'profile/index',
                 'product/<id>' => 'product/view',
+                'search' => 'search/index',
                 'signup' => 'site/signup',
                 '<language:(ru|uk)>/<controller>/<action>/<id>' => '<controller>/<action>',
                 '<language:(ru|uk)>/<controller>/<action>' => '<controller>/<action>',
