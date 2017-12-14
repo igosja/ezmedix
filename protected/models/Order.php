@@ -43,6 +43,11 @@ class Order extends CActiveRecord
         if ($this['comment']) {
             $text .= '<br/>Сообщение - ' . $this['comment'];
         }
+        $text .= '<br/>Товары:<ul>';
+        foreach ($this['product'] as $item) {
+            $text .= '<li>' . $item['product_ru'] . ' (' . $item['quantity'] . ' шт, ' . Yii::app()->numberFormatter->formatDecimal($item['total']) . ' грн)</li>';
+        }
+        $text .= '</ul>';
         $contact = Contact::model()->findByPk(1);
         $mail = new Mail();
         $mail->setTo($contact['email_letter']);
