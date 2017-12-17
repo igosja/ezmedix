@@ -32,7 +32,7 @@ class CatalogController extends Controller
                 }
                 $a_product = Product::model()->findAllByAttributes(
                     array('status' => 1, 'id' => $product_id, 'category_id' => $category),
-                    array('order' => 'id ASC', 'offset' => $offset, 'limit' => News::ON_PAGE)
+                    array('order' => 'id ASC', 'offset' => $offset, 'limit' => Product::ON_PAGE)
                 );
                 $count = Product::model()->countByAttributes(
                     array('status' => 1, 'id' => $product_id, 'category_id' => $category)
@@ -40,7 +40,7 @@ class CatalogController extends Controller
             } else {
                 $a_product = Product::model()->findAllByAttributes(
                     array('status' => 1, 'id' => $product_id),
-                    array('order' => 'id ASC', 'offset' => $offset, 'limit' => News::ON_PAGE)
+                    array('order' => 'id ASC', 'offset' => $offset, 'limit' => Product::ON_PAGE)
                 );
                 $count = Product::model()->countByAttributes(array('status' => 1, 'id' => $product_id));
             }
@@ -53,13 +53,13 @@ class CatalogController extends Controller
                 }
                 $a_product = Product::model()->findAllByAttributes(
                     array('status' => 1, 'category_id' => $category),
-                    array('order' => 'id ASC', 'offset' => $offset, 'limit' => News::ON_PAGE)
+                    array('order' => 'id ASC', 'offset' => $offset, 'limit' => Product::ON_PAGE)
                 );
                 $count = Product::model()->countByAttributes(array('status' => 1, 'category_id' => $category));
             } else {
                 $a_product = Product::model()->findAllByAttributes(
                     array('status' => 1),
-                    array('order' => 'id ASC', 'offset' => $offset, 'limit' => News::ON_PAGE)
+                    array('order' => 'id ASC', 'offset' => $offset, 'limit' => Product::ON_PAGE)
                 );
                 $count = Product::model()->countByAttributes(array('status' => 1));
             }
@@ -68,7 +68,7 @@ class CatalogController extends Controller
         if ($count > count($a_product) + $offset) {
             $more = true;
         }
-        $page_total = ceil($count / News::ON_PAGE);
+        $page_total = ceil($count / Product::ON_PAGE);
         $page_first = $page - 4;
         if ($page_first < 1) {
             $page_first = 1;

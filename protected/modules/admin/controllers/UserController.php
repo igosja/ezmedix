@@ -55,12 +55,13 @@ class UserController extends AController
         $password = substr(md5(uniqid(rand())), 0, 5);
         $model['login'] = 'user' . $model->primaryKey;
         $model['password'] = $model->hashPassword($password);
+        $model['status'] = 1;
         if ($model->save()) {
             $text = 'Ваша регистрация успешно завершена';
             $text .= '<br/>Логин - ' . $model['login'];
             $text .= '<br/>Пароль - ' . $password;
             $mail = new Mail();
-            $mail->setTo($this->email);
+            $mail->setTo($model['email']);
             $mail->setSubject('Регистрация на сайте ezmedix');
             $mail->setHtml($text);
             $mail->send();

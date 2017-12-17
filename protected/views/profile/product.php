@@ -63,6 +63,7 @@ $opened = true;
                                                 $product['h1_' . Yii::app()->language],
                                                 array('product/view', 'id' => $product['url'])
                                             ); ?>
+                                        </td>
                                         <td><?= $product['category']['h1_' . Yii::app()->language]; ?></td>
                                         <td>
                                             <div class="order-cnt clearfix">
