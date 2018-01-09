@@ -10,12 +10,13 @@ jQuery(document).ready(function ($) {
         var item_div = $('.item-div');
         var offset = button.data('offset');
         var type = button.data('type');
+        var language = $('#language-select').val();
 
         $.ajax({
             beforeSend: function () {
                 button.hide();
             },
-            url: '/' + type + '/more?offset=' + offset + '&id=' + get_id + '&filter=' + filter,
+            url: '/' + type + '/more?language=' + language + '&offset=' + offset + '&id=' + get_id + '&filter=' + filter,
             success: function (data) {
                 item_div.append(data);
                 $.ajax({
