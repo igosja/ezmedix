@@ -59,12 +59,20 @@ $attributes = array(
         'name' => 'text_ru',
         'type' => 'raw',
     ),
+    array(
+        'name' => 'text_seo_ru',
+        'type' => 'raw',
+    ),
     'seo_title_ru',
     'seo_description_ru',
     'seo_keywords_ru',
     'h1_uk',
     array(
         'name' => 'text_uk',
+        'type' => 'raw',
+    ),
+    array(
+        'name' => 'text_seo_uk',
         'type' => 'raw',
     ),
     'seo_title_uk',

@@ -47,6 +47,13 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'url'); ?></td>
+                        <td>
+                            <?= $form->textField($model, 'url', array('class' => 'form-control')); ?>
+                            <?= $form->error($model, 'url'); ?>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="col-lg-3"><?= $form->labelEx($model, 'text_ru'); ?></td>
                         <td>
                             <?= $form->textArea($model, 'text_ru', array('class' => 'ckeditor')); ?>
@@ -61,10 +68,17 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="col-lg-3"><?= $form->labelEx($model, 'url'); ?></td>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'text_seo_ru'); ?></td>
                         <td>
-                            <?= $form->textField($model, 'url', array('class' => 'form-control')); ?>
-                            <?= $form->error($model, 'url'); ?>
+                            <?= $form->textArea($model, 'text_seo_ru', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'text_seo_ru'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'text_seo_uk'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'text_seo_uk', array('class' => 'ckeditor')); ?>
+                            <?= $form->error($model, 'text_seo_uk'); ?>
                         </td>
                     </tr>
                     <tr>

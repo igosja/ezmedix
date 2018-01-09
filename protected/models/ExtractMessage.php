@@ -17,7 +17,7 @@ class ExtractMessage extends CFormModel
     public static function findFiles($path)
     {
         $dir = rtrim($path, DIRECTORY_SEPARATOR);
-        $list = [];
+        $list = array();
         $handle = opendir($dir);
         while (($file = readdir($handle)) !== false) {
             if ($file === '.' || $file === '..') {

@@ -13,7 +13,7 @@ class Chapter extends CActiveRecord
             array('h1_ru, h1_uk, seo_title_ru, seo_title_uk, url', 'length', 'max' => 255),
             array('image_id, image_id_big, order, status', 'numerical'),
             array('h1_ru, h1_uk', 'required'),
-            array('text_ru, text_uk, seo_description_ru, seo_description_uk, seo_keywords_ru, seo_keywords_uk', 'safe'),
+            array('text_ru, text_uk, text_seo_ru, text_seo_uk, seo_description_ru, seo_description_uk, seo_keywords_ru, seo_keywords_uk', 'safe'),
         );
     }
 
@@ -24,8 +24,10 @@ class Chapter extends CActiveRecord
             'image_id_big' => 'Изображение (большое)',
             'h1_ru' => 'Название (Русский)',
             'h1_uk' => 'Название (Українська)',
-            'text_ru' => 'Текст (Русский)',
-            'text_uk' => 'Текст (Українська)',
+            'text_ru' => 'Текст сверху (Русский)',
+            'text_uk' => 'Текст сверху (Українська)',
+            'text_seo_ru' => 'Текст снизу (Русский)',
+            'text_seo_uk' => 'Текст снизу (Українська)',
             'seo_title_ru' => 'SEO title (Русский)',
             'seo_title_uk' => 'SEO title (Українська)',
             'seo_description_ru' => 'SEO description (Русский)',

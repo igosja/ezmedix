@@ -177,7 +177,7 @@
     </div>
     <div class="gr-text">
         <div class="wrap">
-            <?= $o_page['text_' . Yii::app()->language]; ?>
+            <?= $o_chapter ? $o_chapter['text_seo_' . Yii::app()->language] : $o_page['text_' . Yii::app()->language]; ?>
         </div>
     </div>
 </section>
